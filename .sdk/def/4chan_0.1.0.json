@@ -1,0 +1,664 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "4chan API",
+    "description": "4chan's read-only JSON API for accessing posts, threads, boards, catalogs, and archives from 4chan.org and 4channel.org. Data is exclusively accessible from a.4cdn.org via HTTP or HTTPS protocols.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "api@4chan.org"
+    },
+    "termsOfService": "https://github.com/4chan/4chan-API#api-terms-of-service",
+    "x-apisguru-categories": [
+      "social"
+    ],
+    "x-origin": [
+      {
+        "format": "openapi",
+        "version": "3.0.3",
+        "url": "https://github.com/4chan/4chan-API"
+      }
+    ]
+  },
+  "servers": [
+    {
+      "url": "https://a.4cdn.org",
+      "description": "4chan API Server (HTTPS)"
+    },
+    {
+      "url": "http://a.4cdn.org",
+      "description": "4chan API Server (HTTP)"
+    }
+  ],
+  "paths": {
+    "/boards.json": {
+      "get": {
+        "summary": "Get list of all boards",
+        "description": "Returns a list of all available boards on 4chan with their attributes and metadata.",
+        "operationId": "getBoards",
+        "tags": [
+          "Boards"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with board list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BoardsResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ]
+      }
+    },
+    "/{board}/threads.json": {
+      "get": {
+        "summary": "Get thread list for a board",
+        "description": "Returns a list of all threads on a board with brief statistics including modification time, reply count, and other metadata.",
+        "operationId": "getThreadList",
+        "tags": [
+          "Threads"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BoardParameter"
+          },
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with thread list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadListResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board not found"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        }
+      }
+    },
+    "/{board}/archive.json": {
+      "get": {
+        "summary": "Get archived thread IDs for a board",
+        "description": "Returns a JSON array of archived thread IDs for the specified board.",
+        "operationId": "getBoardArchive",
+        "tags": [
+          "Archive"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BoardParameter"
+          },
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with archived thread IDs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board not found or archive not available"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        }
+      }
+    },
+    "/{board}/catalog.json": {
+      "get": {
+        "summary": "Get catalog for a board",
+        "description": "Returns the JSON representation of the board's native catalog, showing thread previews organized by pages.",
+        "operationId": "getBoardCatalog",
+        "tags": [
+          "Catalog"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BoardParameter"
+          },
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with catalog data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board not found"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        }
+      }
+    },
+    "/{board}/{page}.json": {
+      "get": {
+        "summary": "Get board index page",
+        "description": "Returns the JSON representation of a board's index (main) page, containing threads and their preview posts.",
+        "operationId": "getBoardIndex",
+        "tags": [
+          "Index"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BoardParameter"
+          },
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Page number (typically 1-10)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with index page data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IndexResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board or page not found"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        }
+      }
+    },
+    "/{board}/thread/{threadId}.json": {
+      "get": {
+        "summary": "Get specific thread",
+        "description": "Returns the JSON representation of a specific thread, including the original post and all replies.",
+        "operationId": "getThread",
+        "tags": [
+          "Threads"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BoardParameter"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "Thread ID (post number of the opening post)",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/IfModifiedSince"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with thread data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Thread not found or has been deleted"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "BoardParameter": {
+        "name": "board",
+        "in": "path",
+        "description": "Board identifier (e.g., 'g' for technology, 'a' for anime)",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+$"
+        }
+      },
+      "IfModifiedSince": {
+        "name": "If-Modified-Since",
+        "in": "header",
+        "description": "HTTP date for conditional requests. Returns 304 if content hasn't been modified.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "schemas": {
+      "BoardsResponse": {
+        "type": "object",
+        "properties": {
+          "boards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Board"
+            }
+          }
+        }
+      },
+      "Board": {
+        "type": "object",
+        "properties": {
+          "board": {
+            "type": "string",
+            "description": "Board identifier"
+          },
+          "title": {
+            "type": "string",
+            "description": "Board title"
+          },
+          "ws_board": {
+            "type": "integer",
+            "description": "Worksafe board flag (1 for worksafe, 0 for NSFW)"
+          },
+          "per_page": {
+            "type": "integer",
+            "description": "Threads per page"
+          },
+          "pages": {
+            "type": "integer",
+            "description": "Number of pages"
+          },
+          "max_filesize": {
+            "type": "integer",
+            "description": "Maximum filesize in bytes"
+          },
+          "max_webm_filesize": {
+            "type": "integer",
+            "description": "Maximum WebM filesize in bytes"
+          },
+          "max_comment_chars": {
+            "type": "integer",
+            "description": "Maximum comment length"
+          },
+          "max_webm_duration": {
+            "type": "integer",
+            "description": "Maximum WebM duration in seconds"
+          },
+          "bump_limit": {
+            "type": "integer",
+            "description": "Bump limit for threads"
+          },
+          "image_limit": {
+            "type": "integer",
+            "description": "Image limit for threads"
+          },
+          "cooldowns": {
+            "type": "object",
+            "description": "Cooldown periods for posting"
+          },
+          "meta_description": {
+            "type": "string",
+            "description": "Board meta description"
+          },
+          "spoilers": {
+            "type": "integer",
+            "description": "Custom spoilers enabled flag"
+          },
+          "custom_spoilers": {
+            "type": "integer",
+            "description": "Number of custom spoiler images"
+          },
+          "is_archived": {
+            "type": "integer",
+            "description": "Archive enabled flag"
+          },
+          "board_flags": {
+            "type": "object",
+            "description": "Board flags configuration"
+          }
+        }
+      },
+      "ThreadListResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "description": "Page number"
+            },
+            "threads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ThreadListItem"
+              }
+            }
+          }
+        }
+      },
+      "ThreadListItem": {
+        "type": "object",
+        "properties": {
+          "no": {
+            "type": "integer",
+            "description": "Thread ID (OP post number)"
+          },
+          "last_modified": {
+            "type": "integer",
+            "description": "Unix timestamp of last modification"
+          },
+          "replies": {
+            "type": "integer",
+            "description": "Number of replies"
+          }
+        }
+      },
+      "ArchiveResponse": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "description": "Archived thread ID"
+        }
+      },
+      "CatalogResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "description": "Page number"
+            },
+            "threads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          }
+        }
+      },
+      "IndexResponse": {
+        "type": "object",
+        "properties": {
+          "threads": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Post"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ThreadResponse": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Post"
+            }
+          }
+        }
+      },
+      "Post": {
+        "type": "object",
+        "properties": {
+          "no": {
+            "type": "integer",
+            "description": "Post number"
+          },
+          "resto": {
+            "type": "integer",
+            "description": "Reply to thread ID (0 for OP)"
+          },
+          "sticky": {
+            "type": "integer",
+            "description": "Sticky flag"
+          },
+          "closed": {
+            "type": "integer",
+            "description": "Closed flag"
+          },
+          "now": {
+            "type": "string",
+            "description": "Formatted date and time"
+          },
+          "time": {
+            "type": "integer",
+            "description": "Unix timestamp"
+          },
+          "name": {
+            "type": "string",
+            "description": "Poster name"
+          },
+          "trip": {
+            "type": "string",
+            "description": "Tripcode"
+          },
+          "id": {
+            "type": "string",
+            "description": "Poster ID"
+          },
+          "capcode": {
+            "type": "string",
+            "description": "Capcode (mod, admin, etc.)"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "country_name": {
+            "type": "string",
+            "description": "Country name"
+          },
+          "sub": {
+            "type": "string",
+            "description": "Subject"
+          },
+          "com": {
+            "type": "string",
+            "description": "Comment (HTML escaped)"
+          },
+          "tim": {
+            "type": "integer",
+            "description": "Unix timestamp for image"
+          },
+          "filename": {
+            "type": "string",
+            "description": "Original filename"
+          },
+          "ext": {
+            "type": "string",
+            "description": "File extension"
+          },
+          "fsize": {
+            "type": "integer",
+            "description": "File size in bytes"
+          },
+          "md5": {
+            "type": "string",
+            "description": "MD5 hash in base64"
+          },
+          "w": {
+            "type": "integer",
+            "description": "Image width"
+          },
+          "h": {
+            "type": "integer",
+            "description": "Image height"
+          },
+          "tn_w": {
+            "type": "integer",
+            "description": "Thumbnail width"
+          },
+          "tn_h": {
+            "type": "integer",
+            "description": "Thumbnail height"
+          },
+          "filedeleted": {
+            "type": "integer",
+            "description": "File deleted flag"
+          },
+          "spoiler": {
+            "type": "integer",
+            "description": "Spoiler flag"
+          },
+          "custom_spoiler": {
+            "type": "integer",
+            "description": "Custom spoiler ID"
+          },
+          "omitted_posts": {
+            "type": "integer",
+            "description": "Number of omitted posts"
+          },
+          "omitted_images": {
+            "type": "integer",
+            "description": "Number of omitted images"
+          },
+          "replies": {
+            "type": "integer",
+            "description": "Number of replies"
+          },
+          "images": {
+            "type": "integer",
+            "description": "Number of images"
+          },
+          "bumplimit": {
+            "type": "integer",
+            "description": "Bump limit reached flag"
+          },
+          "imagelimit": {
+            "type": "integer",
+            "description": "Image limit reached flag"
+          },
+          "last_modified": {
+            "type": "integer",
+            "description": "Unix timestamp of last modification"
+          },
+          "tag": {
+            "type": "string",
+            "description": "Tag"
+          },
+          "semantic_url": {
+            "type": "string",
+            "description": "SEO-friendly URL slug"
+          },
+          "since4pass": {
+            "type": "integer",
+            "description": "Year 4chan pass purchased"
+          },
+          "unique_ips": {
+            "type": "integer",
+            "description": "Number of unique poster IPs"
+          },
+          "m_img": {
+            "type": "integer",
+            "description": "Mobile optimized image flag"
+          },
+          "archived": {
+            "type": "integer",
+            "description": "Archived flag"
+          },
+          "archived_on": {
+            "type": "integer",
+            "description": "Unix timestamp when archived"
+          }
+        },
+        "required": [
+          "no",
+          "time",
+          "now"
+        ]
+      }
+    }
+  },
+  "x-documentation": {
+    "rules": [
+      "Do not make more than one request per second",
+      "Thread updating should be set to a minimum of 10 seconds, preferably higher",
+      "Use If-Modified-Since header when doing requests",
+      "Make API requests using the same protocol as the app"
+    ],
+    "media_urls": {
+      "images": "https://i.4cdn.org/{board}/{tim}{ext}",
+      "thumbnails": "https://i.4cdn.org/{board}/{tim}s.jpg"
+    }
+  }
+}

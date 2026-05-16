@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "catalog": {
+      "CATALOG00": {
+        "page": "s14",
+        "thread": [],
+        "board": "BOARD01"
+      },
+      "CATALOG01": {
+        "page": "s28",
+        "thread": [],
+        "board": "BOARD01"
+      },
+      "CATALOG02": {
+        "page": "s3c",
+        "thread": [],
+        "board": "BOARD01"
+      }
+    }
+  },
+  "new": {
+    "catalog": {
+      "catalog_ref01": {
+        "page": "s50",
+        "thread": []
+      }
+    }
+  }
+}

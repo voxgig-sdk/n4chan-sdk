@@ -1,0 +1,7 @@
+# Entity Models
+
+@"archive.jsonic"
+@"board.jsonic"
+@"catalog.jsonic"
+@"index.jsonic"
+@"thread.jsonic"

@@ -1,0 +1,56 @@
+# Entity: archive
+
+main: kit: entity: archive: {
+
+  alias: field: {}
+
+  name: "archive"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "board"
+                orig: "board"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{board}/archive.json"
+          parts: [
+            "{board}"
+            "archive.json"
+          ]
+          select: {
+            exist: [
+              "board"
+              "if_modified_since"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

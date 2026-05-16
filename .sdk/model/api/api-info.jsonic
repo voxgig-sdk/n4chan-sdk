@@ -1,0 +1,38 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "api@4chan.org"
+      }
+      description: "4chan's read-only JSON API for accessing posts, threads, boards, catalogs, and archives from 4chan.org and 4channel.org. Data is exclusively accessible from a.4cdn.org via HTTP or HTTPS protocols."
+      servers: [
+        {
+          description: "4chan API Server (HTTPS)"
+          url: "https://a.4cdn.org"
+        }
+        {
+          description: "4chan API Server (HTTP)"
+          url: "http://a.4cdn.org"
+        }
+      ]
+      termsOfService: "https://github.com/4chan/4chan-API#api-terms-of-service"
+      title: "4chan API"
+      version: "1.0.0"
+      "x-apisguru-categories": [
+        "social"
+      ]
+      "x-origin": [
+        {
+          format: "openapi"
+          url: "https://github.com/4chan/4chan-API"
+          version: "3.0.3"
+        }
+      ]
+    }
+  }
+}
+
+}

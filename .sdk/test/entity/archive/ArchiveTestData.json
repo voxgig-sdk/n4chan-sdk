@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "archive": {
+      "ARCHIVE00": {
+        "board": "BOARD01"
+      },
+      "ARCHIVE01": {
+        "board": "BOARD01"
+      },
+      "ARCHIVE02": {
+        "board": "BOARD01"
+      }
+    }
+  },
+  "new": {
+    "archive": {
+      "archive_ref01": {}
+    }
+  }
+}

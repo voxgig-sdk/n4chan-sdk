@@ -1,0 +1,153 @@
+package sdktest
+
+import (
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+	"testing"
+	"time"
+
+	sdk "github.com/voxgig-sdk/n4chan-sdk"
+	"github.com/voxgig-sdk/n4chan-sdk/core"
+
+	vs "github.com/voxgig/struct"
+)
+
+func TestThreadEntity(t *testing.T) {
+	t.Run("instance", func(t *testing.T) {
+		testsdk := sdk.TestSDK(nil, nil)
+		ent := testsdk.Thread(nil)
+		if ent == nil {
+			t.Fatal("expected non-nil ThreadEntity")
+		}
+	})
+
+	t.Run("basic", func(t *testing.T) {
+		setup := threadBasicSetup(nil)
+		// Per-op sdk-test-control.json skip — basic test exercises a flow
+		// with multiple ops; skipping any op skips the whole flow.
+		_mode := "unit"
+		if setup.live {
+			_mode = "live"
+		}
+		for _, _op := range []string{"list"} {
+			if _shouldSkip, _reason := isControlSkipped("entityOp", "thread." + _op, _mode); _shouldSkip {
+				if _reason == "" {
+					_reason = "skipped via sdk-test-control.json"
+				}
+				t.Skip(_reason)
+				return
+			}
+		}
+		// The basic flow consumes synthetic IDs from the fixture. In live mode
+		// without an *_ENTID env override, those IDs hit the live API and 4xx.
+		if setup.syntheticOnly {
+			t.Skip("live entity test uses synthetic IDs from fixture — set N_CHAN_TEST_THREAD_ENTID JSON to run live")
+			return
+		}
+		client := setup.client
+
+		// Bootstrap entity data from existing test data (no create step in flow).
+		threadRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.thread", setup.data)))
+		var threadRef01Data map[string]any
+		if len(threadRef01DataRaw) > 0 {
+			threadRef01Data = core.ToMapAny(threadRef01DataRaw[0][1])
+		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = threadRef01Data
+
+		// LIST
+		threadRef01Ent := client.Thread(nil)
+		threadRef01Match := map[string]any{
+			"board": setup.idmap["board01"],
+		}
+
+		threadRef01ListResult, err := threadRef01Ent.List(threadRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		_, threadRef01ListOk := threadRef01ListResult.([]any)
+		if !threadRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", threadRef01ListResult)
+		}
+
+	})
+}
+
+func threadBasicSetup(extra map[string]any) *entityTestSetup {
+	loadEnvLocal()
+
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+
+	entityDataFile := filepath.Join(dir, "..", "..", ".sdk", "test", "entity", "thread", "ThreadTestData.json")
+
+	entityDataSource, err := os.ReadFile(entityDataFile)
+	if err != nil {
+		panic("failed to read thread test data: " + err.Error())
+	}
+
+	var entityData map[string]any
+	if err := json.Unmarshal(entityDataSource, &entityData); err != nil {
+		panic("failed to parse thread test data: " + err.Error())
+	}
+
+	options := map[string]any{}
+	options["entity"] = entityData["existing"]
+
+	client := sdk.TestSDK(options, extra)
+
+	// Generate idmap via transform, matching TS pattern.
+	idmap := vs.Transform(
+		[]any{"thread01", "thread02", "thread03", "board01"},
+		map[string]any{
+			"`$PACK`": []any{"", map[string]any{
+				"`$KEY`": "`$COPY`",
+				"`$VAL`": []any{"`$FORMAT`", "upper", "`$COPY`"},
+			}},
+		},
+	)
+
+	// Detect ENTID env override before envOverride consumes it. When live
+	// mode is on without a real override, the basic test runs against synthetic
+	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	entidEnvRaw := os.Getenv("N_CHAN_TEST_THREAD_ENTID")
+	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
+
+	env := envOverride(map[string]any{
+		"N_CHAN_TEST_THREAD_ENTID": idmap,
+		"N_CHAN_TEST_LIVE":      "FALSE",
+		"N_CHAN_TEST_EXPLAIN":   "FALSE",
+		"N_CHAN_APIKEY":         "NONE",
+	})
+
+	idmapResolved := core.ToMapAny(env["N_CHAN_TEST_THREAD_ENTID"])
+	if idmapResolved == nil {
+		idmapResolved = core.ToMapAny(idmap)
+	}
+
+	if env["N_CHAN_TEST_LIVE"] == "TRUE" {
+		mergedOpts := vs.Merge([]any{
+			map[string]any{
+				"apikey": env["N_CHAN_APIKEY"],
+			},
+			extra,
+		})
+		client = sdk.NewN4chanSDK(core.ToMapAny(mergedOpts))
+	}
+
+	live := env["N_CHAN_TEST_LIVE"] == "TRUE"
+	return &entityTestSetup{
+		client:        client,
+		data:          entityData,
+		idmap:         idmapResolved,
+		env:           env,
+		explain:       env["N_CHAN_TEST_EXPLAIN"] == "TRUE",
+		live:          live,
+		syntheticOnly: live && !idmapOverridden,
+		now:           time.Now().UnixMilli(),
+	}
+}

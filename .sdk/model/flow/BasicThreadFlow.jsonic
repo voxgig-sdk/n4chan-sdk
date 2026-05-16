@@ -1,0 +1,26 @@
+# BasicThreadFlow
+
+main: kit: flow: BasicThreadFlow:
+{
+  entity: "thread",
+  kind: "basic",
+  name: "BasicThreadFlow",
+  step: [
+    {
+      match: {
+        board: "board01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "thread_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicThreadFlow"
+}

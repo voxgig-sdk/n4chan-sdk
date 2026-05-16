@@ -1,0 +1,133 @@
+# Entity: board
+
+main: kit: entity: board: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "board"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "board_flag"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "bump_limit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "cooldown"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "custom_spoiler"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "image_limit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "is_archived"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "max_comment_char"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "max_filesize"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "max_webm_duration"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "max_webm_filesize"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "meta_description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "per_page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "spoiler"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ws_board"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "board"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/boards.json"
+          parts: [
+            "boards.json"
+          ]
+          select: {
+            exist: [
+              "if_modified_since"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

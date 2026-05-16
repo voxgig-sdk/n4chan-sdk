@@ -1,0 +1,69 @@
+# Entity: catalog
+
+main: kit: entity: catalog: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "thread"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "catalog"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "board"
+                orig: "board"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{board}/catalog.json"
+          parts: [
+            "{board}"
+            "catalog.json"
+          ]
+          select: {
+            exist: [
+              "board"
+              "if_modified_since"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

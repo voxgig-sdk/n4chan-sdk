@@ -1,0 +1,72 @@
+# Entity: index
+
+main: kit: entity: index: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "post"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "index"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "board"
+                orig: "board"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "page"
+                orig: "page"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{board}/{page}.json"
+          parts: [
+            "{board}"
+            "{page}.json"
+          ]
+          select: {
+            exist: [
+              "board"
+              "if_modified_since"
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

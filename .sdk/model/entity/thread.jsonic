@@ -1,0 +1,330 @@
+# Entity: thread
+
+main: kit: entity: thread: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "archived"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "archived_on"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "bumplimit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "capcode"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "closed"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "com"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "custom_spoiler"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ext"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "filedeleted"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "filename"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "fsize"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "h"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "imagelimit"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "last_modified"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "m_img"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "md5"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "no"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "now"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "omitted_image"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "omitted_post"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "reply"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "resto"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "semantic_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "since4pass"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "spoiler"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "sticky"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "sub"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "thread"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "tim"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "time"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tn_h"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tn_w"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "trip"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "unique_ip"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "w"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "thread"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "board"
+                orig: "board"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "thread_id"
+                orig: "thread_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{board}/thread/{threadId}.json"
+          parts: [
+            "{board}"
+            "thread"
+            "{threadId}.json"
+          ]
+          select: {
+            "$action": "thread_id"
+            exist: [
+              "board"
+              "if_modified_since"
+              "thread_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            header: [
+              {
+                kind: "header"
+                name: "if_modified_since"
+                orig: "if_modified_since"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "board"
+                orig: "board"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{board}/threads.json"
+          parts: [
+            "{board}"
+            "threads.json"
+          ]
+          select: {
+            exist: [
+              "board"
+              "if_modified_since"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "thread"
+      ]
+    ]
+  }
+
+
+
+}

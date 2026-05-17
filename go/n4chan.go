@@ -1,10 +1,10 @@
 package voxgign4chansdk
 
 import (
-	"github.com/voxgig-sdk/n4chan-sdk/core"
-	"github.com/voxgig-sdk/n4chan-sdk/entity"
-	"github.com/voxgig-sdk/n4chan-sdk/feature"
-	_ "github.com/voxgig-sdk/n4chan-sdk/utility"
+	"github.com/voxgig-sdk/n4chan-sdk/go/core"
+	"github.com/voxgig-sdk/n4chan-sdk/go/entity"
+	"github.com/voxgig-sdk/n4chan-sdk/go/feature"
+	_ "github.com/voxgig-sdk/n4chan-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

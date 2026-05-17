@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/n4chan-sdk"
-	"github.com/voxgig-sdk/n4chan-sdk/core"
+	sdk "github.com/voxgig-sdk/n4chan-sdk/go"
+	"github.com/voxgig-sdk/n4chan-sdk/go/core"
 )
 
 func TestBoardDirect(t *testing.T) {

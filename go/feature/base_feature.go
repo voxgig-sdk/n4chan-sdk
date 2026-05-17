@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/n4chan-sdk/core"
+	"github.com/voxgig-sdk/n4chan-sdk/go/core"
 )
 
 type BaseFeature struct {

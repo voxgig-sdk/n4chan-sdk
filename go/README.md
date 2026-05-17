@@ -5,14 +5,14 @@ The Golang SDK for the N4chan API. Provides an entity-oriented interface using s
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/n4chan-sdk
+go get github.com/voxgig-sdk/n4chan-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/n4chan-sdk=../path/to/github.com/voxgig-sdk/n4chan-sdk
+go mod edit -replace github.com/voxgig-sdk/n4chan-sdk/go=../path/to/github.com/voxgig-sdk/n4chan-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/n4chan-sdk"
-    "github.com/voxgig-sdk/n4chan-sdk/core"
+    sdk "github.com/voxgig-sdk/n4chan-sdk/go"
+    "github.com/voxgig-sdk/n4chan-sdk/go/core"
 )
 
 func main() {
@@ -553,7 +553,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/n4chan-sdk/
+github.com/voxgig-sdk/n4chan-sdk/go/
 ├── n4chan.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -562,7 +562,7 @@ github.com/voxgig-sdk/n4chan-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/n4chan-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/n4chan-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

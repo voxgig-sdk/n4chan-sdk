@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "N4chan_sdk"
 
-client = N4chanSDK.new({
-  "apikey" => ENV["N4CHAN_APIKEY"],
-})
+client = N4chanSDK.new({})
 ```
 
 ### 2. List archives
@@ -127,7 +125,6 @@ Create a `.env.local` file at the project root:
 
 ```
 N4CHAN_TEST_LIVE=TRUE
-N4CHAN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +147,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

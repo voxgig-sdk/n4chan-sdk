@@ -15,9 +15,6 @@ module N4chanConfig
       },
       "options" => {
         "base" => "https://a.4cdn.org",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

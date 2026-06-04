@@ -87,14 +87,12 @@ function thread_direct_setup($mockres)
     $env = Runner::env_override([
         "N_CHAN_TEST_THREAD_ENTID" => [],
         "N_CHAN_TEST_LIVE" => "FALSE",
-        "N_CHAN_APIKEY" => "NONE",
     ]);
 
     $live = $env["N_CHAN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["N_CHAN_APIKEY"],
         ];
         $client = new N4chanSDK($merged_opts);
         return [

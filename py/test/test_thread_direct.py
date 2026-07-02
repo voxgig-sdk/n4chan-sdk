@@ -77,12 +77,14 @@ def _thread_direct_setup(mockres):
     env = runner.env_override({
         "N_CHAN_TEST_THREAD_ENTID": {},
         "N_CHAN_TEST_LIVE": "FALSE",
+        "N_CHAN_APIKEY": "NONE",
     })
 
     live = env.get("N_CHAN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("N_CHAN_APIKEY"),
         }
         client = N4chanSDK(merged_opts)
         return {

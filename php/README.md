@@ -1,6 +1,11 @@
 # N4chan PHP SDK
 
-The PHP SDK for the N4chan API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the N4chan API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'n4chan_sdk.php';
 
-$client = new N4chanSDK([]);
+$client = new N4chanSDK([
+    "apikey" => getenv("N4CHAN_APIKEY"),
+]);
 ```
 
 ### 2. List archives
 
 ```php
-[$result, $err] = $client->Archive(null)->list(null, null);
+[$result, $err] = $client->Archive()->list();
 if ($err) { throw new \Exception($err); }
 
 if (is_array($result)) {
@@ -78,11 +85,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = N4chanSDK::test(null, null);
+$client = N4chanSDK::test();
 
-[$result, $err] = $client->N4chan(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->N4chan()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -117,6 +122,7 @@ Create a `.env.local` file at the project root:
 
 ```
 N4CHAN_TEST_LIVE=TRUE
+N4CHAN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -139,6 +145,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

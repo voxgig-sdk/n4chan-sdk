@@ -1,23 +1,8 @@
 # N4chan SDK
 
-Read-only JSON access to 4chan boards, threads, catalogs, and archives
+4chan API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About 4chan API
-
-The [4chan JSON API](https://github.com/4chan/4chan-API) is a public, read-only interface to posts, threads, and boards on [4chan.org](https://www.4chan.org) and 4channel.org, served from `https://a.4cdn.org`. It was launched in September 2012 and is maintained by 4chan.
-
-What you get from the API:
-
-- Board listings and per-board metadata via `/boards.json`
-- Catalog views of a board's active threads via `/{board}/catalog.json`
-- Full thread contents (OP plus replies) via `/{board}/thread/{threadid}.json`
-- Board index pages and thread lists via `/{board}/threads.json`
-- Archived (closed) thread IDs via `/{board}/archive.json`
-- Static media paths for spoilers, country flags, capcodes, and user-uploaded files
-
-The service is anonymous (no API key), supports both HTTP and HTTPS, and enables CORS for `boards.4chan.org` and `boards.4channel.org` origins. Clients are expected to keep within one request per second and use conditional requests when polling.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install n4chan-sdk
 luarocks install n4chan-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { N4chanSDK } from 'n4chan'
 
-const client = new N4chanSDK({})
+const client = new N4chanSDK({
+  apikey: process.env.N4CHAN_APIKEY,
+})
 
 // List all archives
 const archives = await client.Archive().list()
+console.log(archives.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Archive** | List of archived (closed) thread IDs for a board, served from `/{board}/archive.json`. | `/{board}/archive.json` |
-| **Board** | Catalogue of all boards with their attributes and configuration, served from `/boards.json`. | `/boards.json` |
-| **Catalog** | Native catalog representation of a board's active threads grouped by page, served from `/{board}/catalog.json`. | `/{board}/catalog.json` |
-| **Index** | Board index/main page listing threads with their preview posts, served from `/{board}/{page}.json`. | `/{board}/{page}.json` |
-| **Thread** | Full contents of a single thread (OP plus all replies), served from `/{board}/thread/{threadid}.json`; bulk thread metadata is at `/{board}/threads.json`. | `/{board}/thread/{threadId}.json` |
+| **Archive** |  | `/{board}/archive.json` |
+| **Board** |  | `/boards.json` |
+| **Catalog** |  | `/{board}/catalog.json` |
+| **Index** |  | `/{board}/{page}.json` |
+| **Thread** |  | `/{board}/thread/{threadId}.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -117,12 +104,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from n4chan_sdk import N4chanSDK
 
-client = N4chanSDK({})
+client = N4chanSDK({
+    "apikey": os.environ.get("N4CHAN_APIKEY"),
+})
 
 # List all archives
-archives, err = client.Archive(None).list(None, None)
+archives, err = client.Archive().list()
+print(archives)
 ```
 
 ### PHP
@@ -131,10 +122,13 @@ archives, err = client.Archive(None).list(None, None)
 <?php
 require_once 'n4chan_sdk.php';
 
-$client = new N4chanSDK([]);
+$client = new N4chanSDK([
+    "apikey" => getenv("N4CHAN_APIKEY"),
+]);
 
 // List all archives
-[$archives, $err] = $client->Archive(null)->list(null, null);
+[$archives, $err] = $client->Archive()->list();
+print_r($archives);
 ```
 
 ### Golang
@@ -142,10 +136,13 @@ $client = new N4chanSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/n4chan-sdk/go"
 
-client := sdk.NewN4chanSDK(map[string]any{})
+client := sdk.NewN4chanSDK(map[string]any{
+    "apikey": os.Getenv("N4CHAN_APIKEY"),
+})
 
 // List all archives
 archives, err := client.Archive(nil).List(nil, nil)
+fmt.Println(archives)
 ```
 
 ### Ruby
@@ -153,10 +150,13 @@ archives, err := client.Archive(nil).List(nil, nil)
 ```ruby
 require_relative "N4chan_sdk"
 
-client = N4chanSDK.new({})
+client = N4chanSDK.new({
+  "apikey" => ENV["N4CHAN_APIKEY"],
+})
 
 # List all archives
-archives, err = client.Archive(nil).list(nil, nil)
+archives, err = client.Archive().list
+puts archives
 ```
 
 ### Lua
@@ -164,10 +164,13 @@ archives, err = client.Archive(nil).list(nil, nil)
 ```lua
 local sdk = require("n4chan_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("N4CHAN_APIKEY"),
+})
 
 -- List all archives
-local archives, err = client:Archive(nil):list(nil, nil)
+local archives, err = client:Archive():list()
+print(archives)
 ```
 
 ## Unit testing in offline mode
@@ -186,25 +189,21 @@ const result = await client.Archive().load({ id: 'test01' })
 ### Python
 
 ```python
-client = N4chanSDK.test(None, None)
-result, err = client.Archive(None).load(
-    {"id": "test01"}, None
-)
+client = N4chanSDK.test()
+result, err = client.Archive().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = N4chanSDK::test(null, null);
-[$result, $err] = $client->Archive(null)->load(
-    ["id" => "test01"], null
-);
+$client = N4chanSDK::test();
+[$result, $err] = $client->Archive()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Archive(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -213,19 +212,15 @@ result, err := client.Archive(nil).Load(
 ### Ruby
 
 ```ruby
-client = N4chanSDK.test(nil, nil)
-result, err = client.Archive(nil).load(
-  { "id" => "test01" }, nil
-)
+client = N4chanSDK.test
+result, err = client.Archive().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Archive(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Archive():load({ id = "test01" })
 ```
 
 ## How it works
@@ -329,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the 4chan API
-
-- Upstream: [https://a.4cdn.org](https://a.4cdn.org)
-- API docs: [https://github.com/4chan/4chan-API](https://github.com/4chan/4chan-API)
-
-- No authentication required; the API is publicly accessible and read-only.
-- Applications must disclose 4chan as the data source and link back to it.
-- The name "4chan" may not be used in application titles or branding, and apps must not claim official status.
-- Do not exceed one request per second; thread polling should use a 10-second minimum interval and respect the `If-Modified-Since` header.
 
 ---
 

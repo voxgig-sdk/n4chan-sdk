@@ -1,9 +1,995 @@
 {
-  "name": "n4chan",
-  "origin": "voxgig-sdk",
   "def": "4chan_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "archive": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "archive",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "board",
+                        "orig": "board",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{board}/archive.json",
+                  "parts": [
+                    "{board}",
+                    "archive.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "board": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "board",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "board_flag",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "bump_limit",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "cooldown",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "custom_spoiler",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "image_limit",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "is_archived",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "max_comment_char",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "max_filesize",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "max_webm_duration",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "max_webm_filesize",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "meta_description",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "per_page",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "spoiler",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "title",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ws_board",
+              "req": false,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "board",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/boards.json",
+                  "parts": [
+                    "boards.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "if_modified_since"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "catalog": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "thread",
+              "req": false,
+              "type": "`$ARRAY`"
+            }
+          ],
+          "name": "catalog",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "board",
+                        "orig": "board",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{board}/catalog.json",
+                  "parts": [
+                    "{board}",
+                    "catalog.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "index": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "post",
+              "req": false,
+              "type": "`$ARRAY`"
+            }
+          ],
+          "name": "index",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "board",
+                        "orig": "board",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "page",
+                        "orig": "page",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{board}/{page}.json",
+                  "parts": [
+                    "{board}",
+                    "{page}.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "board",
+                      "if_modified_since",
+                      "page"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "thread": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "archived",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "archived_on",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "bumplimit",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "capcode",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "closed",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "com",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country_name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "custom_spoiler",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "ext",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "filedeleted",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "filename",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "fsize",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "h",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "image",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "imagelimit",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "last_modified",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "m_img",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "md5",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "no",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "now",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "omitted_image",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "omitted_post",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "page",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "reply",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "resto",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "semantic_url",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "since4pass",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "spoiler",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "sticky",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "sub",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "tag",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "thread",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "tim",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "time",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "tn_h",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "tn_w",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "trip",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "unique_ip",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "w",
+              "req": false,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "thread",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "board",
+                        "orig": "board",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "thread_id",
+                        "orig": "thread_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{board}/thread/{threadId}.json",
+                  "parts": [
+                    "{board}",
+                    "thread",
+                    "{threadId}.json"
+                  ],
+                  "select": {
+                    "$action": "thread_id",
+                    "exist": [
+                      "board",
+                      "if_modified_since",
+                      "thread_id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "header": [
+                      {
+                        "active": true,
+                        "kind": "header",
+                        "name": "if_modified_since",
+                        "orig": "if_modified_since",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "board",
+                        "orig": "board",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{board}/threads.json",
+                  "parts": [
+                    "{board}",
+                    "threads.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "thread"
+              ]
+            ]
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicArchiveFlow": {
+          "active": true,
+          "entity": "archive",
+          "key$": "BasicArchiveFlow",
+          "kind": "basic",
+          "name": "BasicArchiveFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {
+                "board": "board01"
+              },
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "archive_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicBoardFlow": {
+          "active": true,
+          "entity": "board",
+          "key$": "BasicBoardFlow",
+          "kind": "basic",
+          "name": "BasicBoardFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "board_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicCatalogFlow": {
+          "active": true,
+          "entity": "catalog",
+          "key$": "BasicCatalogFlow",
+          "kind": "basic",
+          "name": "BasicCatalogFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {
+                "board": "board01"
+              },
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "catalog_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicIndexFlow": {
+          "active": true,
+          "entity": "index",
+          "key$": "BasicIndexFlow",
+          "kind": "basic",
+          "name": "BasicIndexFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {
+                "board": "board01",
+                "page": "page01"
+              },
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "index_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicThreadFlow": {
+          "active": true,
+          "entity": "thread",
+          "key$": "BasicThreadFlow",
+          "kind": "basic",
+          "name": "BasicThreadFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {
+                "board": "board01"
+              },
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "thread_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
       "info": {
         "contact": {
           "email": "api@4chan.org"
@@ -31,1015 +1017,35 @@
             "url": "https://github.com/4chan/4chan-API",
             "version": "3.0.3"
           }
-        ],
-        "tagline": "Read-only JSON access to 4chan boards, threads, catalogs, and archives",
-        "homepage": "https://a.4cdn.org",
-        "docs_url": "https://github.com/4chan/4chan-API",
-        "license_short": "Public read-only API with usage rules; attribution to 4chan required, no use of \"4chan\" in app titles",
-        "license_md": "- No authentication required; the API is publicly accessible and read-only.\n- Applications must disclose 4chan as the data source and link back to it.\n- The name \"4chan\" may not be used in application titles or branding, and apps must not claim official status.\n- Do not exceed one request per second; thread polling should use a 10-second minimum interval and respect the `If-Modified-Since` header.",
-        "about_md": "The [4chan JSON API](https://github.com/4chan/4chan-API) is a public, read-only interface to posts, threads, and boards on [4chan.org](https://www.4chan.org) and 4channel.org, served from `https://a.4cdn.org`. It was launched in September 2012 and is maintained by 4chan.\n\nWhat you get from the API:\n\n- Board listings and per-board metadata via `/boards.json`\n- Catalog views of a board's active threads via `/{board}/catalog.json`\n- Full thread contents (OP plus replies) via `/{board}/thread/{threadid}.json`\n- Board index pages and thread lists via `/{board}/threads.json`\n- Archived (closed) thread IDs via `/{board}/archive.json`\n- Static media paths for spoilers, country flags, capcodes, and user-uploaded files\n\nThe service is anonymous (no API key), supports both HTTP and HTTPS, and enables CORS for `boards.4chan.org` and `boards.4channel.org` origins. Clients are expected to keep within one request per second and use conditional requests when polling.",
-        "entity_desc": {
-          "archive": "List of archived (closed) thread IDs for a board, served from `/{board}/archive.json`.",
-          "board": "Catalogue of all boards with their attributes and configuration, served from `/boards.json`.",
-          "catalog": "Native catalog representation of a board's active threads grouped by page, served from `/{board}/catalog.json`.",
-          "index": "Board index/main page listing threads with their preview posts, served from `/{board}/{page}.json`.",
-          "thread": "Full contents of a single thread (OP plus all replies), served from `/{board}/thread/{threadid}.json`; bulk thread metadata is at `/{board}/threads.json`."
-        },
-        "auth": false
-      },
-      "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
-        },
-        "docs_order": [
-          "ts",
-          "py",
-          "php",
-          "go",
-          "rb",
-          "lua"
         ]
       },
-      "entity": {
-        "archive": {
-          "alias": {
-            "field": {}
-          },
-          "name": "archive",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ],
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{board}/archive.json",
-                  "parts": [
-                    "{board}",
-                    "archive.json"
-                  ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "fields": [],
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "board": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "board",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "board_flag",
-              "req": false,
-              "type": "`$OBJECT`",
-              "active": true
-            },
-            {
-              "name": "bump_limit",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "cooldown",
-              "req": false,
-              "type": "`$OBJECT`",
-              "active": true
-            },
-            {
-              "name": "custom_spoiler",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "image_limit",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "is_archived",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "max_comment_char",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "max_filesize",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "max_webm_duration",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "max_webm_filesize",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "meta_description",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "page",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "per_page",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "spoiler",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "title",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "ws_board",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            }
-          ],
-          "name": "board",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/boards.json",
-                  "parts": [
-                    "boards.json"
-                  ],
-                  "select": {
-                    "exist": [
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "catalog": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "page",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "thread",
-              "req": false,
-              "type": "`$ARRAY`",
-              "active": true
-            }
-          ],
-          "name": "catalog",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ],
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{board}/catalog.json",
-                  "parts": [
-                    "{board}",
-                    "catalog.json"
-                  ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "index": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "post",
-              "req": false,
-              "type": "`$ARRAY`",
-              "active": true
-            }
-          ],
-          "name": "index",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ],
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      },
-                      {
-                        "kind": "param",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{board}/{page}.json",
-                  "parts": [
-                    "{board}",
-                    "{page}.json"
-                  ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since",
-                      "page"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "thread": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "archived",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "archived_on",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "bumplimit",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "capcode",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "closed",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "com",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "country",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "country_name",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "custom_spoiler",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "ext",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "filedeleted",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "filename",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "fsize",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "h",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "image",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "imagelimit",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "last_modified",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "m_img",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "md5",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "no",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "now",
-              "req": true,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "omitted_image",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "omitted_post",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "page",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "reply",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "resto",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "semantic_url",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "since4pass",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "spoiler",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "sticky",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "sub",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "tag",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "thread",
-              "req": false,
-              "type": "`$ARRAY`",
-              "active": true
-            },
-            {
-              "name": "tim",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "time",
-              "req": true,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "tn_h",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "tn_w",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "trip",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "unique_ip",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            },
-            {
-              "name": "w",
-              "req": false,
-              "type": "`$INTEGER`",
-              "active": true
-            }
-          ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "thread",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ],
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      },
-                      {
-                        "kind": "param",
-                        "name": "thread_id",
-                        "orig": "thread_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{board}/thread/{threadId}.json",
-                  "parts": [
-                    "{board}",
-                    "thread",
-                    "{threadId}.json"
-                  ],
-                  "select": {
-                    "$action": "thread_id",
-                    "exist": [
-                      "board",
-                      "if_modified_since",
-                      "thread_id"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                },
-                {
-                  "args": {
-                    "header": [
-                      {
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ],
-                    "params": [
-                      {
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{board}/threads.json",
-                  "parts": [
-                    "{board}",
-                    "threads.json"
-                  ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "thread"
-              ]
-            ]
-          },
-          "active": true
-        }
-      },
-      "feature": {
-        "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
-          "active": true,
-          "config": {
-            "options": {
-              "active": false
-            }
-          },
-          "hook": {
-            "PostConstruct": {
-              "active": true,
-              "await": false
-            },
-            "PostConstructEntity": {
-              "active": true,
-              "await": false
-            },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
-              "await": false
-            },
-            "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
-              "active": true,
-              "await": false
-            },
-            "PreRequest": {
-              "active": true,
-              "await": false
-            },
-            "PreResponse": {
-              "active": true,
-              "await": false
-            },
-            "PreResult": {
-              "active": true,
-              "await": false
-            },
-            "PreTarget": {
-              "active": false,
-              "await": false
-            },
-            "PostOperation": {
-              "active": false,
-              "await": false
-            }
-          },
-          "target": {
-            "ts": {
-              "deps": {}
-            },
-            "go": {
-              "deps": {}
-            },
-            "lua": {
-              "deps": {}
-            },
-            "php": {
-              "deps": {}
-            },
-            "py": {
-              "deps": {}
-            },
-            "rb": {
-              "deps": {}
-            },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
-              "deps": {}
-            }
-          }
-        }
-      },
-      "flow": {
-        "BasicArchiveFlow": {
-          "entity": "archive",
-          "kind": "basic",
-          "name": "BasicArchiveFlow",
-          "step": [
-            {
-              "match": {
-                "board": "board01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "archive_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicArchiveFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicBoardFlow": {
-          "entity": "board",
-          "kind": "basic",
-          "name": "BasicBoardFlow",
-          "step": [
-            {
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "board_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicBoardFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicCatalogFlow": {
-          "entity": "catalog",
-          "kind": "basic",
-          "name": "BasicCatalogFlow",
-          "step": [
-            {
-              "match": {
-                "board": "board01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "catalog_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicCatalogFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicIndexFlow": {
-          "entity": "index",
-          "kind": "basic",
-          "name": "BasicIndexFlow",
-          "step": [
-            {
-              "match": {
-                "board": "board01",
-                "page": "page01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "index_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicIndexFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicThreadFlow": {
-          "entity": "thread",
-          "kind": "basic",
-          "name": "BasicThreadFlow",
-          "step": [
-            {
-              "match": {
-                "board": "board01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "thread_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicThreadFlow",
-          "active": true,
-          "param": {}
-        }
-      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "n4chan"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "n4chan"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -1054,19 +1060,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "n4chan"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -1081,138 +1087,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "n4chan"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "n4chan"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "n4chan"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "n4chan"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "n4chan"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "n4chan"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "n4chan"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "n4chan"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "n4chan"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "n4chan",
+  "origin": "voxgig-sdk"
 }

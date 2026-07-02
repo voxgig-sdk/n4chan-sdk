@@ -83,6 +83,7 @@ def board_basic_setup(extra)
     "N_CHAN_TEST_BOARD_ENTID" => idmap,
     "N_CHAN_TEST_LIVE" => "FALSE",
     "N_CHAN_TEST_EXPLAIN" => "FALSE",
+    "N_CHAN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,6 +95,7 @@ def board_basic_setup(extra)
   if env["N_CHAN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["N_CHAN_APIKEY"],
       },
       extra || {},
     ])

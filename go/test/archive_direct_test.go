@@ -118,12 +118,14 @@ func archiveDirectSetup(mockres any) *archiveDirectSetupResult {
 	env := envOverride(map[string]any{
 		"N_CHAN_TEST_ARCHIVE_ENTID": map[string]any{},
 		"N_CHAN_TEST_LIVE":    "FALSE",
+		"N_CHAN_APIKEY":       "NONE",
 	})
 
 	live := env["N_CHAN_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["N_CHAN_APIKEY"],
 		}
 		client := sdk.NewN4chanSDK(mergedOpts)
 

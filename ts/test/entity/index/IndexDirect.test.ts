@@ -89,12 +89,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'N_CHAN_TEST_INDEX_ENTID': {},
     'N_CHAN_TEST_LIVE': 'FALSE',
+    'N_CHAN_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.N_CHAN_TEST_LIVE
 
   if (live) {
     const client = new N4chanSDK({
+      apikey: env.N_CHAN_APIKEY,
     })
 
     let idmap: any = env['N_CHAN_TEST_INDEX_ENTID']

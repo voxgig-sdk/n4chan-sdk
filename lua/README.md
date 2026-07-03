@@ -10,7 +10,7 @@ The Lua SDK for the N4chan API — an entity-oriented client using Lua conventio
 
 ## Install
 ```bash
-luarocks install n4chan-sdk
+luarocks install voxgig-sdk-n4chan
 ```
 
 If the module is not yet published, add the source directory to

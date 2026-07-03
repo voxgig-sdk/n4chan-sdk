@@ -10,13 +10,13 @@ The Ruby SDK for the N4chan API — an entity-oriented client using idiomatic Ru
 
 ## Install
 ```bash
-gem install n4chan-sdk
+gem install voxgig-sdk-n4chan
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "n4chan-sdk"
+gem "voxgig-sdk-n4chan"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The PHP SDK for the N4chan API — an entity-oriented client using PHP conventio
 
 ## Install
 ```bash
-composer require voxgig/n4chan-sdk
+composer require voxgig-sdk/n4chan
 ```
 
 

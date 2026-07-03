@@ -10,7 +10,7 @@ The TypeScript SDK for the N4chan API — a type-safe, entity-oriented client wi
 
 ## Install
 ```bash
-npm install n4chan
+npm install @voxgig-sdk/n4chan
 ```
 ## Tutorial: your first API call
 

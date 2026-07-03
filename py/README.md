@@ -10,7 +10,7 @@ The Python SDK for the N4chan API — an entity-oriented client following Python
 
 ## Install
 ```bash
-pip install n4chan-sdk
+pip install voxgig-sdk-n4chan
 ```
 
 Or install from source:

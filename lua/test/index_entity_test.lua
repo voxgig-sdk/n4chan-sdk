@@ -95,7 +95,6 @@ function index_basic_setup(extra)
     ["N_CHAN_TEST_INDEX_ENTID"] = idmap,
     ["N_CHAN_TEST_LIVE"] = "FALSE",
     ["N_CHAN_TEST_EXPLAIN"] = "FALSE",
-    ["N_CHAN_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -107,7 +106,6 @@ function index_basic_setup(extra)
   if env["N_CHAN_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["N_CHAN_APIKEY"],
       },
       extra or {},
     })

@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -72,7 +71,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -86,11 +88,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -98,17 +101,17 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## ArchiveEntity
 
 ```php
-$archive = $client->Archive();
+$archive = $client->archive();
 ```
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Archive()->list([]);
+$results = $client->archive()->list([]);
 ```
 
 ### Common Methods
@@ -144,7 +147,7 @@ Return the entity name.
 ## BoardEntity
 
 ```php
-$board = $client->Board();
+$board = $client->board();
 ```
 
 ### Fields
@@ -171,12 +174,12 @@ $board = $client->Board();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Board()->list([]);
+$results = $client->board()->list([]);
 ```
 
 ### Common Methods
@@ -212,7 +215,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```php
-$catalog = $client->Catalog();
+$catalog = $client->catalog();
 ```
 
 ### Fields
@@ -224,12 +227,12 @@ $catalog = $client->Catalog();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Catalog()->list([]);
+$results = $client->catalog()->list([]);
 ```
 
 ### Common Methods
@@ -265,7 +268,7 @@ Return the entity name.
 ## IndexEntity
 
 ```php
-$index = $client->Index();
+$index = $client->index();
 ```
 
 ### Fields
@@ -276,12 +279,12 @@ $index = $client->Index();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Index()->list([]);
+$results = $client->index()->list([]);
 ```
 
 ### Common Methods
@@ -317,7 +320,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```php
-$thread = $client->Thread();
+$thread = $client->thread();
 ```
 
 ### Fields
@@ -369,12 +372,12 @@ $thread = $client->Thread();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Thread()->list([]);
+$results = $client->thread()->list([]);
 ```
 
 ### Common Methods

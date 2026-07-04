@@ -45,6 +45,7 @@ class ThreadEntity
     end
   end
 
+  # @return [Thread, Hash] the current Thread data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ThreadEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Thread fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ThreadEntity
   
 
   
+  # List Thread items matching the given filter.
+  #
+  # @param reqmatch [ThreadListMatch, Hash, nil] match filter (any subset of Thread fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Thread>, Array] the matching Thread items; raises N4chanError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

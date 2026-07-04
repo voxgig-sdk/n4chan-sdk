@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://a.4cdn.org',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -96,7 +92,8 @@ class Config {
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -335,7 +332,8 @@ class Config {
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -401,7 +399,8 @@ class Config {
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -409,7 +408,8 @@ class Config {
                     "name": "page",
                     "orig": "page",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 1
                   }
                 ]
               },
@@ -763,7 +763,8 @@ class Config {
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -771,7 +772,8 @@ class Config {
                     "name": "thread_id",
                     "orig": "thread_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 1
                   }
                 ]
               },
@@ -816,7 +818,8 @@ class Config {
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

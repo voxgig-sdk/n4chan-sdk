@@ -45,8 +45,7 @@ class ArchiveEntityTest < Minitest::Test
       "board" => setup[:idmap]["board01"],
     }
 
-    archive_ref01_list_result, err = archive_ref01_ent.list(archive_ref01_match, nil)
-    assert_nil err
+    archive_ref01_list_result = archive_ref01_ent.list(archive_ref01_match, nil)
     assert archive_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def archive_basic_setup(extra)
     "N_CHAN_TEST_ARCHIVE_ENTID" => idmap,
     "N_CHAN_TEST_LIVE" => "FALSE",
     "N_CHAN_TEST_EXPLAIN" => "FALSE",
-    "N_CHAN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def archive_basic_setup(extra)
   if env["N_CHAN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["N_CHAN_APIKEY"],
       },
       extra || {},
     ])

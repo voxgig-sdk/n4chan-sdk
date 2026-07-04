@@ -103,7 +103,7 @@ class N4chanSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class N4chanSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class N4chanSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,52 +216,107 @@ class N4chanSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Archive($data = null)
+    private $_archive = null;
+
+    // Idiomatic facade: $client->archive()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Archive() (PHP method
+    // names are case-insensitive).
+    public function archive($data = null)
     {
         require_once __DIR__ . '/entity/archive_entity.php';
+        if ($data === null) {
+            if ($this->_archive === null) {
+                $this->_archive = new ArchiveEntity($this, null);
+            }
+            return $this->_archive;
+        }
         return new ArchiveEntity($this, $data);
     }
 
 
-    public function Board($data = null)
+    private $_board = null;
+
+    // Idiomatic facade: $client->board()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Board() (PHP method
+    // names are case-insensitive).
+    public function board($data = null)
     {
         require_once __DIR__ . '/entity/board_entity.php';
+        if ($data === null) {
+            if ($this->_board === null) {
+                $this->_board = new BoardEntity($this, null);
+            }
+            return $this->_board;
+        }
         return new BoardEntity($this, $data);
     }
 
 
-    public function Catalog($data = null)
+    private $_catalog = null;
+
+    // Idiomatic facade: $client->catalog()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Catalog() (PHP method
+    // names are case-insensitive).
+    public function catalog($data = null)
     {
         require_once __DIR__ . '/entity/catalog_entity.php';
+        if ($data === null) {
+            if ($this->_catalog === null) {
+                $this->_catalog = new CatalogEntity($this, null);
+            }
+            return $this->_catalog;
+        }
         return new CatalogEntity($this, $data);
     }
 
 
-    public function Index($data = null)
+    private $_index = null;
+
+    // Idiomatic facade: $client->index()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Index() (PHP method
+    // names are case-insensitive).
+    public function index($data = null)
     {
         require_once __DIR__ . '/entity/index_entity.php';
+        if ($data === null) {
+            if ($this->_index === null) {
+                $this->_index = new IndexEntity($this, null);
+            }
+            return $this->_index;
+        }
         return new IndexEntity($this, $data);
     }
 
 
-    public function Thread($data = null)
+    private $_thread = null;
+
+    // Idiomatic facade: $client->thread()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Thread() (PHP method
+    // names are case-insensitive).
+    public function thread($data = null)
     {
         require_once __DIR__ . '/entity/thread_entity.php';
+        if ($data === null) {
+            if ($this->_thread === null) {
+                $this->_thread = new ThreadEntity($this, null);
+            }
+            return $this->_thread;
+        }
         return new ThreadEntity($this, $data);
     }
 

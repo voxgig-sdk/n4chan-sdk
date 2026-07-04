@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://a.4cdn.org",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -59,6 +56,7 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -298,6 +296,7 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -364,6 +363,7 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -372,6 +372,7 @@ def make_config():
                       "orig": "page",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -726,6 +727,7 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -734,6 +736,7 @@ def make_config():
                       "orig": "thread_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -779,6 +782,7 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

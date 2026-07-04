@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'N4chan_types'
+
 
 class N4chanSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class N4chanSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class N4chanSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue N4chanError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = N4chanHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class N4chanSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class N4chanSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.archive.list / client.archive.load({ "id" => ... })
+  def archive
+    require_relative 'entity/archive_entity'
+    @archive ||= ArchiveEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.archive instead.
   def Archive(data = nil)
     require_relative 'entity/archive_entity'
     ArchiveEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.board.list / client.board.load({ "id" => ... })
+  def board
+    require_relative 'entity/board_entity'
+    @board ||= BoardEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.board instead.
   def Board(data = nil)
     require_relative 'entity/board_entity'
     BoardEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.catalog.list / client.catalog.load({ "id" => ... })
+  def catalog
+    require_relative 'entity/catalog_entity'
+    @catalog ||= CatalogEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.catalog instead.
   def Catalog(data = nil)
     require_relative 'entity/catalog_entity'
     CatalogEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.index.list / client.index.load({ "id" => ... })
+  def index
+    require_relative 'entity/index_entity'
+    @index ||= IndexEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.index instead.
   def Index(data = nil)
     require_relative 'entity/index_entity'
     IndexEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.thread.list / client.thread.load({ "id" => ... })
+  def thread
+    require_relative 'entity/thread_entity'
+    @thread ||= ThreadEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.thread instead.
   def Thread(data = nil)
     require_relative 'entity/thread_entity'
     ThreadEntity.new(self, data)

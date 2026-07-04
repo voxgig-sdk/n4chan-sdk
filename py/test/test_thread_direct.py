@@ -40,7 +40,7 @@ class TestThreadDirect:
         else:
             params["thread_id"] = "direct01"
 
-        result, err = client.direct({
+        result = client.direct({
             "path": "{board}/thread/{thread_id}.json",
             "method": "GET",
             "params": params,
@@ -49,8 +49,8 @@ class TestThreadDirect:
             # Live mode is lenient: synthetic IDs frequently 4xx and the
             # list-response shape varies wildly across public APIs. Skip
             # rather than fail when the call doesn't return a usable list.
-            if err is not None:
-                pytest.skip(f"list call failed (likely synthetic IDs against live API): {err}")
+            if result.get("err") is not None:
+                pytest.skip(f"list call failed (likely synthetic IDs against live API): {result.get('err')}")
                 return
             if not result.get("ok"):
                 pytest.skip("list call not ok (likely synthetic IDs against live API)")
@@ -60,7 +60,6 @@ class TestThreadDirect:
                 pytest.skip(f"expected 2xx status, got {status}")
                 return
         else:
-            assert err is None
             assert result["ok"] is True
             assert helpers.to_int(result["status"]) == 200
             assert isinstance(result["data"], list)
@@ -77,14 +76,12 @@ def _thread_direct_setup(mockres):
     env = runner.env_override({
         "N_CHAN_TEST_THREAD_ENTID": {},
         "N_CHAN_TEST_LIVE": "FALSE",
-        "N_CHAN_APIKEY": "NONE",
     })
 
     live = env.get("N_CHAN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("N_CHAN_APIKEY"),
         }
         client = N4chanSDK(merged_opts)
         return {

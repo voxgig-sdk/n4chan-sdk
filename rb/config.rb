@@ -15,9 +15,6 @@ module N4chanConfig
       },
       "options" => {
         "base" => "https://a.4cdn.org",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -59,6 +56,7 @@ module N4chanConfig
                         "orig" => "board",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -298,6 +296,7 @@ module N4chanConfig
                         "orig" => "board",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -364,6 +363,7 @@ module N4chanConfig
                         "orig" => "board",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -372,6 +372,7 @@ module N4chanConfig
                         "orig" => "page",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -726,6 +727,7 @@ module N4chanConfig
                         "orig" => "board",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -734,6 +736,7 @@ module N4chanConfig
                         "orig" => "thread_id",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -779,6 +782,7 @@ module N4chanConfig
                         "orig" => "board",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

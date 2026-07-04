@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Board,
+  BoardListMatch,
+} from '../N4chanTypes'
 
 // TODO: needs Entity superclass
-class BoardEntity extends N4chanEntityBase {
+class BoardEntity extends N4chanEntityBase<Board> {
 
   constructor(client: N4chanSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class BoardEntity extends N4chanEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BoardListMatch, ctrl?: Control): Promise<Board[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class BoardEntity extends N4chanEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Board[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

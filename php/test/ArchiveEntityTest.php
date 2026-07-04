@@ -52,8 +52,7 @@ class ArchiveEntityTest extends TestCase
             "board" => $setup["idmap"]["board01"],
         ];
 
-        [$archive_ref01_list_result, $err] = $archive_ref01_ent->list($archive_ref01_match, null);
-        $this->assertNull($err);
+        $archive_ref01_list_result = $archive_ref01_ent->list($archive_ref01_match, null);
         $this->assertIsArray($archive_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function archive_basic_setup($extra)
         "N_CHAN_TEST_ARCHIVE_ENTID" => $idmap,
         "N_CHAN_TEST_LIVE" => "FALSE",
         "N_CHAN_TEST_EXPLAIN" => "FALSE",
-        "N_CHAN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function archive_basic_setup($extra)
     if ($env["N_CHAN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["N_CHAN_APIKEY"],
             ],
             $extra ?? [],
         ]);

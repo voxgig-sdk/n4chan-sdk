@@ -52,8 +52,7 @@ class CatalogEntityTest extends TestCase
             "board" => $setup["idmap"]["board01"],
         ];
 
-        [$catalog_ref01_list_result, $err] = $catalog_ref01_ent->list($catalog_ref01_match, null);
-        $this->assertNull($err);
+        $catalog_ref01_list_result = $catalog_ref01_ent->list($catalog_ref01_match, null);
         $this->assertIsArray($catalog_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function catalog_basic_setup($extra)
         "N_CHAN_TEST_CATALOG_ENTID" => $idmap,
         "N_CHAN_TEST_LIVE" => "FALSE",
         "N_CHAN_TEST_EXPLAIN" => "FALSE",
-        "N_CHAN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function catalog_basic_setup($extra)
     if ($env["N_CHAN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["N_CHAN_APIKEY"],
             ],
             $extra ?? [],
         ]);

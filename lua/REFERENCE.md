@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -100,7 +99,7 @@ same parameters as `direct()`.
 ## ArchiveEntity
 
 ```lua
-local archive = client:Archive(nil)
+local archive = client:archive(nil)
 ```
 
 ### Operations
@@ -110,7 +109,7 @@ local archive = client:Archive(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Archive():list()
+local results, err = client:archive():list()
 ```
 
 ### Common Methods
@@ -146,7 +145,7 @@ Return the entity name.
 ## BoardEntity
 
 ```lua
-local board = client:Board(nil)
+local board = client:board(nil)
 ```
 
 ### Fields
@@ -178,7 +177,7 @@ local board = client:Board(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Board():list()
+local results, err = client:board():list()
 ```
 
 ### Common Methods
@@ -214,7 +213,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```lua
-local catalog = client:Catalog(nil)
+local catalog = client:catalog(nil)
 ```
 
 ### Fields
@@ -231,7 +230,7 @@ local catalog = client:Catalog(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Catalog():list()
+local results, err = client:catalog():list()
 ```
 
 ### Common Methods
@@ -267,7 +266,7 @@ Return the entity name.
 ## IndexEntity
 
 ```lua
-local index = client:Index(nil)
+local index = client:index(nil)
 ```
 
 ### Fields
@@ -283,7 +282,7 @@ local index = client:Index(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Index():list()
+local results, err = client:index():list()
 ```
 
 ### Common Methods
@@ -319,7 +318,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```lua
-local thread = client:Thread(nil)
+local thread = client:thread(nil)
 ```
 
 ### Fields
@@ -376,7 +375,7 @@ local thread = client:Thread(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Thread():list()
+local results, err = client:thread():list()
 ```
 
 ### Common Methods

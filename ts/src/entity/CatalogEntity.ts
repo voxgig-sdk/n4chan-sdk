@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Catalog,
+  CatalogListMatch,
+} from '../N4chanTypes'
 
 // TODO: needs Entity superclass
-class CatalogEntity extends N4chanEntityBase {
+class CatalogEntity extends N4chanEntityBase<Catalog> {
 
   constructor(client: N4chanSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CatalogEntity extends N4chanEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CatalogListMatch, ctrl?: Control): Promise<Catalog[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CatalogEntity extends N4chanEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Catalog[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

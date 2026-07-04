@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CatalogListMatch
+---@param ctrl? table
+---@return Catalog[]
+---@return string? err
 function CatalogEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

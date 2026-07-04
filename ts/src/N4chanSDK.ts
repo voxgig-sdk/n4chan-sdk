@@ -6,6 +6,8 @@ import { CatalogEntity } from './entity/CatalogEntity'
 import { IndexEntity } from './entity/IndexEntity'
 import { ThreadEntity } from './entity/ThreadEntity'
 
+export type * from './N4chanTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class N4chanSDK {
 
 
 
+  _archive?: ArchiveEntity
+
+  // Idiomatic facade: `client.archive.list()` / `client.archive.load({ id })`.
+  get archive(): ArchiveEntity {
+    return (this._archive ??= new ArchiveEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.archive` instead. */
   Archive(data?: any) {
     const self = this
     return new ArchiveEntity(self,data)
   }
 
 
+  _board?: BoardEntity
+
+  // Idiomatic facade: `client.board.list()` / `client.board.load({ id })`.
+  get board(): BoardEntity {
+    return (this._board ??= new BoardEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.board` instead. */
   Board(data?: any) {
     const self = this
     return new BoardEntity(self,data)
   }
 
 
+  _catalog?: CatalogEntity
+
+  // Idiomatic facade: `client.catalog.list()` / `client.catalog.load({ id })`.
+  get catalog(): CatalogEntity {
+    return (this._catalog ??= new CatalogEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.catalog` instead. */
   Catalog(data?: any) {
     const self = this
     return new CatalogEntity(self,data)
   }
 
 
+  _index?: IndexEntity
+
+  // Idiomatic facade: `client.index.list()` / `client.index.load({ id })`.
+  get index(): IndexEntity {
+    return (this._index ??= new IndexEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.index` instead. */
   Index(data?: any) {
     const self = this
     return new IndexEntity(self,data)
   }
 
 
+  _thread?: ThreadEntity
+
+  // Idiomatic facade: `client.thread.list()` / `client.thread.load({ id })`.
+  get thread(): ThreadEntity {
+    return (this._thread ??= new ThreadEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.thread` instead. */
   Thread(data?: any) {
     const self = this
     return new ThreadEntity(self,data)

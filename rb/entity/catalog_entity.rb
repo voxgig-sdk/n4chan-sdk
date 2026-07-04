@@ -45,6 +45,7 @@ class CatalogEntity
     end
   end
 
+  # @return [Catalog, Hash] the current Catalog data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CatalogEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Catalog fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CatalogEntity
   
 
   
+  # List Catalog items matching the given filter.
+  #
+  # @param reqmatch [CatalogListMatch, Hash, nil] match filter (any subset of Catalog fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Catalog>, Array] the matching Catalog items; raises N4chanError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

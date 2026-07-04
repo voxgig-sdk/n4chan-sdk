@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -158,7 +157,7 @@ Alias for `N4chanSDK.test()`.
 ## ArchiveEntity
 
 ```ts
-const archive = client.Archive()
+const archive = client.archive
 ```
 
 ### Operations
@@ -168,7 +167,7 @@ const archive = client.Archive()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Archive().list()
+const results = await client.archive.list()
 ```
 
 ### Common Methods
@@ -202,7 +201,7 @@ Return a copy of the entity options.
 ## BoardEntity
 
 ```ts
-const board = client.Board()
+const board = client.board
 ```
 
 ### Fields
@@ -234,7 +233,7 @@ const board = client.Board()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Board().list()
+const results = await client.board.list()
 ```
 
 ### Common Methods
@@ -268,7 +267,7 @@ Return a copy of the entity options.
 ## CatalogEntity
 
 ```ts
-const catalog = client.Catalog()
+const catalog = client.catalog
 ```
 
 ### Fields
@@ -285,7 +284,7 @@ const catalog = client.Catalog()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Catalog().list()
+const results = await client.catalog.list()
 ```
 
 ### Common Methods
@@ -319,7 +318,7 @@ Return a copy of the entity options.
 ## IndexEntity
 
 ```ts
-const index = client.Index()
+const index = client.index
 ```
 
 ### Fields
@@ -335,7 +334,7 @@ const index = client.Index()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Index().list()
+const results = await client.index.list()
 ```
 
 ### Common Methods
@@ -369,7 +368,7 @@ Return a copy of the entity options.
 ## ThreadEntity
 
 ```ts
-const thread = client.Thread()
+const thread = client.thread
 ```
 
 ### Fields
@@ -426,7 +425,7 @@ const thread = client.Thread()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Thread().list()
+const results = await client.thread.list()
 ```
 
 ### Common Methods

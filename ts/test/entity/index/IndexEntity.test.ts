@@ -115,7 +115,6 @@ function basicSetup(extra?: any) {
     'N_CHAN_TEST_INDEX_ENTID': idmap,
     'N_CHAN_TEST_LIVE': 'FALSE',
     'N_CHAN_TEST_EXPLAIN': 'FALSE',
-    'N_CHAN_APIKEY': 'NONE',
   })
 
   idmap = env['N_CHAN_TEST_INDEX_ENTID']
@@ -125,7 +124,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new N4chanSDK(merge([
       {
-        apikey: env.N_CHAN_APIKEY,
       },
       extra
     ]))

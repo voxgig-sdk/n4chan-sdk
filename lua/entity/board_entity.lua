@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch BoardListMatch
+---@param ctrl? table
+---@return Board[]
+---@return string? err
 function BoardEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

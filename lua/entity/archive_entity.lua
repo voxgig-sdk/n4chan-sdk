@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ArchiveListMatch
+---@param ctrl? table
+---@return Archive[]
+---@return string? err
 function ArchiveEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

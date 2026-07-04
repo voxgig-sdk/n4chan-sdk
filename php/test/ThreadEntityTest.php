@@ -52,8 +52,7 @@ class ThreadEntityTest extends TestCase
             "board" => $setup["idmap"]["board01"],
         ];
 
-        [$thread_ref01_list_result, $err] = $thread_ref01_ent->list($thread_ref01_match, null);
-        $this->assertNull($err);
+        $thread_ref01_list_result = $thread_ref01_ent->list($thread_ref01_match, null);
         $this->assertIsArray($thread_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function thread_basic_setup($extra)
         "N_CHAN_TEST_THREAD_ENTID" => $idmap,
         "N_CHAN_TEST_LIVE" => "FALSE",
         "N_CHAN_TEST_EXPLAIN" => "FALSE",
-        "N_CHAN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function thread_basic_setup($extra)
     if ($env["N_CHAN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["N_CHAN_APIKEY"],
             ],
             $extra ?? [],
         ]);

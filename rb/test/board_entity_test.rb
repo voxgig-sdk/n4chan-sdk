@@ -43,8 +43,7 @@ class BoardEntityTest < Minitest::Test
     board_ref01_ent = client.Board(nil)
     board_ref01_match = {}
 
-    board_ref01_list_result, err = board_ref01_ent.list(board_ref01_match, nil)
-    assert_nil err
+    board_ref01_list_result = board_ref01_ent.list(board_ref01_match, nil)
     assert board_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def board_basic_setup(extra)
     "N_CHAN_TEST_BOARD_ENTID" => idmap,
     "N_CHAN_TEST_LIVE" => "FALSE",
     "N_CHAN_TEST_EXPLAIN" => "FALSE",
-    "N_CHAN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def board_basic_setup(extra)
   if env["N_CHAN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["N_CHAN_APIKEY"],
       },
       extra || {},
     ])

@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -70,9 +69,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +87,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,17 +102,17 @@ same parameters as `direct()`.
 ## ArchiveEntity
 
 ```ruby
-archive = client.Archive
+archive = client.archive
 ```
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Archive.list(nil)
+results = client.archive.list(nil)
 ```
 
 ### Common Methods
@@ -147,7 +148,7 @@ Return the entity name.
 ## BoardEntity
 
 ```ruby
-board = client.Board
+board = client.board
 ```
 
 ### Fields
@@ -174,12 +175,12 @@ board = client.Board
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Board.list(nil)
+results = client.board.list(nil)
 ```
 
 ### Common Methods
@@ -215,7 +216,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```ruby
-catalog = client.Catalog
+catalog = client.catalog
 ```
 
 ### Fields
@@ -227,12 +228,12 @@ catalog = client.Catalog
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Catalog.list(nil)
+results = client.catalog.list(nil)
 ```
 
 ### Common Methods
@@ -268,7 +269,7 @@ Return the entity name.
 ## IndexEntity
 
 ```ruby
-index = client.Index
+index = client.index
 ```
 
 ### Fields
@@ -279,12 +280,12 @@ index = client.Index
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Index.list(nil)
+results = client.index.list(nil)
 ```
 
 ### Common Methods
@@ -320,7 +321,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```ruby
-thread = client.Thread
+thread = client.thread
 ```
 
 ### Fields
@@ -372,12 +373,12 @@ thread = client.Thread
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Thread.list(nil)
+results = client.thread.list(nil)
 ```
 
 ### Common Methods

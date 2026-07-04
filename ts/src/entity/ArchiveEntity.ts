@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Archive,
+  ArchiveListMatch,
+} from '../N4chanTypes'
 
 // TODO: needs Entity superclass
-class ArchiveEntity extends N4chanEntityBase {
+class ArchiveEntity extends N4chanEntityBase<Archive> {
 
   constructor(client: N4chanSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ArchiveEntity extends N4chanEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ArchiveListMatch, ctrl?: Control): Promise<Archive[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ArchiveEntity extends N4chanEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Archive[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

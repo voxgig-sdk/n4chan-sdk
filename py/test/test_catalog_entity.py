@@ -52,8 +52,7 @@ class TestCatalogEntity:
             "board": setup["idmap"]["board01"],
         }
 
-        catalog_ref01_list_result, err = catalog_ref01_ent.list(catalog_ref01_match, None)
-        assert err is None
+        catalog_ref01_list_result = catalog_ref01_ent.list(catalog_ref01_match, None)
         assert isinstance(catalog_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _catalog_basic_setup(extra):
         "N_CHAN_TEST_CATALOG_ENTID": idmap,
         "N_CHAN_TEST_LIVE": "FALSE",
         "N_CHAN_TEST_EXPLAIN": "FALSE",
-        "N_CHAN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _catalog_basic_setup(extra):
     if env.get("N_CHAN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("N_CHAN_APIKEY"),
             },
             extra or {},
         ])

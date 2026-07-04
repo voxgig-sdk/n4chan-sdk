@@ -43,7 +43,7 @@ class ThreadDirectTest extends TestCase
             $params["thread_id"] = "direct01";
         }
 
-        [$result, $err] = $client->direct([
+        $result = $client->direct([
             "path" => "{board}/thread/{thread_id}.json",
             "method" => "GET",
             "params" => $params,
@@ -52,8 +52,8 @@ class ThreadDirectTest extends TestCase
             // Live mode is lenient: synthetic IDs frequently 4xx and the
             // list-response shape varies wildly across public APIs. Skip
             // rather than fail when the call doesn't return a usable list.
-            if ($err !== null) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$err);
+            if (!empty($result["err"])) {
+                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
                 return;
             }
             if (empty($result["ok"])) {
@@ -66,7 +66,7 @@ class ThreadDirectTest extends TestCase
                 return;
             }
         } else {
-            $this->assertNull($err);
+            $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
             $this->assertIsArray($result["data"]);
@@ -87,14 +87,12 @@ function thread_direct_setup($mockres)
     $env = Runner::env_override([
         "N_CHAN_TEST_THREAD_ENTID" => [],
         "N_CHAN_TEST_LIVE" => "FALSE",
-        "N_CHAN_APIKEY" => "NONE",
     ]);
 
     $live = $env["N_CHAN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["N_CHAN_APIKEY"],
         ];
         $client = new N4chanSDK($merged_opts);
         return [

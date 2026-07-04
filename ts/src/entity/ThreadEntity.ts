@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Thread,
+  ThreadListMatch,
+} from '../N4chanTypes'
 
 // TODO: needs Entity superclass
-class ThreadEntity extends N4chanEntityBase {
+class ThreadEntity extends N4chanEntityBase<Thread> {
 
   constructor(client: N4chanSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ThreadEntity extends N4chanEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ThreadListMatch, ctrl?: Control): Promise<Thread[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ThreadEntity extends N4chanEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Thread[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

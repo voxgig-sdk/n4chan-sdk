@@ -245,26 +245,41 @@ func (sdk *N4chanSDK) Direct(fetchargs map[string]any) (map[string]any, error) {
 }
 
 
+// Archive returns a Archive entity bound to this client.
+// Idiomatic usage: client.Archive(nil).List(nil, nil) or
+// client.Archive(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N4chanSDK) Archive(data map[string]any) N4chanEntity {
 	return NewArchiveEntityFunc(sdk, data)
 }
 
 
+// Board returns a Board entity bound to this client.
+// Idiomatic usage: client.Board(nil).List(nil, nil) or
+// client.Board(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N4chanSDK) Board(data map[string]any) N4chanEntity {
 	return NewBoardEntityFunc(sdk, data)
 }
 
 
+// Catalog returns a Catalog entity bound to this client.
+// Idiomatic usage: client.Catalog(nil).List(nil, nil) or
+// client.Catalog(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N4chanSDK) Catalog(data map[string]any) N4chanEntity {
 	return NewCatalogEntityFunc(sdk, data)
 }
 
 
+// Index returns a Index entity bound to this client.
+// Idiomatic usage: client.Index(nil).List(nil, nil) or
+// client.Index(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N4chanSDK) Index(data map[string]any) N4chanEntity {
 	return NewIndexEntityFunc(sdk, data)
 }
 
 
+// Thread returns a Thread entity bound to this client.
+// Idiomatic usage: client.Thread(nil).List(nil, nil) or
+// client.Thread(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N4chanSDK) Thread(data map[string]any) N4chanEntity {
 	return NewThreadEntityFunc(sdk, data)
 }

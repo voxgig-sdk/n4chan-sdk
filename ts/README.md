@@ -9,9 +9,12 @@ The TypeScript SDK for the N4chan API — a type-safe, entity-oriented client wi
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/n4chan
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/n4chan-sdk/releases](https://github.com/voxgig-sdk/n4chan-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { N4chanSDK } from 'n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan'
 
-const client = new N4chanSDK({
-  apikey: process.env.N4CHAN_APIKEY,
-})
+const client = new N4chanSDK()
 ```
 
 ### 2. List archives
 
 ```ts
-const result = await client.Archive().list()
+const result = await client.archive.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N4chanSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.archive.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new N4chanSDK({ apikey: '...' })
+const client = new N4chanSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.archive
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new N4chanSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 N4CHAN_TEST_LIVE=TRUE
-N4CHAN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new N4chanSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new N4chanSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -369,7 +366,7 @@ API path: `/{board}/thread/{threadId}.json`
 
 ### Archive
 
-Create an instance: `const archive = client.Archive()`
+Create an instance: `const archive = client.archive`
 
 #### Operations
 
@@ -380,13 +377,13 @@ Create an instance: `const archive = client.Archive()`
 #### Example: List
 
 ```ts
-const archives = await client.Archive().list()
+const archives = await client.archive.list()
 ```
 
 
 ### Board
 
-Create an instance: `const board = client.Board()`
+Create an instance: `const board = client.board`
 
 #### Operations
 
@@ -419,13 +416,13 @@ Create an instance: `const board = client.Board()`
 #### Example: List
 
 ```ts
-const boards = await client.Board().list()
+const boards = await client.board.list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.Catalog()`
+Create an instance: `const catalog = client.catalog`
 
 #### Operations
 
@@ -443,13 +440,13 @@ Create an instance: `const catalog = client.Catalog()`
 #### Example: List
 
 ```ts
-const catalogs = await client.Catalog().list()
+const catalogs = await client.catalog.list()
 ```
 
 
 ### Index
 
-Create an instance: `const index = client.Index()`
+Create an instance: `const index = client.index`
 
 #### Operations
 
@@ -466,13 +463,13 @@ Create an instance: `const index = client.Index()`
 #### Example: List
 
 ```ts
-const indexs = await client.Index().list()
+const indexs = await client.index.list()
 ```
 
 
 ### Thread
 
-Create an instance: `const thread = client.Thread()`
+Create an instance: `const thread = client.thread`
 
 #### Operations
 
@@ -530,7 +527,7 @@ Create an instance: `const thread = client.Thread()`
 #### Example: List
 
 ```ts
-const threads = await client.Thread().list()
+const threads = await client.thread.list()
 ```
 
 
@@ -591,7 +588,7 @@ n4chan/
 Import the SDK from the package root:
 
 ```ts
-import { N4chanSDK } from 'n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan'
 ```
 
 ### Entity state
@@ -601,11 +598,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const archive = client.archive
+await archive.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// archive.data() now returns the loaded archive data
+// archive.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

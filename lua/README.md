@@ -9,12 +9,9 @@ The Lua SDK for the N4chan API — an entity-oriented client using Lua conventio
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-n4chan
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/n4chan-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("n4chan_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("N4CHAN_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List archives
 
 ```lua
-local result, err = client:Archive():list()
+local result, err = client:archive():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:N4chan():load({ id = "test01" })
+local result, err = client:archive():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -127,7 +122,6 @@ Create a `.env.local` file at the project root:
 
 ```
 N4CHAN_TEST_LIVE=TRUE
-N4CHAN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -328,7 +321,7 @@ API path: `/{board}/thread/{threadId}.json`
 
 ### Archive
 
-Create an instance: `const archive = client.Archive()`
+Create an instance: `const archive = client.archive`
 
 #### Operations
 
@@ -339,13 +332,13 @@ Create an instance: `const archive = client.Archive()`
 #### Example: List
 
 ```ts
-const archives = await client.Archive().list()
+const archives = await client.archive.list()
 ```
 
 
 ### Board
 
-Create an instance: `const board = client.Board()`
+Create an instance: `const board = client.board`
 
 #### Operations
 
@@ -378,13 +371,13 @@ Create an instance: `const board = client.Board()`
 #### Example: List
 
 ```ts
-const boards = await client.Board().list()
+const boards = await client.board.list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.Catalog()`
+Create an instance: `const catalog = client.catalog`
 
 #### Operations
 
@@ -402,13 +395,13 @@ Create an instance: `const catalog = client.Catalog()`
 #### Example: List
 
 ```ts
-const catalogs = await client.Catalog().list()
+const catalogs = await client.catalog.list()
 ```
 
 
 ### Index
 
-Create an instance: `const index = client.Index()`
+Create an instance: `const index = client.index`
 
 #### Operations
 
@@ -425,13 +418,13 @@ Create an instance: `const index = client.Index()`
 #### Example: List
 
 ```ts
-const indexs = await client.Index().list()
+const indexs = await client.index.list()
 ```
 
 
 ### Thread
 
-Create an instance: `const thread = client.Thread()`
+Create an instance: `const thread = client.thread`
 
 #### Operations
 
@@ -489,7 +482,7 @@ Create an instance: `const thread = client.Thread()`
 #### Example: List
 
 ```ts
-const threads = await client.Thread().list()
+const threads = await client.thread.list()
 ```
 
 
@@ -564,11 +557,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local archive = client:archive()
+archive:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- archive:data_get() now returns the loaded archive data
+-- archive:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

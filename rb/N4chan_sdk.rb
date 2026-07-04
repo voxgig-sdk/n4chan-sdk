@@ -208,65 +208,35 @@ class N4chanSDK
   end
 
 
-  # Idiomatic facade: client.archive.list / client.archive.load({ "id" => ... })
-  def archive
-    require_relative 'entity/archive_entity'
-    @archive ||= ArchiveEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.archive instead.
+  # Canonical facade: client.Archive.list / client.Archive.load({ "id" => ... })
   def Archive(data = nil)
     require_relative 'entity/archive_entity'
     ArchiveEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.board.list / client.board.load({ "id" => ... })
-  def board
-    require_relative 'entity/board_entity'
-    @board ||= BoardEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.board instead.
+  # Canonical facade: client.Board.list / client.Board.load({ "id" => ... })
   def Board(data = nil)
     require_relative 'entity/board_entity'
     BoardEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.catalog.list / client.catalog.load({ "id" => ... })
-  def catalog
-    require_relative 'entity/catalog_entity'
-    @catalog ||= CatalogEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.catalog instead.
+  # Canonical facade: client.Catalog.list / client.Catalog.load({ "id" => ... })
   def Catalog(data = nil)
     require_relative 'entity/catalog_entity'
     CatalogEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.index.list / client.index.load({ "id" => ... })
-  def index
-    require_relative 'entity/index_entity'
-    @index ||= IndexEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.index instead.
+  # Canonical facade: client.Index.list / client.Index.load({ "id" => ... })
   def Index(data = nil)
     require_relative 'entity/index_entity'
     IndexEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.thread.list / client.thread.load({ "id" => ... })
-  def thread
-    require_relative 'entity/thread_entity'
-    @thread ||= ThreadEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.thread instead.
+  # Canonical facade: client.Thread.list / client.Thread.load({ "id" => ... })
   def Thread(data = nil)
     require_relative 'entity/thread_entity'
     ThreadEntity.new(self, data)

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:archive():list() / client:archive():load({ id = ... })
-function N4chanSDK:archive(data)
+-- Idiomatic facade: client:Archive():list() / client:Archive():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:Archive(data)
   local EntityMod = require("entity.archive_entity")
   if data == nil then
     if self._archive == nil then
@@ -256,15 +257,10 @@ function N4chanSDK:archive(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:archive() instead.
-function N4chanSDK:Archive(data)
-  local EntityMod = require("entity.archive_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:board():list() / client:board():load({ id = ... })
-function N4chanSDK:board(data)
+-- Idiomatic facade: client:Board():list() / client:Board():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:Board(data)
   local EntityMod = require("entity.board_entity")
   if data == nil then
     if self._board == nil then
@@ -275,15 +271,10 @@ function N4chanSDK:board(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:board() instead.
-function N4chanSDK:Board(data)
-  local EntityMod = require("entity.board_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:catalog():list() / client:catalog():load({ id = ... })
-function N4chanSDK:catalog(data)
+-- Idiomatic facade: client:Catalog():list() / client:Catalog():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:Catalog(data)
   local EntityMod = require("entity.catalog_entity")
   if data == nil then
     if self._catalog == nil then
@@ -294,15 +285,10 @@ function N4chanSDK:catalog(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:catalog() instead.
-function N4chanSDK:Catalog(data)
-  local EntityMod = require("entity.catalog_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:index():list() / client:index():load({ id = ... })
-function N4chanSDK:index(data)
+-- Idiomatic facade: client:Index():list() / client:Index():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:Index(data)
   local EntityMod = require("entity.index_entity")
   if data == nil then
     if self._index == nil then
@@ -313,15 +299,10 @@ function N4chanSDK:index(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:index() instead.
-function N4chanSDK:Index(data)
-  local EntityMod = require("entity.index_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:thread():list() / client:thread():load({ id = ... })
-function N4chanSDK:thread(data)
+-- Idiomatic facade: client:Thread():list() / client:Thread():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:Thread(data)
   local EntityMod = require("entity.thread_entity")
   if data == nil then
     if self._thread == nil then
@@ -329,12 +310,6 @@ function N4chanSDK:thread(data)
     end
     return self._thread
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:thread() instead.
-function N4chanSDK:Thread(data)
-  local EntityMod = require("entity.thread_entity")
   return EntityMod.new(self, data)
 end
 

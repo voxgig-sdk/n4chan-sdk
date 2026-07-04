@@ -26,9 +26,11 @@ import { N4chanSDK } from '@voxgig-sdk/n4chan'
 
 const client = new N4chanSDK()
 
-// List all archives
-const archives = await client.archive.list()
-console.log(archives.data)
+// List all archives (returns Archive[])
+const archives = await client.Archive().list()
+for (const archive of archives) {
+  console.log(archive)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,9 +89,10 @@ from n4chan_sdk import N4chanSDK
 
 client = N4chanSDK()
 
-# List all archives
-archives = client.archive.list()
-print(archives)
+# List all archives (returns a list, raises on error)
+archives = client.Archive().list({})
+for archive in archives:
+    print(archive)
 ```
 
 ### PHP
@@ -100,8 +103,8 @@ require_once 'n4chan_sdk.php';
 
 $client = new N4chanSDK();
 
-// List all archives (throws on error)
-$archives = $client->archive()->list();
+// List all archives (returns an array; throws on error)
+$archives = $client->Archive()->list();
 print_r($archives);
 ```
 
@@ -124,8 +127,8 @@ require_relative "N4chan_sdk"
 
 client = N4chanSDK.new
 
-# List all archives
-archives = client.archive.list
+# List all archives (returns an Array; raises on error)
+archives = client.Archive.list
 puts archives
 ```
 
@@ -137,7 +140,7 @@ local sdk = require("n4chan_sdk")
 local client = sdk.new()
 
 -- List all archives
-local archives, err = client:archive():list()
+local archives, err = client:Archive():list()
 print(archives)
 ```
 
@@ -150,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = N4chanSDK.test()
-const result = await client.archive.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const archive = await client.Archive().load({ id: 'test01' })
+// archive is a bare Archive populated with mock data
+console.log(archive)
 ```
 
 ### Python
 
 ```python
 client = N4chanSDK.test()
-result = client.archive.load({"id": "test01"})
+archive = client.Archive().load({"id": "test01"})
+print(archive)
 ```
 
 ### PHP
 
 ```php
-$client = N4chanSDK::test();
-$result = $client->archive()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = N4chanSDK::test([
+    "entity" => ["archive" => ["test01" => ["id" => "test01"]]],
+]);
+$archive = $client->Archive()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +188,18 @@ result, err := client.Archive(nil).Load(
 ### Ruby
 
 ```ruby
-client = N4chanSDK.test
-result = client.archive.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = N4chanSDK.test({
+  "entity" => { "archive" => { "test01" => { "id" => "test01" } } },
+})
+archive = client.Archive.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:archive():load({ id = "test01" })
+local result, err = client:Archive():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -102,7 +102,7 @@ same parameters as `direct()`. Raises on error.
 ## ArchiveEntity
 
 ```ruby
-archive = client.archive
+archive = client.Archive
 ```
 
 ### Operations
@@ -112,7 +112,7 @@ archive = client.archive
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.archive.list(nil)
+results = client.Archive.list(nil)
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## BoardEntity
 
 ```ruby
-board = client.board
+board = client.Board
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ board = client.board
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.board.list(nil)
+results = client.Board.list(nil)
 ```
 
 ### Common Methods
@@ -216,7 +216,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```ruby
-catalog = client.catalog
+catalog = client.Catalog
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ catalog = client.catalog
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.catalog.list(nil)
+results = client.Catalog.list(nil)
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return the entity name.
 ## IndexEntity
 
 ```ruby
-index = client.index
+index = client.Index
 ```
 
 ### Fields
@@ -285,7 +285,7 @@ index = client.index
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.index.list(nil)
+results = client.Index.list(nil)
 ```
 
 ### Common Methods
@@ -321,7 +321,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```ruby
-thread = client.thread
+thread = client.Thread
 ```
 
 ### Fields
@@ -378,7 +378,7 @@ thread = client.thread
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.thread.list(nil)
+results = client.Thread.list(nil)
 ```
 
 ### Common Methods

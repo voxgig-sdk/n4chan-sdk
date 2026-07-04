@@ -28,16 +28,14 @@ require_relative "N4chan_sdk"
 client = N4chanSDK.new
 ```
 
-### 2. List archives
+### 2. List archive records
 
 ```ruby
 begin
-  result = client.archive.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Archive records — iterate directly.
+  archives = client.Archive.list
+  archives.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = N4chanSDK.test
+client = N4chanSDK.test({
+  "entity" => { "archive" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.archive.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+archive = client.Archive.load({ "id" => "test01" })
+puts archive
 ```
 
 ### Use a custom fetch function
@@ -167,10 +169,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Archive` | `(data) -> ArchiveEntity` | Create a Archive entity instance. |
+| `Archive` | `(data) -> ArchiveEntity` | Create an Archive entity instance. |
 | `Board` | `(data) -> BoardEntity` | Create a Board entity instance. |
 | `Catalog` | `(data) -> CatalogEntity` | Create a Catalog entity instance. |
-| `Index` | `(data) -> IndexEntity` | Create a Index entity instance. |
+| `Index` | `(data) -> IndexEntity` | Create an Index entity instance. |
 | `Thread` | `(data) -> ThreadEntity` | Create a Thread entity instance. |
 
 ### Entity interface
@@ -324,7 +326,7 @@ API path: `/{board}/thread/{threadId}.json`
 
 ### Archive
 
-Create an instance: `const archive = client.archive`
+Create an instance: `archive = client.Archive`
 
 #### Operations
 
@@ -334,14 +336,15 @@ Create an instance: `const archive = client.archive`
 
 #### Example: List
 
-```ts
-const archives = await client.archive.list()
+```ruby
+# list returns an Array of Archive records (raises on error).
+archives = client.Archive.list
 ```
 
 
 ### Board
 
-Create an instance: `const board = client.board`
+Create an instance: `board = client.Board`
 
 #### Operations
 
@@ -373,14 +376,15 @@ Create an instance: `const board = client.board`
 
 #### Example: List
 
-```ts
-const boards = await client.board.list()
+```ruby
+# list returns an Array of Board records (raises on error).
+boards = client.Board.list
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `catalog = client.Catalog`
 
 #### Operations
 
@@ -397,14 +401,15 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: List
 
-```ts
-const catalogs = await client.catalog.list()
+```ruby
+# list returns an Array of Catalog records (raises on error).
+catalogs = client.Catalog.list
 ```
 
 
 ### Index
 
-Create an instance: `const index = client.index`
+Create an instance: `index = client.Index`
 
 #### Operations
 
@@ -420,14 +425,15 @@ Create an instance: `const index = client.index`
 
 #### Example: List
 
-```ts
-const indexs = await client.index.list()
+```ruby
+# list returns an Array of Index records (raises on error).
+indexs = client.Index.list
 ```
 
 
 ### Thread
 
-Create an instance: `const thread = client.thread`
+Create an instance: `thread = client.Thread`
 
 #### Operations
 
@@ -484,8 +490,9 @@ Create an instance: `const thread = client.thread`
 
 #### Example: List
 
-```ts
-const threads = await client.thread.list()
+```ruby
+# list returns an Array of Thread records (raises on error).
+threads = client.Thread.list
 ```
 
 
@@ -560,7 +567,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-archive = client.archive
+archive = client.Archive
 archive.load({ "id" => "example_id" })
 
 # archive.data_get now returns the loaded archive data

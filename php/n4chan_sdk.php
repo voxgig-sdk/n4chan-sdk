@@ -233,10 +233,10 @@ class N4chanSDK
 
     private $_archive = null;
 
-    // Idiomatic facade: $client->archive()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Archive() (PHP method
-    // names are case-insensitive).
-    public function archive($data = null)
+    // Canonical facade: $client->Archive()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->archive()
+    // resolves here too.
+    public function Archive($data = null)
     {
         require_once __DIR__ . '/entity/archive_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class N4chanSDK
 
     private $_board = null;
 
-    // Idiomatic facade: $client->board()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Board() (PHP method
-    // names are case-insensitive).
-    public function board($data = null)
+    // Canonical facade: $client->Board()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->board()
+    // resolves here too.
+    public function Board($data = null)
     {
         require_once __DIR__ . '/entity/board_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class N4chanSDK
 
     private $_catalog = null;
 
-    // Idiomatic facade: $client->catalog()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Catalog() (PHP method
-    // names are case-insensitive).
-    public function catalog($data = null)
+    // Canonical facade: $client->Catalog()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->catalog()
+    // resolves here too.
+    public function Catalog($data = null)
     {
         require_once __DIR__ . '/entity/catalog_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class N4chanSDK
 
     private $_index = null;
 
-    // Idiomatic facade: $client->index()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Index() (PHP method
-    // names are case-insensitive).
-    public function index($data = null)
+    // Canonical facade: $client->Index()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->index()
+    // resolves here too.
+    public function Index($data = null)
     {
         require_once __DIR__ . '/entity/index_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class N4chanSDK
 
     private $_thread = null;
 
-    // Idiomatic facade: $client->thread()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Thread() (PHP method
-    // names are case-insensitive).
-    public function thread($data = null)
+    // Canonical facade: $client->Thread()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->thread()
+    // resolves here too.
+    public function Thread($data = null)
     {
         require_once __DIR__ . '/entity/thread_entity.php';
         if ($data === null) {

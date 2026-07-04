@@ -220,89 +220,39 @@ class N4chanSDK:
         }
 
 
-    @property
-    def archive(self):
-        """Idiomatic facade: client.archive.list() / client.archive.load({"id": ...})."""
-        from entity.archive_entity import ArchiveEntity
-        cached = getattr(self, "_archive", None)
-        if cached is None:
-            cached = ArchiveEntity(self, None)
-            self._archive = cached
-        return cached
-
-    def Archive(self, data=None):
-        # Deprecated: use client.archive instead.
+    def Archive(self, data=None) -> "ArchiveEntity":
+        """Entity factory: client.Archive().list({}) / client.Archive().load({"id": ...})."""
         from entity.archive_entity import ArchiveEntity
         return ArchiveEntity(self, data)
 
 
-    @property
-    def board(self):
-        """Idiomatic facade: client.board.list() / client.board.load({"id": ...})."""
-        from entity.board_entity import BoardEntity
-        cached = getattr(self, "_board", None)
-        if cached is None:
-            cached = BoardEntity(self, None)
-            self._board = cached
-        return cached
-
-    def Board(self, data=None):
-        # Deprecated: use client.board instead.
+    def Board(self, data=None) -> "BoardEntity":
+        """Entity factory: client.Board().list({}) / client.Board().load({"id": ...})."""
         from entity.board_entity import BoardEntity
         return BoardEntity(self, data)
 
 
-    @property
-    def catalog(self):
-        """Idiomatic facade: client.catalog.list() / client.catalog.load({"id": ...})."""
-        from entity.catalog_entity import CatalogEntity
-        cached = getattr(self, "_catalog", None)
-        if cached is None:
-            cached = CatalogEntity(self, None)
-            self._catalog = cached
-        return cached
-
-    def Catalog(self, data=None):
-        # Deprecated: use client.catalog instead.
+    def Catalog(self, data=None) -> "CatalogEntity":
+        """Entity factory: client.Catalog().list({}) / client.Catalog().load({"id": ...})."""
         from entity.catalog_entity import CatalogEntity
         return CatalogEntity(self, data)
 
 
-    @property
-    def index(self):
-        """Idiomatic facade: client.index.list() / client.index.load({"id": ...})."""
-        from entity.index_entity import IndexEntity
-        cached = getattr(self, "_index", None)
-        if cached is None:
-            cached = IndexEntity(self, None)
-            self._index = cached
-        return cached
-
-    def Index(self, data=None):
-        # Deprecated: use client.index instead.
+    def Index(self, data=None) -> "IndexEntity":
+        """Entity factory: client.Index().list({}) / client.Index().load({"id": ...})."""
         from entity.index_entity import IndexEntity
         return IndexEntity(self, data)
 
 
-    @property
-    def thread(self):
-        """Idiomatic facade: client.thread.list() / client.thread.load({"id": ...})."""
-        from entity.thread_entity import ThreadEntity
-        cached = getattr(self, "_thread", None)
-        if cached is None:
-            cached = ThreadEntity(self, None)
-            self._thread = cached
-        return cached
-
-    def Thread(self, data=None):
-        # Deprecated: use client.thread instead.
+    def Thread(self, data=None) -> "ThreadEntity":
+        """Entity factory: client.Thread().list({}) / client.Thread().load({"id": ...})."""
         from entity.thread_entity import ThreadEntity
         return ThreadEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "N4chanSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class N4chanSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.archive_entity import ArchiveEntity
+    from entity.board_entity import BoardEntity
+    from entity.catalog_entity import CatalogEntity
+    from entity.index_entity import IndexEntity
+    from entity.thread_entity import ThreadEntity

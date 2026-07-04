@@ -157,7 +157,7 @@ Alias for `N4chanSDK.test()`.
 ## ArchiveEntity
 
 ```ts
-const archive = client.archive
+const archive = client.Archive()
 ```
 
 ### Operations
@@ -167,7 +167,7 @@ const archive = client.archive
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.archive.list()
+const results = await client.Archive().list()
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return a copy of the entity options.
 ## BoardEntity
 
 ```ts
-const board = client.board
+const board = client.Board()
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ const board = client.board
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.board.list()
+const results = await client.Board().list()
 ```
 
 ### Common Methods
@@ -267,7 +267,7 @@ Return a copy of the entity options.
 ## CatalogEntity
 
 ```ts
-const catalog = client.catalog
+const catalog = client.Catalog()
 ```
 
 ### Fields
@@ -284,7 +284,7 @@ const catalog = client.catalog
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.catalog.list()
+const results = await client.Catalog().list()
 ```
 
 ### Common Methods
@@ -318,7 +318,7 @@ Return a copy of the entity options.
 ## IndexEntity
 
 ```ts
-const index = client.index
+const index = client.Index()
 ```
 
 ### Fields
@@ -334,7 +334,7 @@ const index = client.index
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.index.list()
+const results = await client.Index().list()
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ Return a copy of the entity options.
 ## ThreadEntity
 
 ```ts
-const thread = client.thread
+const thread = client.Thread()
 ```
 
 ### Fields
@@ -425,7 +425,7 @@ const thread = client.thread
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.thread.list()
+const results = await client.Thread().list()
 ```
 
 ### Common Methods

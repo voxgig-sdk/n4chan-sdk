@@ -29,18 +29,16 @@ require_once 'n4chan_sdk.php';
 $client = new N4chanSDK();
 ```
 
-### 2. List archives
+### 2. List archive records
 
 ```php
 try {
-    $result = $client->archive()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Archive records — iterate directly.
+    $archives = $client->Archive()->list();
+    foreach ($archives as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = N4chanSDK::test();
+$client = N4chanSDK::test([
+    "entity" => ["archive" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->archive()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$archive = $client->Archive()->load(["id" => "test01"]);
+print_r($archive);
 ```
 
 ### Use a custom fetch function
@@ -171,10 +173,10 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Archive` | `($data): ArchiveEntity` | Create a Archive entity instance. |
+| `Archive` | `($data): ArchiveEntity` | Create an Archive entity instance. |
 | `Board` | `($data): BoardEntity` | Create a Board entity instance. |
 | `Catalog` | `($data): CatalogEntity` | Create a Catalog entity instance. |
-| `Index` | `($data): IndexEntity` | Create a Index entity instance. |
+| `Index` | `($data): IndexEntity` | Create an Index entity instance. |
 | `Thread` | `($data): ThreadEntity` | Create a Thread entity instance. |
 
 ### Entity interface
@@ -329,7 +331,7 @@ API path: `/{board}/thread/{threadId}.json`
 
 ### Archive
 
-Create an instance: `const archive = client.archive`
+Create an instance: `$archive = $client->Archive();`
 
 #### Operations
 
@@ -339,14 +341,15 @@ Create an instance: `const archive = client.archive`
 
 #### Example: List
 
-```ts
-const archives = await client.archive.list()
+```php
+// list() returns an array of Archive records (throws on error).
+$archives = $client->Archive()->list();
 ```
 
 
 ### Board
 
-Create an instance: `const board = client.board`
+Create an instance: `$board = $client->Board();`
 
 #### Operations
 
@@ -378,14 +381,15 @@ Create an instance: `const board = client.board`
 
 #### Example: List
 
-```ts
-const boards = await client.board.list()
+```php
+// list() returns an array of Board records (throws on error).
+$boards = $client->Board()->list();
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `$catalog = $client->Catalog();`
 
 #### Operations
 
@@ -402,14 +406,15 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: List
 
-```ts
-const catalogs = await client.catalog.list()
+```php
+// list() returns an array of Catalog records (throws on error).
+$catalogs = $client->Catalog()->list();
 ```
 
 
 ### Index
 
-Create an instance: `const index = client.index`
+Create an instance: `$index = $client->Index();`
 
 #### Operations
 
@@ -425,14 +430,15 @@ Create an instance: `const index = client.index`
 
 #### Example: List
 
-```ts
-const indexs = await client.index.list()
+```php
+// list() returns an array of Index records (throws on error).
+$indexs = $client->Index()->list();
 ```
 
 
 ### Thread
 
-Create an instance: `const thread = client.thread`
+Create an instance: `$thread = $client->Thread();`
 
 #### Operations
 
@@ -489,8 +495,9 @@ Create an instance: `const thread = client.thread`
 
 #### Example: List
 
-```ts
-const threads = await client.thread.list()
+```php
+// list() returns an array of Thread records (throws on error).
+$threads = $client->Thread()->list();
 ```
 
 
@@ -565,7 +572,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$archive = $client->archive();
+$archive = $client->Archive();
 $archive->load(["id" => "example_id"]);
 
 // $archive->dataGet() now returns the loaded archive data

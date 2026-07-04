@@ -99,7 +99,7 @@ same parameters as `direct()`.
 ## ArchiveEntity
 
 ```lua
-local archive = client:archive(nil)
+local archive = client:Archive(nil)
 ```
 
 ### Operations
@@ -109,7 +109,7 @@ local archive = client:archive(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:archive():list()
+local results, err = client:Archive():list()
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## BoardEntity
 
 ```lua
-local board = client:board(nil)
+local board = client:Board(nil)
 ```
 
 ### Fields
@@ -177,7 +177,7 @@ local board = client:board(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:board():list()
+local results, err = client:Board():list()
 ```
 
 ### Common Methods
@@ -213,7 +213,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```lua
-local catalog = client:catalog(nil)
+local catalog = client:Catalog(nil)
 ```
 
 ### Fields
@@ -230,7 +230,7 @@ local catalog = client:catalog(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:catalog():list()
+local results, err = client:Catalog():list()
 ```
 
 ### Common Methods
@@ -266,7 +266,7 @@ Return the entity name.
 ## IndexEntity
 
 ```lua
-local index = client:index(nil)
+local index = client:Index(nil)
 ```
 
 ### Fields
@@ -282,7 +282,7 @@ local index = client:index(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:index():list()
+local results, err = client:Index():list()
 ```
 
 ### Common Methods
@@ -318,7 +318,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```lua
-local thread = client:thread(nil)
+local thread = client:Thread(nil)
 ```
 
 ### Fields
@@ -375,7 +375,7 @@ local thread = client:thread(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:thread():list()
+local results, err = client:Thread():list()
 ```
 
 ### Common Methods

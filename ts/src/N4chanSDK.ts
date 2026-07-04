@@ -208,70 +208,35 @@ class N4chanSDK {
 
 
 
-  _archive?: ArchiveEntity
-
-  // Idiomatic facade: `client.archive.list()` / `client.archive.load({ id })`.
-  get archive(): ArchiveEntity {
-    return (this._archive ??= new ArchiveEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.archive` instead. */
+  // Entity access: `client.Archive().list()` / `client.Archive().load({ id })`.
   Archive(data?: any) {
     const self = this
     return new ArchiveEntity(self,data)
   }
 
 
-  _board?: BoardEntity
-
-  // Idiomatic facade: `client.board.list()` / `client.board.load({ id })`.
-  get board(): BoardEntity {
-    return (this._board ??= new BoardEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.board` instead. */
+  // Entity access: `client.Board().list()` / `client.Board().load({ id })`.
   Board(data?: any) {
     const self = this
     return new BoardEntity(self,data)
   }
 
 
-  _catalog?: CatalogEntity
-
-  // Idiomatic facade: `client.catalog.list()` / `client.catalog.load({ id })`.
-  get catalog(): CatalogEntity {
-    return (this._catalog ??= new CatalogEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.catalog` instead. */
+  // Entity access: `client.Catalog().list()` / `client.Catalog().load({ id })`.
   Catalog(data?: any) {
     const self = this
     return new CatalogEntity(self,data)
   }
 
 
-  _index?: IndexEntity
-
-  // Idiomatic facade: `client.index.list()` / `client.index.load({ id })`.
-  get index(): IndexEntity {
-    return (this._index ??= new IndexEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.index` instead. */
+  // Entity access: `client.Index().list()` / `client.Index().load({ id })`.
   Index(data?: any) {
     const self = this
     return new IndexEntity(self,data)
   }
 
 
-  _thread?: ThreadEntity
-
-  // Idiomatic facade: `client.thread.list()` / `client.thread.load({ id })`.
-  get thread(): ThreadEntity {
-    return (this._thread ??= new ThreadEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.thread` instead. */
+  // Entity access: `client.Thread().list()` / `client.Thread().load({ id })`.
   Thread(data?: any) {
     const self = this
     return new ThreadEntity(self,data)

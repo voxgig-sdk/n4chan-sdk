@@ -31,17 +31,17 @@ local sdk = require("n4chan_sdk")
 local client = sdk.new()
 ```
 
-### 2. List archives
+### 2. List archive records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:archive():list()
+local archives, err = client:Archive():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(archives) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:archive():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Archive():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,10 +167,10 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Archive` | `(data) -> ArchiveEntity` | Create a Archive entity instance. |
+| `Archive` | `(data) -> ArchiveEntity` | Create an Archive entity instance. |
 | `Board` | `(data) -> BoardEntity` | Create a Board entity instance. |
 | `Catalog` | `(data) -> CatalogEntity` | Create a Catalog entity instance. |
-| `Index` | `(data) -> IndexEntity` | Create a Index entity instance. |
+| `Index` | `(data) -> IndexEntity` | Create an Index entity instance. |
 | `Thread` | `(data) -> ThreadEntity` | Create a Thread entity instance. |
 
 ### Entity interface
@@ -193,17 +193,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local archive, err = client:Archive():load({ id = "example_id" })
+    if err then error(err) end
+    -- archive is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -321,7 +326,7 @@ API path: `/{board}/thread/{threadId}.json`
 
 ### Archive
 
-Create an instance: `const archive = client.archive`
+Create an instance: `local archive = client:Archive(nil)`
 
 #### Operations
 
@@ -331,14 +336,14 @@ Create an instance: `const archive = client.archive`
 
 #### Example: List
 
-```ts
-const archives = await client.archive.list()
+```lua
+local archives, err = client:Archive():list()
 ```
 
 
 ### Board
 
-Create an instance: `const board = client.board`
+Create an instance: `local board = client:Board(nil)`
 
 #### Operations
 
@@ -370,14 +375,14 @@ Create an instance: `const board = client.board`
 
 #### Example: List
 
-```ts
-const boards = await client.board.list()
+```lua
+local boards, err = client:Board():list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `local catalog = client:Catalog(nil)`
 
 #### Operations
 
@@ -394,14 +399,14 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: List
 
-```ts
-const catalogs = await client.catalog.list()
+```lua
+local catalogs, err = client:Catalog():list()
 ```
 
 
 ### Index
 
-Create an instance: `const index = client.index`
+Create an instance: `local index = client:Index(nil)`
 
 #### Operations
 
@@ -417,14 +422,14 @@ Create an instance: `const index = client.index`
 
 #### Example: List
 
-```ts
-const indexs = await client.index.list()
+```lua
+local indexs, err = client:Index():list()
 ```
 
 
 ### Thread
 
-Create an instance: `const thread = client.thread`
+Create an instance: `local thread = client:Thread(nil)`
 
 #### Operations
 
@@ -481,8 +486,8 @@ Create an instance: `const thread = client.thread`
 
 #### Example: List
 
-```ts
-const threads = await client.thread.list()
+```lua
+local threads, err = client:Thread():list()
 ```
 
 
@@ -557,7 +562,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local archive = client:archive()
+local archive = client:Archive()
 archive:load({ id = "example_id" })
 
 -- archive:data_get() now returns the loaded archive data

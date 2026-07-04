@@ -101,7 +101,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ArchiveEntity
 
 ```php
-$archive = $client->archive();
+$archive = $client->Archive();
 ```
 
 ### Operations
@@ -111,7 +111,7 @@ $archive = $client->archive();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->archive()->list([]);
+$results = $client->Archive()->list([]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## BoardEntity
 
 ```php
-$board = $client->board();
+$board = $client->Board();
 ```
 
 ### Fields
@@ -179,7 +179,7 @@ $board = $client->board();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->board()->list([]);
+$results = $client->Board()->list([]);
 ```
 
 ### Common Methods
@@ -215,7 +215,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```php
-$catalog = $client->catalog();
+$catalog = $client->Catalog();
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ $catalog = $client->catalog();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->catalog()->list([]);
+$results = $client->Catalog()->list([]);
 ```
 
 ### Common Methods
@@ -268,7 +268,7 @@ Return the entity name.
 ## IndexEntity
 
 ```php
-$index = $client->index();
+$index = $client->Index();
 ```
 
 ### Fields
@@ -284,7 +284,7 @@ $index = $client->index();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->index()->list([]);
+$results = $client->Index()->list([]);
 ```
 
 ### Common Methods
@@ -320,7 +320,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```php
-$thread = $client->thread();
+$thread = $client->Thread();
 ```
 
 ### Fields
@@ -377,7 +377,7 @@ $thread = $client->thread();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->thread()->list([]);
+$results = $client->Thread()->list([]);
 ```
 
 ### Common Methods

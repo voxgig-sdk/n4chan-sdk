@@ -96,7 +96,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ArchiveEntity
 
 ```python
-archive = client.archive
+archive = client.Archive()
 ```
 
 ### Operations
@@ -106,7 +106,9 @@ archive = client.archive
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.archive.list({})
+results = client.Archive().list({})
+for archive in results:
+    print(archive)
 ```
 
 ### Common Methods
@@ -141,7 +143,7 @@ Return the entity name.
 ## BoardEntity
 
 ```python
-board = client.board
+board = client.Board()
 ```
 
 ### Fields
@@ -173,7 +175,9 @@ board = client.board
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.board.list({})
+results = client.Board().list({})
+for board in results:
+    print(board)
 ```
 
 ### Common Methods
@@ -208,7 +212,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```python
-catalog = client.catalog
+catalog = client.Catalog()
 ```
 
 ### Fields
@@ -225,7 +229,9 @@ catalog = client.catalog
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.catalog.list({})
+results = client.Catalog().list({})
+for catalog in results:
+    print(catalog)
 ```
 
 ### Common Methods
@@ -260,7 +266,7 @@ Return the entity name.
 ## IndexEntity
 
 ```python
-index = client.index
+index = client.Index()
 ```
 
 ### Fields
@@ -276,7 +282,9 @@ index = client.index
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.index.list({})
+results = client.Index().list({})
+for index in results:
+    print(index)
 ```
 
 ### Common Methods
@@ -311,7 +319,7 @@ Return the entity name.
 ## ThreadEntity
 
 ```python
-thread = client.thread
+thread = client.Thread()
 ```
 
 ### Fields
@@ -368,7 +376,9 @@ thread = client.thread
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.thread.list({})
+results = client.Thread().list({})
+for thread in results:
+    print(thread)
 ```
 
 ### Common Methods

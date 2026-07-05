@@ -221,31 +221,31 @@ class N4chanSDK:
 
 
     def Archive(self, data=None) -> "ArchiveEntity":
-        """Entity factory: client.Archive().list({}) / client.Archive().load({"id": ...})."""
+        """Entity factory: client.Archive().list() / client.Archive().load({"id": ...})."""
         from entity.archive_entity import ArchiveEntity
         return ArchiveEntity(self, data)
 
 
     def Board(self, data=None) -> "BoardEntity":
-        """Entity factory: client.Board().list({}) / client.Board().load({"id": ...})."""
+        """Entity factory: client.Board().list() / client.Board().load({"id": ...})."""
         from entity.board_entity import BoardEntity
         return BoardEntity(self, data)
 
 
     def Catalog(self, data=None) -> "CatalogEntity":
-        """Entity factory: client.Catalog().list({}) / client.Catalog().load({"id": ...})."""
+        """Entity factory: client.Catalog().list() / client.Catalog().load({"id": ...})."""
         from entity.catalog_entity import CatalogEntity
         return CatalogEntity(self, data)
 
 
     def Index(self, data=None) -> "IndexEntity":
-        """Entity factory: client.Index().list({}) / client.Index().load({"id": ...})."""
+        """Entity factory: client.Index().list() / client.Index().load({"id": ...})."""
         from entity.index_entity import IndexEntity
         return IndexEntity(self, data)
 
 
     def Thread(self, data=None) -> "ThreadEntity":
-        """Entity factory: client.Thread().list({}) / client.Thread().load({"id": ...})."""
+        """Entity factory: client.Thread().list() / client.Thread().load({"id": ...})."""
         from entity.thread_entity import ThreadEntity
         return ThreadEntity(self, data)
 

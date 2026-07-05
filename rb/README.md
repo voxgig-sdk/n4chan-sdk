@@ -4,6 +4,8 @@
 
 The Ruby SDK for the N4chan API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Archive` — with named operations (`list`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ begin
   # list returns an Array of Archive records — iterate directly.
   archives = client.Archive.list
   archives.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item}"
   end
 rescue => err
   warn "list failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  archives = client.Archive.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = N4chanSDK.test({
-  "entity" => { "archive" => { "test01" => { "id" => "test01" } } },
-})
+client = N4chanSDK.test
 
-# load returns the bare mock record (raises on error).
-archive = client.Archive.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+archive = client.Archive.list()
 puts archive
 ```
 
@@ -181,11 +209,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -356,23 +380,23 @@ Create an instance: `board = client.Board`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | ``$STRING`` |  |
-| `board_flag` | ``$OBJECT`` |  |
-| `bump_limit` | ``$INTEGER`` |  |
-| `cooldown` | ``$OBJECT`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `image_limit` | ``$INTEGER`` |  |
-| `is_archived` | ``$INTEGER`` |  |
-| `max_comment_char` | ``$INTEGER`` |  |
-| `max_filesize` | ``$INTEGER`` |  |
-| `max_webm_duration` | ``$INTEGER`` |  |
-| `max_webm_filesize` | ``$INTEGER`` |  |
-| `meta_description` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `per_page` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `ws_board` | ``$INTEGER`` |  |
+| `board` | `String` |  |
+| `board_flag` | `Hash` |  |
+| `bump_limit` | `Integer` |  |
+| `cooldown` | `Hash` |  |
+| `custom_spoiler` | `Integer` |  |
+| `image_limit` | `Integer` |  |
+| `is_archived` | `Integer` |  |
+| `max_comment_char` | `Integer` |  |
+| `max_filesize` | `Integer` |  |
+| `max_webm_duration` | `Integer` |  |
+| `max_webm_filesize` | `Integer` |  |
+| `meta_description` | `String` |  |
+| `page` | `Integer` |  |
+| `per_page` | `Integer` |  |
+| `spoiler` | `Integer` |  |
+| `title` | `String` |  |
+| `ws_board` | `Integer` |  |
 
 #### Example: List
 
@@ -396,8 +420,8 @@ Create an instance: `catalog = client.Catalog`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `thread` | ``$ARRAY`` |  |
+| `page` | `Integer` |  |
+| `thread` | `Array` |  |
 
 #### Example: List
 
@@ -421,7 +445,7 @@ Create an instance: `index = client.Index`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | ``$ARRAY`` |  |
+| `post` | `Array` |  |
 
 #### Example: List
 
@@ -445,48 +469,48 @@ Create an instance: `thread = client.Thread`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | ``$INTEGER`` |  |
-| `archived_on` | ``$INTEGER`` |  |
-| `bumplimit` | ``$INTEGER`` |  |
-| `capcode` | ``$STRING`` |  |
-| `closed` | ``$INTEGER`` |  |
-| `com` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `ext` | ``$STRING`` |  |
-| `filedeleted` | ``$INTEGER`` |  |
-| `filename` | ``$STRING`` |  |
-| `fsize` | ``$INTEGER`` |  |
-| `h` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$INTEGER`` |  |
-| `imagelimit` | ``$INTEGER`` |  |
-| `last_modified` | ``$INTEGER`` |  |
-| `m_img` | ``$INTEGER`` |  |
-| `md5` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `no` | ``$INTEGER`` |  |
-| `now` | ``$STRING`` |  |
-| `omitted_image` | ``$INTEGER`` |  |
-| `omitted_post` | ``$INTEGER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `reply` | ``$INTEGER`` |  |
-| `resto` | ``$INTEGER`` |  |
-| `semantic_url` | ``$STRING`` |  |
-| `since4pass` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `sticky` | ``$INTEGER`` |  |
-| `sub` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
-| `thread` | ``$ARRAY`` |  |
-| `tim` | ``$INTEGER`` |  |
-| `time` | ``$INTEGER`` |  |
-| `tn_h` | ``$INTEGER`` |  |
-| `tn_w` | ``$INTEGER`` |  |
-| `trip` | ``$STRING`` |  |
-| `unique_ip` | ``$INTEGER`` |  |
-| `w` | ``$INTEGER`` |  |
+| `archived` | `Integer` |  |
+| `archived_on` | `Integer` |  |
+| `bumplimit` | `Integer` |  |
+| `capcode` | `String` |  |
+| `closed` | `Integer` |  |
+| `com` | `String` |  |
+| `country` | `String` |  |
+| `country_name` | `String` |  |
+| `custom_spoiler` | `Integer` |  |
+| `ext` | `String` |  |
+| `filedeleted` | `Integer` |  |
+| `filename` | `String` |  |
+| `fsize` | `Integer` |  |
+| `h` | `Integer` |  |
+| `id` | `String` |  |
+| `image` | `Integer` |  |
+| `imagelimit` | `Integer` |  |
+| `last_modified` | `Integer` |  |
+| `m_img` | `Integer` |  |
+| `md5` | `String` |  |
+| `name` | `String` |  |
+| `no` | `Integer` |  |
+| `now` | `String` |  |
+| `omitted_image` | `Integer` |  |
+| `omitted_post` | `Integer` |  |
+| `page` | `Integer` |  |
+| `reply` | `Integer` |  |
+| `resto` | `Integer` |  |
+| `semantic_url` | `String` |  |
+| `since4pass` | `Integer` |  |
+| `spoiler` | `Integer` |  |
+| `sticky` | `Integer` |  |
+| `sub` | `String` |  |
+| `tag` | `String` |  |
+| `thread` | `Array` |  |
+| `tim` | `Integer` |  |
+| `time` | `Integer` |  |
+| `tn_h` | `Integer` |  |
+| `tn_w` | `Integer` |  |
+| `trip` | `String` |  |
+| `unique_ip` | `Integer` |  |
+| `w` | `Integer` |  |
 
 #### Example: List
 
@@ -496,12 +520,16 @@ threads = client.Thread.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -518,8 +546,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -563,14 +592,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 archive = client.Archive
-archive.load({ "id" => "example_id" })
+archive.list()
 
-# archive.data_get now returns the loaded archive data
+# archive.data_get now returns the archive data from the last list
 # archive.match_get returns the last match criteria
 ```
 

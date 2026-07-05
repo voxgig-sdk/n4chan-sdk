@@ -4,6 +4,11 @@
 
 The Python SDK for the N4chan API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Archive()` — each
+carrying a small, uniform set of operations (`list`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    archives = client.Archive().list({})
+    archives = client.Archive().list()
     for archive in archives:
         print(archive)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    archives = client.Archive().list()
+    print(archives)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = N4chanSDK.test()
 
 # Entity ops return the bare record and raise on error.
-archive = client.Archive().load({"id": "test01"})
+archive = client.Archive().list()
 # archive contains the mock response record
 ```
 
@@ -178,11 +214,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -330,12 +362,12 @@ Create an instance: `archive = client.Archive()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Example: List
 
 ```python
-archives = client.Archive().list({})
+archives = client.Archive().list()
 ```
 
 
@@ -347,34 +379,34 @@ Create an instance: `board = client.Board()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | ``$STRING`` |  |
-| `board_flag` | ``$OBJECT`` |  |
-| `bump_limit` | ``$INTEGER`` |  |
-| `cooldown` | ``$OBJECT`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `image_limit` | ``$INTEGER`` |  |
-| `is_archived` | ``$INTEGER`` |  |
-| `max_comment_char` | ``$INTEGER`` |  |
-| `max_filesize` | ``$INTEGER`` |  |
-| `max_webm_duration` | ``$INTEGER`` |  |
-| `max_webm_filesize` | ``$INTEGER`` |  |
-| `meta_description` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `per_page` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `ws_board` | ``$INTEGER`` |  |
+| `board` | `str` |  |
+| `board_flag` | `dict` |  |
+| `bump_limit` | `int` |  |
+| `cooldown` | `dict` |  |
+| `custom_spoiler` | `int` |  |
+| `image_limit` | `int` |  |
+| `is_archived` | `int` |  |
+| `max_comment_char` | `int` |  |
+| `max_filesize` | `int` |  |
+| `max_webm_duration` | `int` |  |
+| `max_webm_filesize` | `int` |  |
+| `meta_description` | `str` |  |
+| `page` | `int` |  |
+| `per_page` | `int` |  |
+| `spoiler` | `int` |  |
+| `title` | `str` |  |
+| `ws_board` | `int` |  |
 
 #### Example: List
 
 ```python
-boards = client.Board().list({})
+boards = client.Board().list()
 ```
 
 
@@ -386,19 +418,19 @@ Create an instance: `catalog = client.Catalog()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `thread` | ``$ARRAY`` |  |
+| `page` | `int` |  |
+| `thread` | `list` |  |
 
 #### Example: List
 
 ```python
-catalogs = client.Catalog().list({})
+catalogs = client.Catalog().list()
 ```
 
 
@@ -410,18 +442,18 @@ Create an instance: `index = client.Index()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | ``$ARRAY`` |  |
+| `post` | `list` |  |
 
 #### Example: List
 
 ```python
-indexs = client.Index().list({})
+indexs = client.Index().list()
 ```
 
 
@@ -433,68 +465,72 @@ Create an instance: `thread = client.Thread()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | ``$INTEGER`` |  |
-| `archived_on` | ``$INTEGER`` |  |
-| `bumplimit` | ``$INTEGER`` |  |
-| `capcode` | ``$STRING`` |  |
-| `closed` | ``$INTEGER`` |  |
-| `com` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `ext` | ``$STRING`` |  |
-| `filedeleted` | ``$INTEGER`` |  |
-| `filename` | ``$STRING`` |  |
-| `fsize` | ``$INTEGER`` |  |
-| `h` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$INTEGER`` |  |
-| `imagelimit` | ``$INTEGER`` |  |
-| `last_modified` | ``$INTEGER`` |  |
-| `m_img` | ``$INTEGER`` |  |
-| `md5` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `no` | ``$INTEGER`` |  |
-| `now` | ``$STRING`` |  |
-| `omitted_image` | ``$INTEGER`` |  |
-| `omitted_post` | ``$INTEGER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `reply` | ``$INTEGER`` |  |
-| `resto` | ``$INTEGER`` |  |
-| `semantic_url` | ``$STRING`` |  |
-| `since4pass` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `sticky` | ``$INTEGER`` |  |
-| `sub` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
-| `thread` | ``$ARRAY`` |  |
-| `tim` | ``$INTEGER`` |  |
-| `time` | ``$INTEGER`` |  |
-| `tn_h` | ``$INTEGER`` |  |
-| `tn_w` | ``$INTEGER`` |  |
-| `trip` | ``$STRING`` |  |
-| `unique_ip` | ``$INTEGER`` |  |
-| `w` | ``$INTEGER`` |  |
+| `archived` | `int` |  |
+| `archived_on` | `int` |  |
+| `bumplimit` | `int` |  |
+| `capcode` | `str` |  |
+| `closed` | `int` |  |
+| `com` | `str` |  |
+| `country` | `str` |  |
+| `country_name` | `str` |  |
+| `custom_spoiler` | `int` |  |
+| `ext` | `str` |  |
+| `filedeleted` | `int` |  |
+| `filename` | `str` |  |
+| `fsize` | `int` |  |
+| `h` | `int` |  |
+| `id` | `str` |  |
+| `image` | `int` |  |
+| `imagelimit` | `int` |  |
+| `last_modified` | `int` |  |
+| `m_img` | `int` |  |
+| `md5` | `str` |  |
+| `name` | `str` |  |
+| `no` | `int` |  |
+| `now` | `str` |  |
+| `omitted_image` | `int` |  |
+| `omitted_post` | `int` |  |
+| `page` | `int` |  |
+| `reply` | `int` |  |
+| `resto` | `int` |  |
+| `semantic_url` | `str` |  |
+| `since4pass` | `int` |  |
+| `spoiler` | `int` |  |
+| `sticky` | `int` |  |
+| `sub` | `str` |  |
+| `tag` | `str` |  |
+| `thread` | `list` |  |
+| `tim` | `int` |  |
+| `time` | `int` |  |
+| `tn_h` | `int` |  |
+| `tn_w` | `int` |  |
+| `trip` | `str` |  |
+| `unique_ip` | `int` |  |
+| `w` | `int` |  |
 
 #### Example: List
 
 ```python
-threads = client.Thread().list({})
+threads = client.Thread().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -511,8 +547,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -555,14 +592,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 archive = client.Archive()
-archive.load({"id": "example_id"})
+archive.list()
 
-# archive.data_get() now returns the loaded archive data
+# archive.data_get() now returns the archive data from the last list
 # archive.match_get() returns the last match criteria
 ```
 

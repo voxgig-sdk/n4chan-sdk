@@ -38,8 +38,7 @@ type Board struct {
 	WsBoard *int `json:"ws_board,omitempty"`
 }
 
-// BoardListMatch mirrors the board fields as an all-optional match
-// filter (Go analog of Partial<Board>).
+// BoardListMatch is the typed request payload for Board.ListTyped.
 type BoardListMatch struct {
 	Board *string `json:"board,omitempty"`
 	BoardFlag *map[string]any `json:"board_flag,omitempty"`

@@ -94,7 +94,7 @@ Board = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Board#list (any subset of Board fields).
+# Request payload for Board#list.
 #
 # @!attribute [rw] board
 #   @return [String, nil]

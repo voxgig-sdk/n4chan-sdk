@@ -153,23 +153,23 @@ board := client.Board(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `board` | ``$STRING`` | No |  |
-| `board_flag` | ``$OBJECT`` | No |  |
-| `bump_limit` | ``$INTEGER`` | No |  |
-| `cooldown` | ``$OBJECT`` | No |  |
-| `custom_spoiler` | ``$INTEGER`` | No |  |
-| `image_limit` | ``$INTEGER`` | No |  |
-| `is_archived` | ``$INTEGER`` | No |  |
-| `max_comment_char` | ``$INTEGER`` | No |  |
-| `max_filesize` | ``$INTEGER`` | No |  |
-| `max_webm_duration` | ``$INTEGER`` | No |  |
-| `max_webm_filesize` | ``$INTEGER`` | No |  |
-| `meta_description` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `per_page` | ``$INTEGER`` | No |  |
-| `spoiler` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ws_board` | ``$INTEGER`` | No |  |
+| `board` | `string` | No |  |
+| `board_flag` | `map[string]any` | No |  |
+| `bump_limit` | `int` | No |  |
+| `cooldown` | `map[string]any` | No |  |
+| `custom_spoiler` | `int` | No |  |
+| `image_limit` | `int` | No |  |
+| `is_archived` | `int` | No |  |
+| `max_comment_char` | `int` | No |  |
+| `max_filesize` | `int` | No |  |
+| `max_webm_duration` | `int` | No |  |
+| `max_webm_filesize` | `int` | No |  |
+| `meta_description` | `string` | No |  |
+| `page` | `int` | No |  |
+| `per_page` | `int` | No |  |
+| `spoiler` | `int` | No |  |
+| `title` | `string` | No |  |
+| `ws_board` | `int` | No |  |
 
 ### Operations
 
@@ -215,8 +215,8 @@ catalog := client.Catalog(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | ``$INTEGER`` | No |  |
-| `thread` | ``$ARRAY`` | No |  |
+| `page` | `int` | No |  |
+| `thread` | `[]any` | No |  |
 
 ### Operations
 
@@ -262,7 +262,7 @@ index := client.Index(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | ``$ARRAY`` | No |  |
+| `post` | `[]any` | No |  |
 
 ### Operations
 
@@ -308,48 +308,48 @@ thread := client.Thread(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | ``$INTEGER`` | No |  |
-| `archived_on` | ``$INTEGER`` | No |  |
-| `bumplimit` | ``$INTEGER`` | No |  |
-| `capcode` | ``$STRING`` | No |  |
-| `closed` | ``$INTEGER`` | No |  |
-| `com` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `country_name` | ``$STRING`` | No |  |
-| `custom_spoiler` | ``$INTEGER`` | No |  |
-| `ext` | ``$STRING`` | No |  |
-| `filedeleted` | ``$INTEGER`` | No |  |
-| `filename` | ``$STRING`` | No |  |
-| `fsize` | ``$INTEGER`` | No |  |
-| `h` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$INTEGER`` | No |  |
-| `imagelimit` | ``$INTEGER`` | No |  |
-| `last_modified` | ``$INTEGER`` | No |  |
-| `m_img` | ``$INTEGER`` | No |  |
-| `md5` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `no` | ``$INTEGER`` | Yes |  |
-| `now` | ``$STRING`` | Yes |  |
-| `omitted_image` | ``$INTEGER`` | No |  |
-| `omitted_post` | ``$INTEGER`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `reply` | ``$INTEGER`` | No |  |
-| `resto` | ``$INTEGER`` | No |  |
-| `semantic_url` | ``$STRING`` | No |  |
-| `since4pass` | ``$INTEGER`` | No |  |
-| `spoiler` | ``$INTEGER`` | No |  |
-| `sticky` | ``$INTEGER`` | No |  |
-| `sub` | ``$STRING`` | No |  |
-| `tag` | ``$STRING`` | No |  |
-| `thread` | ``$ARRAY`` | No |  |
-| `tim` | ``$INTEGER`` | No |  |
-| `time` | ``$INTEGER`` | Yes |  |
-| `tn_h` | ``$INTEGER`` | No |  |
-| `tn_w` | ``$INTEGER`` | No |  |
-| `trip` | ``$STRING`` | No |  |
-| `unique_ip` | ``$INTEGER`` | No |  |
-| `w` | ``$INTEGER`` | No |  |
+| `archived` | `int` | No |  |
+| `archived_on` | `int` | No |  |
+| `bumplimit` | `int` | No |  |
+| `capcode` | `string` | No |  |
+| `closed` | `int` | No |  |
+| `com` | `string` | No |  |
+| `country` | `string` | No |  |
+| `country_name` | `string` | No |  |
+| `custom_spoiler` | `int` | No |  |
+| `ext` | `string` | No |  |
+| `filedeleted` | `int` | No |  |
+| `filename` | `string` | No |  |
+| `fsize` | `int` | No |  |
+| `h` | `int` | No |  |
+| `id` | `string` | No |  |
+| `image` | `int` | No |  |
+| `imagelimit` | `int` | No |  |
+| `last_modified` | `int` | No |  |
+| `m_img` | `int` | No |  |
+| `md5` | `string` | No |  |
+| `name` | `string` | No |  |
+| `no` | `int` | Yes |  |
+| `now` | `string` | Yes |  |
+| `omitted_image` | `int` | No |  |
+| `omitted_post` | `int` | No |  |
+| `page` | `int` | No |  |
+| `reply` | `int` | No |  |
+| `resto` | `int` | No |  |
+| `semantic_url` | `string` | No |  |
+| `since4pass` | `int` | No |  |
+| `spoiler` | `int` | No |  |
+| `sticky` | `int` | No |  |
+| `sub` | `string` | No |  |
+| `tag` | `string` | No |  |
+| `thread` | `[]any` | No |  |
+| `tim` | `int` | No |  |
+| `time` | `int` | Yes |  |
+| `tn_h` | `int` | No |  |
+| `tn_w` | `int` | No |  |
+| `trip` | `string` | No |  |
+| `unique_ip` | `int` | No |  |
+| `w` | `int` | No |  |
 
 ### Operations
 

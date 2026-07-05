@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the N4chan API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Archive()` — each with a small set of operations (`list`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +42,35 @@ const archives = await client.Archive().list()
 
 for (const archive of archives) {
   console.log(archive)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const archives = await client.Archive().list()
+  console.log(archives)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -85,7 +119,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N4chanSDK.test()
 
-const archive = await client.Archive().load({ id: 'test01' })
+const archive = await client.Archive().list()
 // archive is a bare entity populated with mock response data
 console.log(archive)
 ```
@@ -104,12 +138,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Archive()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -201,13 +235,9 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): N4chanSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -217,10 +247,8 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -399,23 +427,23 @@ Create an instance: `const board = client.Board()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | ``$STRING`` |  |
-| `board_flag` | ``$OBJECT`` |  |
-| `bump_limit` | ``$INTEGER`` |  |
-| `cooldown` | ``$OBJECT`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `image_limit` | ``$INTEGER`` |  |
-| `is_archived` | ``$INTEGER`` |  |
-| `max_comment_char` | ``$INTEGER`` |  |
-| `max_filesize` | ``$INTEGER`` |  |
-| `max_webm_duration` | ``$INTEGER`` |  |
-| `max_webm_filesize` | ``$INTEGER`` |  |
-| `meta_description` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `per_page` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `ws_board` | ``$INTEGER`` |  |
+| `board` | `string` |  |
+| `board_flag` | `Record<string, any>` |  |
+| `bump_limit` | `number` |  |
+| `cooldown` | `Record<string, any>` |  |
+| `custom_spoiler` | `number` |  |
+| `image_limit` | `number` |  |
+| `is_archived` | `number` |  |
+| `max_comment_char` | `number` |  |
+| `max_filesize` | `number` |  |
+| `max_webm_duration` | `number` |  |
+| `max_webm_filesize` | `number` |  |
+| `meta_description` | `string` |  |
+| `page` | `number` |  |
+| `per_page` | `number` |  |
+| `spoiler` | `number` |  |
+| `title` | `string` |  |
+| `ws_board` | `number` |  |
 
 #### Example: List
 
@@ -438,8 +466,8 @@ Create an instance: `const catalog = client.Catalog()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `thread` | ``$ARRAY`` |  |
+| `page` | `number` |  |
+| `thread` | `any[]` |  |
 
 #### Example: List
 
@@ -462,7 +490,7 @@ Create an instance: `const index = client.Index()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | ``$ARRAY`` |  |
+| `post` | `any[]` |  |
 
 #### Example: List
 
@@ -485,48 +513,48 @@ Create an instance: `const thread = client.Thread()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | ``$INTEGER`` |  |
-| `archived_on` | ``$INTEGER`` |  |
-| `bumplimit` | ``$INTEGER`` |  |
-| `capcode` | ``$STRING`` |  |
-| `closed` | ``$INTEGER`` |  |
-| `com` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `ext` | ``$STRING`` |  |
-| `filedeleted` | ``$INTEGER`` |  |
-| `filename` | ``$STRING`` |  |
-| `fsize` | ``$INTEGER`` |  |
-| `h` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$INTEGER`` |  |
-| `imagelimit` | ``$INTEGER`` |  |
-| `last_modified` | ``$INTEGER`` |  |
-| `m_img` | ``$INTEGER`` |  |
-| `md5` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `no` | ``$INTEGER`` |  |
-| `now` | ``$STRING`` |  |
-| `omitted_image` | ``$INTEGER`` |  |
-| `omitted_post` | ``$INTEGER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `reply` | ``$INTEGER`` |  |
-| `resto` | ``$INTEGER`` |  |
-| `semantic_url` | ``$STRING`` |  |
-| `since4pass` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `sticky` | ``$INTEGER`` |  |
-| `sub` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
-| `thread` | ``$ARRAY`` |  |
-| `tim` | ``$INTEGER`` |  |
-| `time` | ``$INTEGER`` |  |
-| `tn_h` | ``$INTEGER`` |  |
-| `tn_w` | ``$INTEGER`` |  |
-| `trip` | ``$STRING`` |  |
-| `unique_ip` | ``$INTEGER`` |  |
-| `w` | ``$INTEGER`` |  |
+| `archived` | `number` |  |
+| `archived_on` | `number` |  |
+| `bumplimit` | `number` |  |
+| `capcode` | `string` |  |
+| `closed` | `number` |  |
+| `com` | `string` |  |
+| `country` | `string` |  |
+| `country_name` | `string` |  |
+| `custom_spoiler` | `number` |  |
+| `ext` | `string` |  |
+| `filedeleted` | `number` |  |
+| `filename` | `string` |  |
+| `fsize` | `number` |  |
+| `h` | `number` |  |
+| `id` | `string` |  |
+| `image` | `number` |  |
+| `imagelimit` | `number` |  |
+| `last_modified` | `number` |  |
+| `m_img` | `number` |  |
+| `md5` | `string` |  |
+| `name` | `string` |  |
+| `no` | `number` |  |
+| `now` | `string` |  |
+| `omitted_image` | `number` |  |
+| `omitted_post` | `number` |  |
+| `page` | `number` |  |
+| `reply` | `number` |  |
+| `resto` | `number` |  |
+| `semantic_url` | `string` |  |
+| `since4pass` | `number` |  |
+| `spoiler` | `number` |  |
+| `sticky` | `number` |  |
+| `sub` | `string` |  |
+| `tag` | `string` |  |
+| `thread` | `any[]` |  |
+| `tim` | `number` |  |
+| `time` | `number` |  |
+| `tn_h` | `number` |  |
+| `tn_w` | `number` |  |
+| `trip` | `string` |  |
+| `unique_ip` | `number` |  |
+| `w` | `number` |  |
 
 #### Example: List
 
@@ -535,12 +563,16 @@ const threads = await client.Thread().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -557,11 +589,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -597,16 +627,16 @@ import { N4chanSDK } from '@voxgig-sdk/n4chan'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const archive = client.Archive()
-await archive.load({ id: "example_id" })
+await archive.list()
 
-// archive.data() now returns the loaded archive data
-// archive.match() returns { id: "example_id" }
+// archive.data() now returns the archive data from the last `list`
+// archive.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

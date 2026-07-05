@@ -4,6 +4,8 @@
 
 The Golang SDK for the N4chan API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Archive(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -60,6 +62,35 @@ func main() {
 ```
 
 
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+archives, err := client.Archive(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = archives
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -106,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-archive, err := client.Archive(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+archive, err := client.Archive(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(archive) // the loaded mock data
+fmt.Println(archive) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -201,11 +232,7 @@ All entities implement the `N4chanEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -218,16 +245,15 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    archive, err := client.Archive(nil).Load(map[string]any{"id": "example_id"}, nil)
+    archive, err := client.Archive(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // archive is the loaded record
+    // archive is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -381,23 +407,23 @@ Create an instance: `board := client.Board(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | ``$STRING`` |  |
-| `board_flag` | ``$OBJECT`` |  |
-| `bump_limit` | ``$INTEGER`` |  |
-| `cooldown` | ``$OBJECT`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `image_limit` | ``$INTEGER`` |  |
-| `is_archived` | ``$INTEGER`` |  |
-| `max_comment_char` | ``$INTEGER`` |  |
-| `max_filesize` | ``$INTEGER`` |  |
-| `max_webm_duration` | ``$INTEGER`` |  |
-| `max_webm_filesize` | ``$INTEGER`` |  |
-| `meta_description` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `per_page` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `ws_board` | ``$INTEGER`` |  |
+| `board` | `string` |  |
+| `board_flag` | `map[string]any` |  |
+| `bump_limit` | `int` |  |
+| `cooldown` | `map[string]any` |  |
+| `custom_spoiler` | `int` |  |
+| `image_limit` | `int` |  |
+| `is_archived` | `int` |  |
+| `max_comment_char` | `int` |  |
+| `max_filesize` | `int` |  |
+| `max_webm_duration` | `int` |  |
+| `max_webm_filesize` | `int` |  |
+| `meta_description` | `string` |  |
+| `page` | `int` |  |
+| `per_page` | `int` |  |
+| `spoiler` | `int` |  |
+| `title` | `string` |  |
+| `ws_board` | `int` |  |
 
 #### Example: List
 
@@ -424,8 +450,8 @@ Create an instance: `catalog := client.Catalog(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `thread` | ``$ARRAY`` |  |
+| `page` | `int` |  |
+| `thread` | `[]any` |  |
 
 #### Example: List
 
@@ -452,7 +478,7 @@ Create an instance: `index := client.Index(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | ``$ARRAY`` |  |
+| `post` | `[]any` |  |
 
 #### Example: List
 
@@ -479,48 +505,48 @@ Create an instance: `thread := client.Thread(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | ``$INTEGER`` |  |
-| `archived_on` | ``$INTEGER`` |  |
-| `bumplimit` | ``$INTEGER`` |  |
-| `capcode` | ``$STRING`` |  |
-| `closed` | ``$INTEGER`` |  |
-| `com` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `ext` | ``$STRING`` |  |
-| `filedeleted` | ``$INTEGER`` |  |
-| `filename` | ``$STRING`` |  |
-| `fsize` | ``$INTEGER`` |  |
-| `h` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$INTEGER`` |  |
-| `imagelimit` | ``$INTEGER`` |  |
-| `last_modified` | ``$INTEGER`` |  |
-| `m_img` | ``$INTEGER`` |  |
-| `md5` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `no` | ``$INTEGER`` |  |
-| `now` | ``$STRING`` |  |
-| `omitted_image` | ``$INTEGER`` |  |
-| `omitted_post` | ``$INTEGER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `reply` | ``$INTEGER`` |  |
-| `resto` | ``$INTEGER`` |  |
-| `semantic_url` | ``$STRING`` |  |
-| `since4pass` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `sticky` | ``$INTEGER`` |  |
-| `sub` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
-| `thread` | ``$ARRAY`` |  |
-| `tim` | ``$INTEGER`` |  |
-| `time` | ``$INTEGER`` |  |
-| `tn_h` | ``$INTEGER`` |  |
-| `tn_w` | ``$INTEGER`` |  |
-| `trip` | ``$STRING`` |  |
-| `unique_ip` | ``$INTEGER`` |  |
-| `w` | ``$INTEGER`` |  |
+| `archived` | `int` |  |
+| `archived_on` | `int` |  |
+| `bumplimit` | `int` |  |
+| `capcode` | `string` |  |
+| `closed` | `int` |  |
+| `com` | `string` |  |
+| `country` | `string` |  |
+| `country_name` | `string` |  |
+| `custom_spoiler` | `int` |  |
+| `ext` | `string` |  |
+| `filedeleted` | `int` |  |
+| `filename` | `string` |  |
+| `fsize` | `int` |  |
+| `h` | `int` |  |
+| `id` | `string` |  |
+| `image` | `int` |  |
+| `imagelimit` | `int` |  |
+| `last_modified` | `int` |  |
+| `m_img` | `int` |  |
+| `md5` | `string` |  |
+| `name` | `string` |  |
+| `no` | `int` |  |
+| `now` | `string` |  |
+| `omitted_image` | `int` |  |
+| `omitted_post` | `int` |  |
+| `page` | `int` |  |
+| `reply` | `int` |  |
+| `resto` | `int` |  |
+| `semantic_url` | `string` |  |
+| `since4pass` | `int` |  |
+| `spoiler` | `int` |  |
+| `sticky` | `int` |  |
+| `sub` | `string` |  |
+| `tag` | `string` |  |
+| `thread` | `[]any` |  |
+| `tim` | `int` |  |
+| `time` | `int` |  |
+| `tn_h` | `int` |  |
+| `tn_w` | `int` |  |
+| `trip` | `string` |  |
+| `unique_ip` | `int` |  |
+| `w` | `int` |  |
 
 #### Example: List
 
@@ -533,12 +559,16 @@ fmt.Println(threads) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -555,9 +585,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -598,14 +628,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 archive := client.Archive(nil)
-archive.Load(map[string]any{"id": "example_id"}, nil)
+archive.List(nil, nil)
 
-// archive.Data() now returns the loaded archive data
+// archive.Data() now returns the archive data from the last list
 // archive.Match() returns the last match criteria
 ```
 

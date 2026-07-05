@@ -4,6 +4,8 @@
 
 The PHP SDK for the N4chan API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Archive()` — with named operations (`list`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ try {
     // list() returns an array of Archive records — iterate directly.
     $archives = $client->Archive()->list();
     foreach ($archives as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo json_encode($item) . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $archives = $client->Archive()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = N4chanSDK::test([
-    "entity" => ["archive" => ["test01" => ["id" => "test01"]]],
-]);
+$client = N4chanSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$archive = $client->Archive()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$archive = $client->Archive()->list();
 print_r($archive);
 ```
 
@@ -185,11 +218,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -361,23 +390,23 @@ Create an instance: `$board = $client->Board();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | ``$STRING`` |  |
-| `board_flag` | ``$OBJECT`` |  |
-| `bump_limit` | ``$INTEGER`` |  |
-| `cooldown` | ``$OBJECT`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `image_limit` | ``$INTEGER`` |  |
-| `is_archived` | ``$INTEGER`` |  |
-| `max_comment_char` | ``$INTEGER`` |  |
-| `max_filesize` | ``$INTEGER`` |  |
-| `max_webm_duration` | ``$INTEGER`` |  |
-| `max_webm_filesize` | ``$INTEGER`` |  |
-| `meta_description` | ``$STRING`` |  |
-| `page` | ``$INTEGER`` |  |
-| `per_page` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `title` | ``$STRING`` |  |
-| `ws_board` | ``$INTEGER`` |  |
+| `board` | `string` |  |
+| `board_flag` | `array` |  |
+| `bump_limit` | `int` |  |
+| `cooldown` | `array` |  |
+| `custom_spoiler` | `int` |  |
+| `image_limit` | `int` |  |
+| `is_archived` | `int` |  |
+| `max_comment_char` | `int` |  |
+| `max_filesize` | `int` |  |
+| `max_webm_duration` | `int` |  |
+| `max_webm_filesize` | `int` |  |
+| `meta_description` | `string` |  |
+| `page` | `int` |  |
+| `per_page` | `int` |  |
+| `spoiler` | `int` |  |
+| `title` | `string` |  |
+| `ws_board` | `int` |  |
 
 #### Example: List
 
@@ -401,8 +430,8 @@ Create an instance: `$catalog = $client->Catalog();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | ``$INTEGER`` |  |
-| `thread` | ``$ARRAY`` |  |
+| `page` | `int` |  |
+| `thread` | `array` |  |
 
 #### Example: List
 
@@ -426,7 +455,7 @@ Create an instance: `$index = $client->Index();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | ``$ARRAY`` |  |
+| `post` | `array` |  |
 
 #### Example: List
 
@@ -450,48 +479,48 @@ Create an instance: `$thread = $client->Thread();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | ``$INTEGER`` |  |
-| `archived_on` | ``$INTEGER`` |  |
-| `bumplimit` | ``$INTEGER`` |  |
-| `capcode` | ``$STRING`` |  |
-| `closed` | ``$INTEGER`` |  |
-| `com` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `country_name` | ``$STRING`` |  |
-| `custom_spoiler` | ``$INTEGER`` |  |
-| `ext` | ``$STRING`` |  |
-| `filedeleted` | ``$INTEGER`` |  |
-| `filename` | ``$STRING`` |  |
-| `fsize` | ``$INTEGER`` |  |
-| `h` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$INTEGER`` |  |
-| `imagelimit` | ``$INTEGER`` |  |
-| `last_modified` | ``$INTEGER`` |  |
-| `m_img` | ``$INTEGER`` |  |
-| `md5` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `no` | ``$INTEGER`` |  |
-| `now` | ``$STRING`` |  |
-| `omitted_image` | ``$INTEGER`` |  |
-| `omitted_post` | ``$INTEGER`` |  |
-| `page` | ``$INTEGER`` |  |
-| `reply` | ``$INTEGER`` |  |
-| `resto` | ``$INTEGER`` |  |
-| `semantic_url` | ``$STRING`` |  |
-| `since4pass` | ``$INTEGER`` |  |
-| `spoiler` | ``$INTEGER`` |  |
-| `sticky` | ``$INTEGER`` |  |
-| `sub` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
-| `thread` | ``$ARRAY`` |  |
-| `tim` | ``$INTEGER`` |  |
-| `time` | ``$INTEGER`` |  |
-| `tn_h` | ``$INTEGER`` |  |
-| `tn_w` | ``$INTEGER`` |  |
-| `trip` | ``$STRING`` |  |
-| `unique_ip` | ``$INTEGER`` |  |
-| `w` | ``$INTEGER`` |  |
+| `archived` | `int` |  |
+| `archived_on` | `int` |  |
+| `bumplimit` | `int` |  |
+| `capcode` | `string` |  |
+| `closed` | `int` |  |
+| `com` | `string` |  |
+| `country` | `string` |  |
+| `country_name` | `string` |  |
+| `custom_spoiler` | `int` |  |
+| `ext` | `string` |  |
+| `filedeleted` | `int` |  |
+| `filename` | `string` |  |
+| `fsize` | `int` |  |
+| `h` | `int` |  |
+| `id` | `string` |  |
+| `image` | `int` |  |
+| `imagelimit` | `int` |  |
+| `last_modified` | `int` |  |
+| `m_img` | `int` |  |
+| `md5` | `string` |  |
+| `name` | `string` |  |
+| `no` | `int` |  |
+| `now` | `string` |  |
+| `omitted_image` | `int` |  |
+| `omitted_post` | `int` |  |
+| `page` | `int` |  |
+| `reply` | `int` |  |
+| `resto` | `int` |  |
+| `semantic_url` | `string` |  |
+| `since4pass` | `int` |  |
+| `spoiler` | `int` |  |
+| `sticky` | `int` |  |
+| `sub` | `string` |  |
+| `tag` | `string` |  |
+| `thread` | `array` |  |
+| `tim` | `int` |  |
+| `time` | `int` |  |
+| `tn_h` | `int` |  |
+| `tn_w` | `int` |  |
+| `trip` | `string` |  |
+| `unique_ip` | `int` |  |
+| `w` | `int` |  |
 
 #### Example: List
 
@@ -501,12 +530,16 @@ $threads = $client->Thread()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -523,8 +556,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -568,15 +602,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $archive = $client->Archive();
-$archive->load(["id" => "example_id"]);
+$archive->list();
 
-// $archive->dataGet() now returns the loaded archive data
-// $archive->matchGet() returns the last match criteria
+// $archive->data_get() now returns the archive data from the last list
+// $archive->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

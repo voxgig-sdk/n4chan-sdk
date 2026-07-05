@@ -32,7 +32,25 @@ export interface Board {
   ws_board?: number
 }
 
-export type BoardListMatch = Partial<Board>
+export interface BoardListMatch {
+  board?: string
+  board_flag?: Record<string, any>
+  bump_limit?: number
+  cooldown?: Record<string, any>
+  custom_spoiler?: number
+  image_limit?: number
+  is_archived?: number
+  max_comment_char?: number
+  max_filesize?: number
+  max_webm_duration?: number
+  max_webm_filesize?: number
+  meta_description?: string
+  page?: number
+  per_page?: number
+  spoiler?: number
+  title?: string
+  ws_board?: number
+}
 
 export interface Catalog {
   page?: number

@@ -31,6 +31,23 @@
 ---@field ws_board? number
 
 ---@class BoardListMatch
+---@field board? string
+---@field board_flag? table
+---@field bump_limit? number
+---@field cooldown? table
+---@field custom_spoiler? number
+---@field image_limit? number
+---@field is_archived? number
+---@field max_comment_char? number
+---@field max_filesize? number
+---@field max_webm_duration? number
+---@field max_webm_filesize? number
+---@field meta_description? string
+---@field page? number
+---@field per_page? number
+---@field spoiler? number
+---@field title? string
+---@field ws_board? number
 
 ---@class Catalog
 ---@field page? number

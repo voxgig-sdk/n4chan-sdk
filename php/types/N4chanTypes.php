@@ -45,7 +45,7 @@ class Board
     public ?int $ws_board = null;
 }
 
-/** Match filter for Board#list (any subset of Board fields). */
+/** Request payload for Board#list. */
 class BoardListMatch
 {
     public ?string $board = null;

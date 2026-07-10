@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -996,6 +993,7 @@
           "email": "api@4chan.org"
         },
         "description": "4chan's read-only JSON API for accessing posts, threads, boards, catalogs, and archives from 4chan.org and 4channel.org. Data is exclusively accessible from a.4cdn.org via HTTP or HTTPS protocols.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "4chan API Server (HTTPS)",
@@ -1006,9 +1004,11 @@
             "url": "http://a.4cdn.org"
           }
         ],
+        "summary": "4chan's read-only JSON API for accessing posts, threads, boards, catalogs, and archives from 4chan.org and 4channel.org.",
         "termsOfService": "https://github.com/4chan/4chan-API#api-terms-of-service",
         "title": "4chan API",
         "version": "1.0.0",
+        "website": "https://a.4cdn.org",
         "x-apisguru-categories": [
           "social"
         ],
@@ -1071,6 +1071,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1121,6 +1124,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

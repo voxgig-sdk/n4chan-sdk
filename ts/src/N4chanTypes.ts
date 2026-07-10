@@ -117,6 +117,5 @@ export interface Thread {
 
 export interface ThreadListMatch {
   board: string
-  thread_id: number
 }
 

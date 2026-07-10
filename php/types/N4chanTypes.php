@@ -144,6 +144,5 @@ class Thread
 class ThreadListMatch
 {
     public string $board;
-    public int $thread_id;
 }
 

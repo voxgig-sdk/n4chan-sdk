@@ -19,9 +19,11 @@ main: {
           url: "http://a.4cdn.org"
         }
       ]
+      summary: "4chan's read-only JSON API for accessing posts, threads, boards, catalogs, and archives from 4chan.org and 4channel.org."
       termsOfService: "https://github.com/4chan/4chan-API#api-terms-of-service"
       title: "4chan API"
       version: "1.0.0"
+      website: "https://a.4cdn.org"
       "x-apisguru-categories": [
         "social"
       ]
@@ -34,5 +36,3 @@ main: {
       ]
     }
   }
-}
-

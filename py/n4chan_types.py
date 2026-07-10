@@ -132,4 +132,3 @@ class Thread(ThreadRequired, total=False):
 
 class ThreadListMatch(TypedDict):
     board: str
-    thread_id: int

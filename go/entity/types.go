@@ -130,7 +130,6 @@ type Thread struct {
 // ThreadListMatch is the typed request payload for Thread.ListTyped.
 type ThreadListMatch struct {
 	Board string `json:"board"`
-	ThreadId int `json:"thread_id"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

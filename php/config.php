@@ -732,7 +732,6 @@ class N4chanConfig
                         'orig' => 'board',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -741,7 +740,6 @@ class N4chanConfig
                         'orig' => 'thread_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 1,
                       ],
                     ],
                   ],

@@ -727,7 +727,6 @@ def make_config():
                       "orig": "board",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -736,7 +735,6 @@ def make_config():
                       "orig": "thread_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
-                      "index$": 1,
                     },
                   ],
                 },

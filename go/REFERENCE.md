@@ -107,6 +107,7 @@ same parameters as `Direct()`.
 
 ```go
 archive := client.Archive(nil)
+fmt.Println(archive.GetName()) // "archive"
 ```
 
 ### Operations
@@ -117,6 +118,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Archive(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 board := client.Board(nil)
+fmt.Println(board.GetName()) // "board"
 ```
 
 ### Fields
@@ -179,6 +185,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Board(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -209,6 +219,7 @@ Return the entity name.
 
 ```go
 catalog := client.Catalog(nil)
+fmt.Println(catalog.GetName()) // "catalog"
 ```
 
 ### Fields
@@ -226,6 +237,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Catalog(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -256,6 +271,7 @@ Return the entity name.
 
 ```go
 index := client.Index(nil)
+fmt.Println(index.GetName()) // "index"
 ```
 
 ### Fields
@@ -272,6 +288,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Index(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -302,6 +322,7 @@ Return the entity name.
 
 ```go
 thread := client.Thread(nil)
+fmt.Println(thread.GetName()) // "thread"
 ```
 
 ### Fields
@@ -359,6 +380,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Thread(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

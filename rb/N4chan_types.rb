@@ -388,12 +388,8 @@ Thread = Struct.new(
 #
 # @!attribute [rw] board
 #   @return [String]
-#
-# @!attribute [rw] thread_id
-#   @return [Integer]
 ThreadListMatch = Struct.new(
   :board,
-  :thread_id,
   keyword_init: true
 )
 

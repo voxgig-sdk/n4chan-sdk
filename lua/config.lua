@@ -726,7 +726,6 @@ local function make_config()
                       ["orig"] = "board",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -735,7 +734,6 @@ local function make_config()
                       ["orig"] = "thread_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
-                      ["index$"] = 1,
                     },
                   },
                 },

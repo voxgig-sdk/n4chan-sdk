@@ -109,7 +109,6 @@
 
 ---@class ThreadListMatch
 ---@field board string
----@field thread_id number
 
 local M = {}
 

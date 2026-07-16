@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewN4chanSDK(nil)
+	// Configure from the environment: N4CHAN_APIKEY carries the API key and
+	// N4CHAN_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("N4CHAN_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("N4CHAN_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewN4chanSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {

@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "archive": {
           "active": true,
@@ -55,6 +60,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/archive.json",
                   "parts": [
@@ -93,7 +99,7 @@
             },
             {
               "active": true,
-              "name": "board_flag",
+              "name": "board_flags",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -105,13 +111,13 @@
             },
             {
               "active": true,
-              "name": "cooldown",
+              "name": "cooldowns",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "custom_spoiler",
+              "name": "custom_spoilers",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -129,7 +135,7 @@
             },
             {
               "active": true,
-              "name": "max_comment_char",
+              "name": "max_comment_chars",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -159,7 +165,7 @@
             },
             {
               "active": true,
-              "name": "page",
+              "name": "pages",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -171,7 +177,7 @@
             },
             {
               "active": true,
-              "name": "spoiler",
+              "name": "spoilers",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -208,6 +214,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/boards.json",
                   "parts": [
@@ -220,7 +227,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.boards`"
                   }
                 }
               ]
@@ -244,7 +251,7 @@
             },
             {
               "active": true,
-              "name": "thread",
+              "name": "threads",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -279,6 +286,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/catalog.json",
                   "parts": [
@@ -311,7 +319,7 @@
           "fields": [
             {
               "active": true,
-              "name": "post",
+              "name": "posts",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -354,6 +362,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/{page}.json",
                   "parts": [
@@ -369,7 +378,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.threads`"
                   }
                 }
               ]
@@ -477,13 +486,13 @@
             },
             {
               "active": true,
-              "name": "image",
+              "name": "imagelimit",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "imagelimit",
+              "name": "images",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -525,13 +534,13 @@
             },
             {
               "active": true,
-              "name": "omitted_image",
+              "name": "omitted_images",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "omitted_post",
+              "name": "omitted_posts",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -543,7 +552,7 @@
             },
             {
               "active": true,
-              "name": "reply",
+              "name": "replies",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -591,7 +600,7 @@
             },
             {
               "active": true,
-              "name": "thread",
+              "name": "threads",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -627,7 +636,7 @@
             },
             {
               "active": true,
-              "name": "unique_ip",
+              "name": "unique_ips",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -680,6 +689,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/thread/{threadId}.json",
                   "parts": [
@@ -697,7 +707,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.posts`"
                   }
                 },
                 {
@@ -724,6 +734,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/threads.json",
                   "parts": [
@@ -1021,18 +1032,41 @@
         ]
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1054,22 +1088,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1108,21 +1160,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1161,12 +1231,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1178,10 +1253,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1203,22 +1291,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1240,13 +1346,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1258,10 +1369,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1283,13 +1407,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1306,10 +1435,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1331,13 +1473,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1360,10 +1507,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "n4chan"
+            "goversion": "",
+            "name": "n4chan",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1385,9 +1545,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

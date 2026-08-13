@@ -167,7 +167,7 @@ const archive = client.Archive()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Archive().list()
+const results = await client.Archive().list({ board: "example" })
 ```
 
 ### Common Methods
@@ -209,20 +209,20 @@ const board = client.Board()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `board` | `string` | No |  |
-| `board_flag` | `Record<string, any>` | No |  |
+| `board_flags` | `Record<string, any>` | No |  |
 | `bump_limit` | `number` | No |  |
-| `cooldown` | `Record<string, any>` | No |  |
-| `custom_spoiler` | `number` | No |  |
+| `cooldowns` | `Record<string, any>` | No |  |
+| `custom_spoilers` | `number` | No |  |
 | `image_limit` | `number` | No |  |
 | `is_archived` | `number` | No |  |
-| `max_comment_char` | `number` | No |  |
+| `max_comment_chars` | `number` | No |  |
 | `max_filesize` | `number` | No |  |
 | `max_webm_duration` | `number` | No |  |
 | `max_webm_filesize` | `number` | No |  |
 | `meta_description` | `string` | No |  |
-| `page` | `number` | No |  |
+| `pages` | `number` | No |  |
 | `per_page` | `number` | No |  |
-| `spoiler` | `number` | No |  |
+| `spoilers` | `number` | No |  |
 | `title` | `string` | No |  |
 | `ws_board` | `number` | No |  |
 
@@ -275,7 +275,7 @@ const catalog = client.Catalog()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `page` | `number` | No |  |
-| `thread` | `any[]` | No |  |
+| `threads` | `any[]` | No |  |
 
 ### Operations
 
@@ -284,7 +284,7 @@ const catalog = client.Catalog()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Catalog().list()
+const results = await client.Catalog().list({ board: "example" })
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ const index = client.Index()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | `any[]` | No |  |
+| `posts` | `any[]` | No |  |
 
 ### Operations
 
@@ -334,7 +334,7 @@ const index = client.Index()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Index().list()
+const results = await client.Index().list({ board: "example", page: 1 })
 ```
 
 ### Common Methods
@@ -390,18 +390,18 @@ const thread = client.Thread()
 | `fsize` | `number` | No |  |
 | `h` | `number` | No |  |
 | `id` | `string` | No |  |
-| `image` | `number` | No |  |
 | `imagelimit` | `number` | No |  |
+| `images` | `number` | No |  |
 | `last_modified` | `number` | No |  |
 | `m_img` | `number` | No |  |
 | `md5` | `string` | No |  |
 | `name` | `string` | No |  |
 | `no` | `number` | Yes |  |
 | `now` | `string` | Yes |  |
-| `omitted_image` | `number` | No |  |
-| `omitted_post` | `number` | No |  |
+| `omitted_images` | `number` | No |  |
+| `omitted_posts` | `number` | No |  |
 | `page` | `number` | No |  |
-| `reply` | `number` | No |  |
+| `replies` | `number` | No |  |
 | `resto` | `number` | No |  |
 | `semantic_url` | `string` | No |  |
 | `since4pass` | `number` | No |  |
@@ -409,14 +409,34 @@ const thread = client.Thread()
 | `sticky` | `number` | No |  |
 | `sub` | `string` | No |  |
 | `tag` | `string` | No |  |
-| `thread` | `any[]` | No |  |
+| `threads` | `any[]` | No |  |
 | `tim` | `number` | No |  |
 | `time` | `number` | Yes |  |
 | `tn_h` | `number` | No |  |
 | `tn_w` | `number` | No |  |
 | `trip` | `string` | No |  |
-| `unique_ip` | `number` | No |  |
+| `unique_ips` | `number` | No |  |
 | `w` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `thread_id` | `/{board}/thread/{threadId}.json` | `client.Thread().list({ $action: 'thread_id', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Thread record — check the API definition for its shape.
+
+```ts
+const result = await client.Thread().list({
+  $action: 'thread_id',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -425,7 +445,7 @@ const thread = client.Thread()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Thread().list()
+const results = await client.Thread().list({ board: "example" })
 ```
 
 ### Common Methods

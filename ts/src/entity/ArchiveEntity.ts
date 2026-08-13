@@ -37,7 +37,7 @@ class ArchiveEntity extends N4chanEntityBase<Archive> {
 
 
 
-  async list(this: any, reqmatch?: ArchiveListMatch, ctrl?: Control): Promise<Archive[]> {
+  async list(this: any, reqmatch?: ArchiveListMatch, ctrl?: Control): Promise<ArchiveEntity[]> {
 
     const utility = this._utility
 

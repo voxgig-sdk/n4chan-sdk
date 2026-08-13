@@ -37,7 +37,7 @@ class BoardEntity extends N4chanEntityBase<Board> {
 
 
 
-  async list(this: any, reqmatch?: BoardListMatch, ctrl?: Control): Promise<Board[]> {
+  async list(this: any, reqmatch?: BoardListMatch, ctrl?: Control): Promise<BoardEntity[]> {
 
     const utility = this._utility
 

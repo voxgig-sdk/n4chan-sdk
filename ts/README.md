@@ -35,10 +35,12 @@ const client = new N4chanSDK()
 
 ### 2. List archive records
 
-`list()` resolves to an array of Archive objects — iterate it directly:
+`list()` resolves to an array of Archive ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const archives = await client.Archive().list()
+const archives = await client.Archive().list({ board: "example" })
 
 for (const archive of archives) {
   console.log(archive)
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const archives = await client.Archive().list()
-  console.log(archives)
+  const catalogs = await client.Catalog().list()
+  console.log(catalogs)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N4chanSDK.test()
 
-const archive = await client.Archive().list()
-// archive is a bare entity populated with mock response data
-console.log(archive)
+const catalog = await client.Catalog().list()
+// catalog is the entity, populated with mock response data
+// — call catalog.data() for the record itself
+console.log(catalog)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Archive()
+const entity = client.Catalog()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -298,20 +301,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `board` |  |
-| `board_flag` |  |
+| `board_flags` |  |
 | `bump_limit` |  |
-| `cooldown` |  |
-| `custom_spoiler` |  |
+| `cooldowns` |  |
+| `custom_spoilers` |  |
 | `image_limit` |  |
 | `is_archived` |  |
-| `max_comment_char` |  |
+| `max_comment_chars` |  |
 | `max_filesize` |  |
 | `max_webm_duration` |  |
 | `max_webm_filesize` |  |
 | `meta_description` |  |
-| `page` |  |
+| `pages` |  |
 | `per_page` |  |
-| `spoiler` |  |
+| `spoilers` |  |
 | `title` |  |
 | `ws_board` |  |
 
@@ -324,7 +327,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `page` |  |
-| `thread` |  |
+| `threads` |  |
 
 Operations: list.
 
@@ -334,7 +337,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `post` |  |
+| `posts` |  |
 
 Operations: list.
 
@@ -359,18 +362,18 @@ API path: `/{board}/{page}.json`
 | `fsize` |  |
 | `h` |  |
 | `id` |  |
-| `image` |  |
 | `imagelimit` |  |
+| `images` |  |
 | `last_modified` |  |
 | `m_img` |  |
 | `md5` |  |
 | `name` |  |
 | `no` |  |
 | `now` |  |
-| `omitted_image` |  |
-| `omitted_post` |  |
+| `omitted_images` |  |
+| `omitted_posts` |  |
 | `page` |  |
-| `reply` |  |
+| `replies` |  |
 | `resto` |  |
 | `semantic_url` |  |
 | `since4pass` |  |
@@ -378,13 +381,13 @@ API path: `/{board}/{page}.json`
 | `sticky` |  |
 | `sub` |  |
 | `tag` |  |
-| `thread` |  |
+| `threads` |  |
 | `tim` |  |
 | `time` |  |
 | `tn_h` |  |
 | `tn_w` |  |
 | `trip` |  |
-| `unique_ip` |  |
+| `unique_ips` |  |
 | `w` |  |
 
 Operations: list.
@@ -409,7 +412,7 @@ Create an instance: `const archive = client.Archive()`
 #### Example: List
 
 ```ts
-const archives = await client.Archive().list()
+const archives = await client.Archive().list({ board: "example" })
 ```
 
 
@@ -428,20 +431,20 @@ Create an instance: `const board = client.Board()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `string` |  |
-| `board_flag` | `Record<string, any>` |  |
+| `board_flags` | `Record<string, any>` |  |
 | `bump_limit` | `number` |  |
-| `cooldown` | `Record<string, any>` |  |
-| `custom_spoiler` | `number` |  |
+| `cooldowns` | `Record<string, any>` |  |
+| `custom_spoilers` | `number` |  |
 | `image_limit` | `number` |  |
 | `is_archived` | `number` |  |
-| `max_comment_char` | `number` |  |
+| `max_comment_chars` | `number` |  |
 | `max_filesize` | `number` |  |
 | `max_webm_duration` | `number` |  |
 | `max_webm_filesize` | `number` |  |
 | `meta_description` | `string` |  |
-| `page` | `number` |  |
+| `pages` | `number` |  |
 | `per_page` | `number` |  |
-| `spoiler` | `number` |  |
+| `spoilers` | `number` |  |
 | `title` | `string` |  |
 | `ws_board` | `number` |  |
 
@@ -467,12 +470,12 @@ Create an instance: `const catalog = client.Catalog()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `number` |  |
-| `thread` | `any[]` |  |
+| `threads` | `any[]` |  |
 
 #### Example: List
 
 ```ts
-const catalogs = await client.Catalog().list()
+const catalogs = await client.Catalog().list({ board: "example" })
 ```
 
 
@@ -490,12 +493,12 @@ Create an instance: `const index = client.Index()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `any[]` |  |
+| `posts` | `any[]` |  |
 
 #### Example: List
 
 ```ts
-const indexs = await client.Index().list()
+const indexs = await client.Index().list({ board: "example", page: 1 })
 ```
 
 
@@ -528,18 +531,18 @@ Create an instance: `const thread = client.Thread()`
 | `fsize` | `number` |  |
 | `h` | `number` |  |
 | `id` | `string` |  |
-| `image` | `number` |  |
 | `imagelimit` | `number` |  |
+| `images` | `number` |  |
 | `last_modified` | `number` |  |
 | `m_img` | `number` |  |
 | `md5` | `string` |  |
 | `name` | `string` |  |
 | `no` | `number` |  |
 | `now` | `string` |  |
-| `omitted_image` | `number` |  |
-| `omitted_post` | `number` |  |
+| `omitted_images` | `number` |  |
+| `omitted_posts` | `number` |  |
 | `page` | `number` |  |
-| `reply` | `number` |  |
+| `replies` | `number` |  |
 | `resto` | `number` |  |
 | `semantic_url` | `string` |  |
 | `since4pass` | `number` |  |
@@ -547,19 +550,19 @@ Create an instance: `const thread = client.Thread()`
 | `sticky` | `number` |  |
 | `sub` | `string` |  |
 | `tag` | `string` |  |
-| `thread` | `any[]` |  |
+| `threads` | `any[]` |  |
 | `tim` | `number` |  |
 | `time` | `number` |  |
 | `tn_h` | `number` |  |
 | `tn_w` | `number` |  |
 | `trip` | `string` |  |
-| `unique_ip` | `number` |  |
+| `unique_ips` | `number` |  |
 | `w` | `number` |  |
 
 #### Example: List
 
 ```ts
-const threads = await client.Thread().list()
+const threads = await client.Thread().list({ board: "example" })
 ```
 
 
@@ -632,11 +635,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const archive = client.Archive()
-await archive.list()
+const catalog = client.Catalog()
+await catalog.list()
 
-// archive.data() now returns the archive data from the last `list`
-// archive.match() returns the last match criteria
+// catalog.data() now returns the catalog data from the last `list`
+// catalog.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

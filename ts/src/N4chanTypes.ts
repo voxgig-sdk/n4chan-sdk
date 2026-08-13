@@ -14,47 +14,47 @@ export interface ArchiveListMatch {
 
 export interface Board {
   board?: string
-  board_flag?: Record<string, any>
+  board_flags?: Record<string, any>
   bump_limit?: number
-  cooldown?: Record<string, any>
-  custom_spoiler?: number
+  cooldowns?: Record<string, any>
+  custom_spoilers?: number
   image_limit?: number
   is_archived?: number
-  max_comment_char?: number
+  max_comment_chars?: number
   max_filesize?: number
   max_webm_duration?: number
   max_webm_filesize?: number
   meta_description?: string
-  page?: number
+  pages?: number
   per_page?: number
-  spoiler?: number
+  spoilers?: number
   title?: string
   ws_board?: number
 }
 
 export interface BoardListMatch {
   board?: string
-  board_flag?: Record<string, any>
+  board_flags?: Record<string, any>
   bump_limit?: number
-  cooldown?: Record<string, any>
-  custom_spoiler?: number
+  cooldowns?: Record<string, any>
+  custom_spoilers?: number
   image_limit?: number
   is_archived?: number
-  max_comment_char?: number
+  max_comment_chars?: number
   max_filesize?: number
   max_webm_duration?: number
   max_webm_filesize?: number
   meta_description?: string
-  page?: number
+  pages?: number
   per_page?: number
-  spoiler?: number
+  spoilers?: number
   title?: string
   ws_board?: number
 }
 
 export interface Catalog {
   page?: number
-  thread?: any[]
+  threads?: any[]
 }
 
 export interface CatalogListMatch {
@@ -62,7 +62,7 @@ export interface CatalogListMatch {
 }
 
 export interface Index {
-  post?: any[]
+  posts?: any[]
 }
 
 export interface IndexListMatch {
@@ -86,18 +86,18 @@ export interface Thread {
   fsize?: number
   h?: number
   id?: string
-  image?: number
   imagelimit?: number
+  images?: number
   last_modified?: number
   m_img?: number
   md5?: string
   name?: string
   no: number
   now: string
-  omitted_image?: number
-  omitted_post?: number
+  omitted_images?: number
+  omitted_posts?: number
   page?: number
-  reply?: number
+  replies?: number
   resto?: number
   semantic_url?: string
   since4pass?: number
@@ -105,17 +105,23 @@ export interface Thread {
   sticky?: number
   sub?: string
   tag?: string
-  thread?: any[]
+  threads?: any[]
   tim?: number
   time: number
   tn_h?: number
   tn_w?: number
   trip?: string
-  unique_ip?: number
+  unique_ips?: number
   w?: number
 }
 
 export interface ThreadListMatch {
   board: string
+
+  // Selects a custom action instead of the plain list:
+  //   'thread_id'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

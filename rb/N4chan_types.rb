@@ -26,16 +26,16 @@ ArchiveListMatch = Struct.new(
 # @!attribute [rw] board
 #   @return [String, nil]
 #
-# @!attribute [rw] board_flag
+# @!attribute [rw] board_flags
 #   @return [Hash, nil]
 #
 # @!attribute [rw] bump_limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] cooldown
+# @!attribute [rw] cooldowns
 #   @return [Hash, nil]
 #
-# @!attribute [rw] custom_spoiler
+# @!attribute [rw] custom_spoilers
 #   @return [Integer, nil]
 #
 # @!attribute [rw] image_limit
@@ -44,7 +44,7 @@ ArchiveListMatch = Struct.new(
 # @!attribute [rw] is_archived
 #   @return [Integer, nil]
 #
-# @!attribute [rw] max_comment_char
+# @!attribute [rw] max_comment_chars
 #   @return [Integer, nil]
 #
 # @!attribute [rw] max_filesize
@@ -59,13 +59,13 @@ ArchiveListMatch = Struct.new(
 # @!attribute [rw] meta_description
 #   @return [String, nil]
 #
-# @!attribute [rw] page
+# @!attribute [rw] pages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] per_page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] spoiler
+# @!attribute [rw] spoilers
 #   @return [Integer, nil]
 #
 # @!attribute [rw] title
@@ -75,20 +75,20 @@ ArchiveListMatch = Struct.new(
 #   @return [Integer, nil]
 Board = Struct.new(
   :board,
-  :board_flag,
+  :board_flags,
   :bump_limit,
-  :cooldown,
-  :custom_spoiler,
+  :cooldowns,
+  :custom_spoilers,
   :image_limit,
   :is_archived,
-  :max_comment_char,
+  :max_comment_chars,
   :max_filesize,
   :max_webm_duration,
   :max_webm_filesize,
   :meta_description,
-  :page,
+  :pages,
   :per_page,
-  :spoiler,
+  :spoilers,
   :title,
   :ws_board,
   keyword_init: true
@@ -99,16 +99,16 @@ Board = Struct.new(
 # @!attribute [rw] board
 #   @return [String, nil]
 #
-# @!attribute [rw] board_flag
+# @!attribute [rw] board_flags
 #   @return [Hash, nil]
 #
 # @!attribute [rw] bump_limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] cooldown
+# @!attribute [rw] cooldowns
 #   @return [Hash, nil]
 #
-# @!attribute [rw] custom_spoiler
+# @!attribute [rw] custom_spoilers
 #   @return [Integer, nil]
 #
 # @!attribute [rw] image_limit
@@ -117,7 +117,7 @@ Board = Struct.new(
 # @!attribute [rw] is_archived
 #   @return [Integer, nil]
 #
-# @!attribute [rw] max_comment_char
+# @!attribute [rw] max_comment_chars
 #   @return [Integer, nil]
 #
 # @!attribute [rw] max_filesize
@@ -132,13 +132,13 @@ Board = Struct.new(
 # @!attribute [rw] meta_description
 #   @return [String, nil]
 #
-# @!attribute [rw] page
+# @!attribute [rw] pages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] per_page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] spoiler
+# @!attribute [rw] spoilers
 #   @return [Integer, nil]
 #
 # @!attribute [rw] title
@@ -148,20 +148,20 @@ Board = Struct.new(
 #   @return [Integer, nil]
 BoardListMatch = Struct.new(
   :board,
-  :board_flag,
+  :board_flags,
   :bump_limit,
-  :cooldown,
-  :custom_spoiler,
+  :cooldowns,
+  :custom_spoilers,
   :image_limit,
   :is_archived,
-  :max_comment_char,
+  :max_comment_chars,
   :max_filesize,
   :max_webm_duration,
   :max_webm_filesize,
   :meta_description,
-  :page,
+  :pages,
   :per_page,
-  :spoiler,
+  :spoilers,
   :title,
   :ws_board,
   keyword_init: true
@@ -172,11 +172,11 @@ BoardListMatch = Struct.new(
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] thread
+# @!attribute [rw] threads
 #   @return [Array, nil]
 Catalog = Struct.new(
   :page,
-  :thread,
+  :threads,
   keyword_init: true
 )
 
@@ -191,10 +191,10 @@ CatalogListMatch = Struct.new(
 
 # Index entity data model.
 #
-# @!attribute [rw] post
+# @!attribute [rw] posts
 #   @return [Array, nil]
 Index = Struct.new(
-  :post,
+  :posts,
   keyword_init: true
 )
 
@@ -258,10 +258,10 @@ IndexListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image
+# @!attribute [rw] imagelimit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] imagelimit
+# @!attribute [rw] images
 #   @return [Integer, nil]
 #
 # @!attribute [rw] last_modified
@@ -282,16 +282,16 @@ IndexListMatch = Struct.new(
 # @!attribute [rw] now
 #   @return [String]
 #
-# @!attribute [rw] omitted_image
+# @!attribute [rw] omitted_images
 #   @return [Integer, nil]
 #
-# @!attribute [rw] omitted_post
+# @!attribute [rw] omitted_posts
 #   @return [Integer, nil]
 #
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] reply
+# @!attribute [rw] replies
 #   @return [Integer, nil]
 #
 # @!attribute [rw] resto
@@ -315,7 +315,7 @@ IndexListMatch = Struct.new(
 # @!attribute [rw] tag
 #   @return [String, nil]
 #
-# @!attribute [rw] thread
+# @!attribute [rw] threads
 #   @return [Array, nil]
 #
 # @!attribute [rw] tim
@@ -333,12 +333,12 @@ IndexListMatch = Struct.new(
 # @!attribute [rw] trip
 #   @return [String, nil]
 #
-# @!attribute [rw] unique_ip
+# @!attribute [rw] unique_ips
 #   @return [Integer, nil]
 #
 # @!attribute [rw] w
 #   @return [Integer, nil]
-Thread = Struct.new(
+ThreadType = Struct.new(
   :archived,
   :archived_on,
   :bumplimit,
@@ -354,18 +354,18 @@ Thread = Struct.new(
   :fsize,
   :h,
   :id,
-  :image,
   :imagelimit,
+  :images,
   :last_modified,
   :m_img,
   :md5,
   :name,
   :no,
   :now,
-  :omitted_image,
-  :omitted_post,
+  :omitted_images,
+  :omitted_posts,
   :page,
-  :reply,
+  :replies,
   :resto,
   :semantic_url,
   :since4pass,
@@ -373,13 +373,13 @@ Thread = Struct.new(
   :sticky,
   :sub,
   :tag,
-  :thread,
+  :threads,
   :tim,
   :time,
   :tn_h,
   :tn_w,
   :trip,
-  :unique_ip,
+  :unique_ips,
   :w,
   keyword_init: true
 )

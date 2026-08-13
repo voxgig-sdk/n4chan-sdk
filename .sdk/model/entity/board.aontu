@@ -11,7 +11,7 @@ main: kit: entity: board: {
       type: "`$STRING`"
     }
     {
-      name: "board_flag"
+      name: "board_flags"
       req: false
       type: "`$OBJECT`"
     }
@@ -21,12 +21,12 @@ main: kit: entity: board: {
       type: "`$INTEGER`"
     }
     {
-      name: "cooldown"
+      name: "cooldowns"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "custom_spoiler"
+      name: "custom_spoilers"
       req: false
       type: "`$INTEGER`"
     }
@@ -41,7 +41,7 @@ main: kit: entity: board: {
       type: "`$INTEGER`"
     }
     {
-      name: "max_comment_char"
+      name: "max_comment_chars"
       req: false
       type: "`$INTEGER`"
     }
@@ -66,7 +66,7 @@ main: kit: entity: board: {
       type: "`$STRING`"
     }
     {
-      name: "page"
+      name: "pages"
       req: false
       type: "`$INTEGER`"
     }
@@ -76,7 +76,7 @@ main: kit: entity: board: {
       type: "`$INTEGER`"
     }
     {
-      name: "spoiler"
+      name: "spoilers"
       req: false
       type: "`$INTEGER`"
     }
@@ -121,7 +121,7 @@ main: kit: entity: board: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.boards`"
           }
         }
       ]

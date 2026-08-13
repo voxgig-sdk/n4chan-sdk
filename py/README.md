@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    archives = client.Archive().list()
+    archives = client.Archive().list({"board": "example"})
     for archive in archives:
         print(archive)
 except Exception as err:
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    archives = client.Archive().list()
-    print(archives)
+    catalogs = client.Catalog().list()
+    print(catalogs)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = N4chanSDK.test()
 
-# Entity ops return the bare record and raise on error.
-archive = client.Archive().list()
-# archive contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+catalog = client.Catalog().list()
+# catalog contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -256,20 +257,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `board` |  |
-| `board_flag` |  |
+| `board_flags` |  |
 | `bump_limit` |  |
-| `cooldown` |  |
-| `custom_spoiler` |  |
+| `cooldowns` |  |
+| `custom_spoilers` |  |
 | `image_limit` |  |
 | `is_archived` |  |
-| `max_comment_char` |  |
+| `max_comment_chars` |  |
 | `max_filesize` |  |
 | `max_webm_duration` |  |
 | `max_webm_filesize` |  |
 | `meta_description` |  |
-| `page` |  |
+| `pages` |  |
 | `per_page` |  |
-| `spoiler` |  |
+| `spoilers` |  |
 | `title` |  |
 | `ws_board` |  |
 
@@ -282,7 +283,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `page` |  |
-| `thread` |  |
+| `threads` |  |
 
 Operations: List.
 
@@ -292,7 +293,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `post` |  |
+| `posts` |  |
 
 Operations: List.
 
@@ -317,18 +318,18 @@ API path: `/{board}/{page}.json`
 | `fsize` |  |
 | `h` |  |
 | `id` |  |
-| `image` |  |
 | `imagelimit` |  |
+| `images` |  |
 | `last_modified` |  |
 | `m_img` |  |
 | `md5` |  |
 | `name` |  |
 | `no` |  |
 | `now` |  |
-| `omitted_image` |  |
-| `omitted_post` |  |
+| `omitted_images` |  |
+| `omitted_posts` |  |
 | `page` |  |
-| `reply` |  |
+| `replies` |  |
 | `resto` |  |
 | `semantic_url` |  |
 | `since4pass` |  |
@@ -336,13 +337,13 @@ API path: `/{board}/{page}.json`
 | `sticky` |  |
 | `sub` |  |
 | `tag` |  |
-| `thread` |  |
+| `threads` |  |
 | `tim` |  |
 | `time` |  |
 | `tn_h` |  |
 | `tn_w` |  |
 | `trip` |  |
-| `unique_ip` |  |
+| `unique_ips` |  |
 | `w` |  |
 
 Operations: List.
@@ -367,7 +368,7 @@ Create an instance: `archive = client.Archive()`
 #### Example: List
 
 ```python
-archives = client.Archive().list()
+archives = client.Archive().list({"board": "example"})
 ```
 
 
@@ -386,20 +387,20 @@ Create an instance: `board = client.Board()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `str` |  |
-| `board_flag` | `dict` |  |
+| `board_flags` | `dict` |  |
 | `bump_limit` | `int` |  |
-| `cooldown` | `dict` |  |
-| `custom_spoiler` | `int` |  |
+| `cooldowns` | `dict` |  |
+| `custom_spoilers` | `int` |  |
 | `image_limit` | `int` |  |
 | `is_archived` | `int` |  |
-| `max_comment_char` | `int` |  |
+| `max_comment_chars` | `int` |  |
 | `max_filesize` | `int` |  |
 | `max_webm_duration` | `int` |  |
 | `max_webm_filesize` | `int` |  |
 | `meta_description` | `str` |  |
-| `page` | `int` |  |
+| `pages` | `int` |  |
 | `per_page` | `int` |  |
-| `spoiler` | `int` |  |
+| `spoilers` | `int` |  |
 | `title` | `str` |  |
 | `ws_board` | `int` |  |
 
@@ -425,12 +426,12 @@ Create an instance: `catalog = client.Catalog()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `int` |  |
-| `thread` | `list` |  |
+| `threads` | `list` |  |
 
 #### Example: List
 
 ```python
-catalogs = client.Catalog().list()
+catalogs = client.Catalog().list({"board": "example"})
 ```
 
 
@@ -448,12 +449,12 @@ Create an instance: `index = client.Index()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `list` |  |
+| `posts` | `list` |  |
 
 #### Example: List
 
 ```python
-indexs = client.Index().list()
+indexs = client.Index().list({"board": "example", "page": 1})
 ```
 
 
@@ -486,18 +487,18 @@ Create an instance: `thread = client.Thread()`
 | `fsize` | `int` |  |
 | `h` | `int` |  |
 | `id` | `str` |  |
-| `image` | `int` |  |
 | `imagelimit` | `int` |  |
+| `images` | `int` |  |
 | `last_modified` | `int` |  |
 | `m_img` | `int` |  |
 | `md5` | `str` |  |
 | `name` | `str` |  |
 | `no` | `int` |  |
 | `now` | `str` |  |
-| `omitted_image` | `int` |  |
-| `omitted_post` | `int` |  |
+| `omitted_images` | `int` |  |
+| `omitted_posts` | `int` |  |
 | `page` | `int` |  |
-| `reply` | `int` |  |
+| `replies` | `int` |  |
 | `resto` | `int` |  |
 | `semantic_url` | `str` |  |
 | `since4pass` | `int` |  |
@@ -505,19 +506,19 @@ Create an instance: `thread = client.Thread()`
 | `sticky` | `int` |  |
 | `sub` | `str` |  |
 | `tag` | `str` |  |
-| `thread` | `list` |  |
+| `threads` | `list` |  |
 | `tim` | `int` |  |
 | `time` | `int` |  |
 | `tn_h` | `int` |  |
 | `tn_w` | `int` |  |
 | `trip` | `str` |  |
-| `unique_ip` | `int` |  |
+| `unique_ips` | `int` |  |
 | `w` | `int` |  |
 
 #### Example: List
 
 ```python
-threads = client.Thread().list()
+threads = client.Thread().list({"board": "example"})
 ```
 
 
@@ -596,11 +597,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-archive = client.Archive()
-archive.list()
+catalog = client.Catalog()
+catalog.list()
 
-# archive.data_get() now returns the archive data from the last list
-# archive.match_get() returns the last match criteria
+# catalog.data_get() now returns the catalog data from the last list
+# catalog.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ N4chanUtility.registrar = ->(u) {
   u.prepare_params = N4chanUtilities::PrepareParams
   u.prepare_path = N4chanUtilities::PreparePath
   u.prepare_query = N4chanUtilities::PrepareQuery
+  u.graphql_body = N4chanUtilities::GraphqlBody
+  u.graphql_errors = N4chanUtilities::GraphqlErrors
   u.result_basic = N4chanUtilities::ResultBasic
   u.result_body = N4chanUtilities::ResultBody
   u.result_headers = N4chanUtilities::ResultHeaders

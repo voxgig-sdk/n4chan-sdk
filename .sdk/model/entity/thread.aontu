@@ -81,12 +81,12 @@ main: kit: entity: thread: {
       type: "`$STRING`"
     }
     {
-      name: "image"
+      name: "imagelimit"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "imagelimit"
+      name: "images"
       req: false
       type: "`$INTEGER`"
     }
@@ -121,12 +121,12 @@ main: kit: entity: thread: {
       type: "`$STRING`"
     }
     {
-      name: "omitted_image"
+      name: "omitted_images"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "omitted_post"
+      name: "omitted_posts"
       req: false
       type: "`$INTEGER`"
     }
@@ -136,7 +136,7 @@ main: kit: entity: thread: {
       type: "`$INTEGER`"
     }
     {
-      name: "reply"
+      name: "replies"
       req: false
       type: "`$INTEGER`"
     }
@@ -176,7 +176,7 @@ main: kit: entity: thread: {
       type: "`$STRING`"
     }
     {
-      name: "thread"
+      name: "threads"
       req: false
       type: "`$ARRAY`"
     }
@@ -206,7 +206,7 @@ main: kit: entity: thread: {
       type: "`$STRING`"
     }
     {
-      name: "unique_ip"
+      name: "unique_ips"
       req: false
       type: "`$INTEGER`"
     }
@@ -272,7 +272,7 @@ main: kit: entity: thread: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.posts`"
           }
         }
         {

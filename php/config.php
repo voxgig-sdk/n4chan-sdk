@@ -65,6 +65,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{board}/archive.json',
                   'parts' => [
@@ -102,7 +103,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'board_flag',
+              'name' => 'board_flags',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -116,14 +117,14 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'cooldown',
+              'name' => 'cooldowns',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'custom_spoiler',
+              'name' => 'custom_spoilers',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 4,
@@ -144,7 +145,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'max_comment_char',
+              'name' => 'max_comment_chars',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 7,
@@ -179,7 +180,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'page',
+              'name' => 'pages',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 12,
@@ -193,7 +194,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'spoiler',
+              'name' => 'spoilers',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 14,
@@ -233,6 +234,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/boards.json',
                   'parts' => [
@@ -245,7 +247,7 @@ class N4chanConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.boards`',
                   ],
                   'index$' => 0,
                 ],
@@ -268,7 +270,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'thread',
+              'name' => 'threads',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 1,
@@ -305,6 +307,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{board}/catalog.json',
                   'parts' => [
@@ -335,7 +338,7 @@ class N4chanConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'post',
+              'name' => 'posts',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -381,6 +384,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{board}/{page}.json',
                   'parts' => [
@@ -396,7 +400,7 @@ class N4chanConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.threads`',
                   ],
                   'index$' => 0,
                 ],
@@ -517,14 +521,14 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'image',
+              'name' => 'imagelimit',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 15,
             ],
             [
               'active' => true,
-              'name' => 'imagelimit',
+              'name' => 'images',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 16,
@@ -573,14 +577,14 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'omitted_image',
+              'name' => 'omitted_images',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 23,
             ],
             [
               'active' => true,
-              'name' => 'omitted_post',
+              'name' => 'omitted_posts',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 24,
@@ -594,7 +598,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'reply',
+              'name' => 'replies',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 26,
@@ -650,7 +654,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'thread',
+              'name' => 'threads',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 34,
@@ -692,7 +696,7 @@ class N4chanConfig
             ],
             [
               'active' => true,
-              'name' => 'unique_ip',
+              'name' => 'unique_ips',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 40,
@@ -743,6 +747,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{board}/thread/{threadId}.json',
                   'parts' => [
@@ -760,7 +765,7 @@ class N4chanConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.posts`',
                   ],
                   'index$' => 0,
                 ],
@@ -789,6 +794,7 @@ class N4chanConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{board}/threads.json',
                   'parts' => [

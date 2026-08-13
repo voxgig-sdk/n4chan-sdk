@@ -6,7 +6,7 @@ main: kit: entity: index: {
 
   fields: [
     {
-      name: "post"
+      name: "posts"
       req: false
       type: "`$ARRAY`"
     }
@@ -60,7 +60,7 @@ main: kit: entity: index: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.threads`"
           }
         }
       ]

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import N4chanSDK
-from core.error import N4chanError
-from core.result import N4chanResult
-from core.response import N4chanResponse
-from core.spec import N4chanSpec
-from feature.base_feature import N4chanBaseFeature
+from projectname_sdk.core.error import N4chanError
+from projectname_sdk.core.result import N4chanResult
+from projectname_sdk.core.response import N4chanResponse
+from projectname_sdk.core.spec import N4chanSpec
+from projectname_sdk.feature.base_feature import N4chanBaseFeature
 
 
 def _client():

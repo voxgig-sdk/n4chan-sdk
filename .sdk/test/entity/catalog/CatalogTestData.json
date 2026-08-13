@@ -3,17 +3,17 @@
     "catalog": {
       "CATALOG00": {
         "page": "s14",
-        "thread": [],
+        "threads": [],
         "board": "BOARD01"
       },
       "CATALOG01": {
         "page": "s28",
-        "thread": [],
+        "threads": [],
         "board": "BOARD01"
       },
       "CATALOG02": {
         "page": "s3c",
-        "thread": [],
+        "threads": [],
         "board": "BOARD01"
       }
     }
@@ -22,7 +22,7 @@
     "catalog": {
       "catalog_ref01": {
         "page": "s50",
-        "thread": []
+        "threads": []
       }
     }
   }

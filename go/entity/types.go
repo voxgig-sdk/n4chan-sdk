@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/n4chan-sdk/go/core"
+)
 
 // Archive is the typed data model for the archive entity.
 type Archive struct {
@@ -20,20 +24,20 @@ type ArchiveListMatch struct {
 // Board is the typed data model for the board entity.
 type Board struct {
 	Board *string `json:"board,omitempty"`
-	BoardFlag *map[string]any `json:"board_flag,omitempty"`
+	BoardFlags *map[string]any `json:"board_flags,omitempty"`
 	BumpLimit *int `json:"bump_limit,omitempty"`
-	Cooldown *map[string]any `json:"cooldown,omitempty"`
-	CustomSpoiler *int `json:"custom_spoiler,omitempty"`
+	Cooldowns *map[string]any `json:"cooldowns,omitempty"`
+	CustomSpoilers *int `json:"custom_spoilers,omitempty"`
 	ImageLimit *int `json:"image_limit,omitempty"`
 	IsArchived *int `json:"is_archived,omitempty"`
-	MaxCommentChar *int `json:"max_comment_char,omitempty"`
+	MaxCommentChars *int `json:"max_comment_chars,omitempty"`
 	MaxFilesize *int `json:"max_filesize,omitempty"`
 	MaxWebmDuration *int `json:"max_webm_duration,omitempty"`
 	MaxWebmFilesize *int `json:"max_webm_filesize,omitempty"`
 	MetaDescription *string `json:"meta_description,omitempty"`
-	Page *int `json:"page,omitempty"`
+	Pages *int `json:"pages,omitempty"`
 	PerPage *int `json:"per_page,omitempty"`
-	Spoiler *int `json:"spoiler,omitempty"`
+	Spoilers *int `json:"spoilers,omitempty"`
 	Title *string `json:"title,omitempty"`
 	WsBoard *int `json:"ws_board,omitempty"`
 }
@@ -41,20 +45,20 @@ type Board struct {
 // BoardListMatch is the typed request payload for Board.ListTyped.
 type BoardListMatch struct {
 	Board *string `json:"board,omitempty"`
-	BoardFlag *map[string]any `json:"board_flag,omitempty"`
+	BoardFlags *map[string]any `json:"board_flags,omitempty"`
 	BumpLimit *int `json:"bump_limit,omitempty"`
-	Cooldown *map[string]any `json:"cooldown,omitempty"`
-	CustomSpoiler *int `json:"custom_spoiler,omitempty"`
+	Cooldowns *map[string]any `json:"cooldowns,omitempty"`
+	CustomSpoilers *int `json:"custom_spoilers,omitempty"`
 	ImageLimit *int `json:"image_limit,omitempty"`
 	IsArchived *int `json:"is_archived,omitempty"`
-	MaxCommentChar *int `json:"max_comment_char,omitempty"`
+	MaxCommentChars *int `json:"max_comment_chars,omitempty"`
 	MaxFilesize *int `json:"max_filesize,omitempty"`
 	MaxWebmDuration *int `json:"max_webm_duration,omitempty"`
 	MaxWebmFilesize *int `json:"max_webm_filesize,omitempty"`
 	MetaDescription *string `json:"meta_description,omitempty"`
-	Page *int `json:"page,omitempty"`
+	Pages *int `json:"pages,omitempty"`
 	PerPage *int `json:"per_page,omitempty"`
-	Spoiler *int `json:"spoiler,omitempty"`
+	Spoilers *int `json:"spoilers,omitempty"`
 	Title *string `json:"title,omitempty"`
 	WsBoard *int `json:"ws_board,omitempty"`
 }
@@ -62,7 +66,7 @@ type BoardListMatch struct {
 // Catalog is the typed data model for the catalog entity.
 type Catalog struct {
 	Page *int `json:"page,omitempty"`
-	Thread *[]any `json:"thread,omitempty"`
+	Threads *[]any `json:"threads,omitempty"`
 }
 
 // CatalogListMatch is the typed request payload for Catalog.ListTyped.
@@ -72,7 +76,7 @@ type CatalogListMatch struct {
 
 // Index is the typed data model for the index entity.
 type Index struct {
-	Post *[]any `json:"post,omitempty"`
+	Posts *[]any `json:"posts,omitempty"`
 }
 
 // IndexListMatch is the typed request payload for Index.ListTyped.
@@ -98,18 +102,18 @@ type Thread struct {
 	Fsize *int `json:"fsize,omitempty"`
 	H *int `json:"h,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Image *int `json:"image,omitempty"`
 	Imagelimit *int `json:"imagelimit,omitempty"`
+	Images *int `json:"images,omitempty"`
 	LastModified *int `json:"last_modified,omitempty"`
 	MImg *int `json:"m_img,omitempty"`
 	Md5 *string `json:"md5,omitempty"`
 	Name *string `json:"name,omitempty"`
 	No int `json:"no"`
 	Now string `json:"now"`
-	OmittedImage *int `json:"omitted_image,omitempty"`
-	OmittedPost *int `json:"omitted_post,omitempty"`
+	OmittedImages *int `json:"omitted_images,omitempty"`
+	OmittedPosts *int `json:"omitted_posts,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Reply *int `json:"reply,omitempty"`
+	Replies *int `json:"replies,omitempty"`
 	Resto *int `json:"resto,omitempty"`
 	SemanticUrl *string `json:"semantic_url,omitempty"`
 	Since4pass *int `json:"since4pass,omitempty"`
@@ -117,13 +121,13 @@ type Thread struct {
 	Sticky *int `json:"sticky,omitempty"`
 	Sub *string `json:"sub,omitempty"`
 	Tag *string `json:"tag,omitempty"`
-	Thread *[]any `json:"thread,omitempty"`
+	Threads *[]any `json:"threads,omitempty"`
 	Tim *int `json:"tim,omitempty"`
 	Time int `json:"time"`
 	TnH *int `json:"tn_h,omitempty"`
 	TnW *int `json:"tn_w,omitempty"`
 	Trip *string `json:"trip,omitempty"`
-	UniqueIp *int `json:"unique_ip,omitempty"`
+	UniqueIps *int `json:"unique_ips,omitempty"`
 	W *int `json:"w,omitempty"`
 }
 
@@ -144,12 +148,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -161,12 +179,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-archives, err := client.Archive(nil).List(nil, nil)
+catalogs, err := client.Catalog(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = archives
+_ = catalogs
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-archive, err := client.Archive(nil).List(
+catalog, err := client.Catalog(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(archive) // the returned mock data
+fmt.Println(catalog) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -274,20 +274,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `"board"` |  |
-| `"board_flag"` |  |
+| `"board_flags"` |  |
 | `"bump_limit"` |  |
-| `"cooldown"` |  |
-| `"custom_spoiler"` |  |
+| `"cooldowns"` |  |
+| `"custom_spoilers"` |  |
 | `"image_limit"` |  |
 | `"is_archived"` |  |
-| `"max_comment_char"` |  |
+| `"max_comment_chars"` |  |
 | `"max_filesize"` |  |
 | `"max_webm_duration"` |  |
 | `"max_webm_filesize"` |  |
 | `"meta_description"` |  |
-| `"page"` |  |
+| `"pages"` |  |
 | `"per_page"` |  |
-| `"spoiler"` |  |
+| `"spoilers"` |  |
 | `"title"` |  |
 | `"ws_board"` |  |
 
@@ -300,7 +300,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `"page"` |  |
-| `"thread"` |  |
+| `"threads"` |  |
 
 Operations: List.
 
@@ -310,7 +310,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `"post"` |  |
+| `"posts"` |  |
 
 Operations: List.
 
@@ -335,18 +335,18 @@ API path: `/{board}/{page}.json`
 | `"fsize"` |  |
 | `"h"` |  |
 | `"id"` |  |
-| `"image"` |  |
 | `"imagelimit"` |  |
+| `"images"` |  |
 | `"last_modified"` |  |
 | `"m_img"` |  |
 | `"md5"` |  |
 | `"name"` |  |
 | `"no"` |  |
 | `"now"` |  |
-| `"omitted_image"` |  |
-| `"omitted_post"` |  |
+| `"omitted_images"` |  |
+| `"omitted_posts"` |  |
 | `"page"` |  |
-| `"reply"` |  |
+| `"replies"` |  |
 | `"resto"` |  |
 | `"semantic_url"` |  |
 | `"since4pass"` |  |
@@ -354,13 +354,13 @@ API path: `/{board}/{page}.json`
 | `"sticky"` |  |
 | `"sub"` |  |
 | `"tag"` |  |
-| `"thread"` |  |
+| `"threads"` |  |
 | `"tim"` |  |
 | `"time"` |  |
 | `"tn_h"` |  |
 | `"tn_w"` |  |
 | `"trip"` |  |
-| `"unique_ip"` |  |
+| `"unique_ips"` |  |
 | `"w"` |  |
 
 Operations: List.
@@ -408,20 +408,20 @@ Create an instance: `board := client.Board(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `string` |  |
-| `board_flag` | `map[string]any` |  |
+| `board_flags` | `map[string]any` |  |
 | `bump_limit` | `int` |  |
-| `cooldown` | `map[string]any` |  |
-| `custom_spoiler` | `int` |  |
+| `cooldowns` | `map[string]any` |  |
+| `custom_spoilers` | `int` |  |
 | `image_limit` | `int` |  |
 | `is_archived` | `int` |  |
-| `max_comment_char` | `int` |  |
+| `max_comment_chars` | `int` |  |
 | `max_filesize` | `int` |  |
 | `max_webm_duration` | `int` |  |
 | `max_webm_filesize` | `int` |  |
 | `meta_description` | `string` |  |
-| `page` | `int` |  |
+| `pages` | `int` |  |
 | `per_page` | `int` |  |
-| `spoiler` | `int` |  |
+| `spoilers` | `int` |  |
 | `title` | `string` |  |
 | `ws_board` | `int` |  |
 
@@ -451,7 +451,7 @@ Create an instance: `catalog := client.Catalog(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `int` |  |
-| `thread` | `[]any` |  |
+| `threads` | `[]any` |  |
 
 #### Example: List
 
@@ -478,7 +478,7 @@ Create an instance: `index := client.Index(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `[]any` |  |
+| `posts` | `[]any` |  |
 
 #### Example: List
 
@@ -520,18 +520,18 @@ Create an instance: `thread := client.Thread(nil)`
 | `fsize` | `int` |  |
 | `h` | `int` |  |
 | `id` | `string` |  |
-| `image` | `int` |  |
 | `imagelimit` | `int` |  |
+| `images` | `int` |  |
 | `last_modified` | `int` |  |
 | `m_img` | `int` |  |
 | `md5` | `string` |  |
 | `name` | `string` |  |
 | `no` | `int` |  |
 | `now` | `string` |  |
-| `omitted_image` | `int` |  |
-| `omitted_post` | `int` |  |
+| `omitted_images` | `int` |  |
+| `omitted_posts` | `int` |  |
 | `page` | `int` |  |
-| `reply` | `int` |  |
+| `replies` | `int` |  |
 | `resto` | `int` |  |
 | `semantic_url` | `string` |  |
 | `since4pass` | `int` |  |
@@ -539,13 +539,13 @@ Create an instance: `thread := client.Thread(nil)`
 | `sticky` | `int` |  |
 | `sub` | `string` |  |
 | `tag` | `string` |  |
-| `thread` | `[]any` |  |
+| `threads` | `[]any` |  |
 | `tim` | `int` |  |
 | `time` | `int` |  |
 | `tn_h` | `int` |  |
 | `tn_w` | `int` |  |
 | `trip` | `string` |  |
-| `unique_ip` | `int` |  |
+| `unique_ips` | `int` |  |
 | `w` | `int` |  |
 
 #### Example: List
@@ -632,11 +632,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-archive := client.Archive(nil)
-archive.List(nil, nil)
+catalog := client.Catalog(nil)
+catalog.List(nil, nil)
 
-// archive.Data() now returns the archive data from the last list
-// archive.Match() returns the last match criteria
+// catalog.Data() now returns the catalog data from the last list
+// catalog.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

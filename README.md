@@ -23,7 +23,7 @@ support (`list`):
 
 ```ts
 const client = new N4chanSDK()
-const items = await client.Archive().list()
+const items = await client.Archive().list({ board: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = N4chanSDK.test()
-const archives = await client.Archive().list()
-// archives is an array of bare Archive records populated with mock data
-console.log(archives)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = N4chanSDK.test({
+  entity: {
+    catalog: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const catalogs = await client.Catalog().list()
+// catalogs is an array of Catalog entities, populated with mock data
+// — call catalogs[0].data() for the record itself
+console.log(catalogs)
 ```
 
 ### Python
 
 ```python
 client = N4chanSDK.test()
-archives = client.Archive().list()
-print(archives)
+catalogs = client.Catalog().list()
+print(catalogs)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(archives)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = N4chanSDK::test([
-    "entity" => ["archive" => ["test01" => []]],
+    "entity" => ["catalog" => ["test01" => []]],
 ]);
-$archives = $client->Archive()->list();
+$catalogs = $client->Catalog()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Archive(nil).List(
+result, err := client.Catalog(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Archive(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = N4chanSDK.test({
-  "entity" => { "archive" => { "test01" => {} } },
+  "entity" => { "catalog" => { "test01" => {} } },
 })
-archives = client.Archive.list()
+catalogs = client.Catalog.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Archive():list()
+local results, err = client:Catalog():list()
 ```
 
 ## Packages
@@ -110,8 +119,8 @@ import { N4chanSDK } from '@voxgig-sdk/n4chan'
 
 const client = new N4chanSDK()
 
-// List all archives (returns Archive[])
-const archives = await client.Archive().list()
+// List all archives (returns ArchiveEntity[] — .data() for the record)
+const archives = await client.Archive().list({ board: "example" })
 for (const archive of archives) {
   console.log(archive)
 }
@@ -159,7 +168,7 @@ The API exposes 5 entities:
 | **Board** | The Board entity (list). | `/boards.json` |
 | **Catalog** | The Catalog entity (list). | `/{board}/catalog.json` |
 | **Index** | The Index entity (list). | `/{board}/{page}.json` |
-| **Thread** | The Thread entity (list). | `/{board}/thread/{threadId}.json` |
+| **Thread** | The Thread entity (list). | `/{board}/threads.json` |
 
 The operations available across these entities are **list** — see each entity's
 own list above for exactly which it supports.
@@ -174,7 +183,7 @@ from n4chan_sdk import N4chanSDK
 client = N4chanSDK()
 
 # List all archives (returns a list, raises on error)
-archives = client.Archive().list()
+archives = client.Archive().list({"board": "example"})
 for archive in archives:
     print(archive)
 ```
@@ -347,6 +356,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://a.4cdn.org](https://a.4cdn.org)
 

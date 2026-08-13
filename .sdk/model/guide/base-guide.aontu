@@ -14,6 +14,7 @@ guide: {
   entity: board: {
     path: "/boards.json": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.boards`")|top
     }
   }
 
@@ -26,6 +27,7 @@ guide: {
   entity: index: {
     path: "/{board}/{page}.json": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.threads`")|top
     }
   }
 
@@ -33,6 +35,7 @@ guide: {
     path: "/{board}/thread/{threadId}.json": {
       action: "thread_id": {}
       op: list: method: *GET
+      op: list: transform: res: *("`body.posts`")|top
     }
     path: "/{board}/threads.json": {
       op: list: method: *GET

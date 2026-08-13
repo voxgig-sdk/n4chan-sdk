@@ -37,7 +37,7 @@ class ThreadEntity extends N4chanEntityBase<Thread> {
 
 
 
-  async list(this: any, reqmatch?: ThreadListMatch, ctrl?: Control): Promise<Thread[]> {
+  async list(this: any, reqmatch?: ThreadListMatch, ctrl?: Control): Promise<ThreadEntity[]> {
 
     const utility = this._utility
 

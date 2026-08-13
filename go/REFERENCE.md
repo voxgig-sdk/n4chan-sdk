@@ -160,20 +160,20 @@ fmt.Println(board.GetName()) // "board"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `board` | `string` | No |  |
-| `board_flag` | `map[string]any` | No |  |
+| `board_flags` | `map[string]any` | No |  |
 | `bump_limit` | `int` | No |  |
-| `cooldown` | `map[string]any` | No |  |
-| `custom_spoiler` | `int` | No |  |
+| `cooldowns` | `map[string]any` | No |  |
+| `custom_spoilers` | `int` | No |  |
 | `image_limit` | `int` | No |  |
 | `is_archived` | `int` | No |  |
-| `max_comment_char` | `int` | No |  |
+| `max_comment_chars` | `int` | No |  |
 | `max_filesize` | `int` | No |  |
 | `max_webm_duration` | `int` | No |  |
 | `max_webm_filesize` | `int` | No |  |
 | `meta_description` | `string` | No |  |
-| `page` | `int` | No |  |
+| `pages` | `int` | No |  |
 | `per_page` | `int` | No |  |
-| `spoiler` | `int` | No |  |
+| `spoilers` | `int` | No |  |
 | `title` | `string` | No |  |
 | `ws_board` | `int` | No |  |
 
@@ -227,7 +227,7 @@ fmt.Println(catalog.GetName()) // "catalog"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `page` | `int` | No |  |
-| `thread` | `[]any` | No |  |
+| `threads` | `[]any` | No |  |
 
 ### Operations
 
@@ -278,7 +278,7 @@ fmt.Println(index.GetName()) // "index"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | `[]any` | No |  |
+| `posts` | `[]any` | No |  |
 
 ### Operations
 
@@ -344,18 +344,18 @@ fmt.Println(thread.GetName()) // "thread"
 | `fsize` | `int` | No |  |
 | `h` | `int` | No |  |
 | `id` | `string` | No |  |
-| `image` | `int` | No |  |
 | `imagelimit` | `int` | No |  |
+| `images` | `int` | No |  |
 | `last_modified` | `int` | No |  |
 | `m_img` | `int` | No |  |
 | `md5` | `string` | No |  |
 | `name` | `string` | No |  |
 | `no` | `int` | Yes |  |
 | `now` | `string` | Yes |  |
-| `omitted_image` | `int` | No |  |
-| `omitted_post` | `int` | No |  |
+| `omitted_images` | `int` | No |  |
+| `omitted_posts` | `int` | No |  |
 | `page` | `int` | No |  |
-| `reply` | `int` | No |  |
+| `replies` | `int` | No |  |
 | `resto` | `int` | No |  |
 | `semantic_url` | `string` | No |  |
 | `since4pass` | `int` | No |  |
@@ -363,13 +363,13 @@ fmt.Println(thread.GetName()) // "thread"
 | `sticky` | `int` | No |  |
 | `sub` | `string` | No |  |
 | `tag` | `string` | No |  |
-| `thread` | `[]any` | No |  |
+| `threads` | `[]any` | No |  |
 | `tim` | `int` | No |  |
 | `time` | `int` | Yes |  |
 | `tn_h` | `int` | No |  |
 | `tn_w` | `int` | No |  |
 | `trip` | `string` | No |  |
-| `unique_ip` | `int` | No |  |
+| `unique_ips` | `int` | No |  |
 | `w` | `int` | No |  |
 
 ### Operations

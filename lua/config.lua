@@ -59,6 +59,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{board}/archive.json",
                 ["parts"] = {
@@ -96,7 +97,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "board_flag",
+            ["name"] = "board_flags",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -110,14 +111,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "cooldown",
+            ["name"] = "cooldowns",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "custom_spoiler",
+            ["name"] = "custom_spoilers",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 4,
@@ -138,7 +139,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "max_comment_char",
+            ["name"] = "max_comment_chars",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 7,
@@ -173,7 +174,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "page",
+            ["name"] = "pages",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 12,
@@ -187,7 +188,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "spoiler",
+            ["name"] = "spoilers",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 14,
@@ -227,6 +228,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/boards.json",
                 ["parts"] = {
@@ -239,7 +241,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.boards`",
                 },
                 ["index$"] = 0,
               },
@@ -262,7 +264,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "thread",
+            ["name"] = "threads",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -299,6 +301,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{board}/catalog.json",
                 ["parts"] = {
@@ -329,7 +332,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "post",
+            ["name"] = "posts",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -375,6 +378,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{board}/{page}.json",
                 ["parts"] = {
@@ -390,7 +394,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.threads`",
                 },
                 ["index$"] = 0,
               },
@@ -511,14 +515,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image",
+            ["name"] = "imagelimit",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 15,
           },
           {
             ["active"] = true,
-            ["name"] = "imagelimit",
+            ["name"] = "images",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 16,
@@ -567,14 +571,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "omitted_image",
+            ["name"] = "omitted_images",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 23,
           },
           {
             ["active"] = true,
-            ["name"] = "omitted_post",
+            ["name"] = "omitted_posts",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 24,
@@ -588,7 +592,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "reply",
+            ["name"] = "replies",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 26,
@@ -644,7 +648,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "thread",
+            ["name"] = "threads",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 34,
@@ -686,7 +690,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "unique_ip",
+            ["name"] = "unique_ips",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 40,
@@ -737,6 +741,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{board}/thread/{threadId}.json",
                 ["parts"] = {
@@ -754,7 +759,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.posts`",
                 },
                 ["index$"] = 0,
               },
@@ -783,6 +788,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{board}/threads.json",
                 ["parts"] = {

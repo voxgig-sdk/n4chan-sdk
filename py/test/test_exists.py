@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# N4chan SDK exists test
 
 import pytest
 from n4chan_sdk import N4chanSDK

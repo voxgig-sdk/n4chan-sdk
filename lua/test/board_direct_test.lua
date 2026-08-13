@@ -61,11 +61,11 @@ function board_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["N_CHAN_TEST_BOARD_ENTID"] = {},
-    ["N_CHAN_TEST_LIVE"] = "FALSE",
+    ["N4CHAN_TEST_BOARD_ENTID"] = {},
+    ["N4CHAN_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["N_CHAN_TEST_LIVE"] == "TRUE"
+  local live = env["N4CHAN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

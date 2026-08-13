@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $archives = $client->Archive()->list();
+    $catalogs = $client->Catalog()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = N4chanSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$archive = $client->Archive()->list();
-print_r($archive);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$catalog = $client->Catalog()->list();
+print_r($catalog);
 ```
 
 ### Use a custom fetch function
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -260,20 +261,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `board` |  |
-| `board_flag` |  |
+| `board_flags` |  |
 | `bump_limit` |  |
-| `cooldown` |  |
-| `custom_spoiler` |  |
+| `cooldowns` |  |
+| `custom_spoilers` |  |
 | `image_limit` |  |
 | `is_archived` |  |
-| `max_comment_char` |  |
+| `max_comment_chars` |  |
 | `max_filesize` |  |
 | `max_webm_duration` |  |
 | `max_webm_filesize` |  |
 | `meta_description` |  |
-| `page` |  |
+| `pages` |  |
 | `per_page` |  |
-| `spoiler` |  |
+| `spoilers` |  |
 | `title` |  |
 | `ws_board` |  |
 
@@ -286,7 +287,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `page` |  |
-| `thread` |  |
+| `threads` |  |
 
 Operations: List.
 
@@ -296,7 +297,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `post` |  |
+| `posts` |  |
 
 Operations: List.
 
@@ -321,18 +322,18 @@ API path: `/{board}/{page}.json`
 | `fsize` |  |
 | `h` |  |
 | `id` |  |
-| `image` |  |
 | `imagelimit` |  |
+| `images` |  |
 | `last_modified` |  |
 | `m_img` |  |
 | `md5` |  |
 | `name` |  |
 | `no` |  |
 | `now` |  |
-| `omitted_image` |  |
-| `omitted_post` |  |
+| `omitted_images` |  |
+| `omitted_posts` |  |
 | `page` |  |
-| `reply` |  |
+| `replies` |  |
 | `resto` |  |
 | `semantic_url` |  |
 | `since4pass` |  |
@@ -340,13 +341,13 @@ API path: `/{board}/{page}.json`
 | `sticky` |  |
 | `sub` |  |
 | `tag` |  |
-| `thread` |  |
+| `threads` |  |
 | `tim` |  |
 | `time` |  |
 | `tn_h` |  |
 | `tn_w` |  |
 | `trip` |  |
-| `unique_ip` |  |
+| `unique_ips` |  |
 | `w` |  |
 
 Operations: List.
@@ -391,20 +392,20 @@ Create an instance: `$board = $client->Board();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `string` |  |
-| `board_flag` | `array` |  |
+| `board_flags` | `array` |  |
 | `bump_limit` | `int` |  |
-| `cooldown` | `array` |  |
-| `custom_spoiler` | `int` |  |
+| `cooldowns` | `array` |  |
+| `custom_spoilers` | `int` |  |
 | `image_limit` | `int` |  |
 | `is_archived` | `int` |  |
-| `max_comment_char` | `int` |  |
+| `max_comment_chars` | `int` |  |
 | `max_filesize` | `int` |  |
 | `max_webm_duration` | `int` |  |
 | `max_webm_filesize` | `int` |  |
 | `meta_description` | `string` |  |
-| `page` | `int` |  |
+| `pages` | `int` |  |
 | `per_page` | `int` |  |
-| `spoiler` | `int` |  |
+| `spoilers` | `int` |  |
 | `title` | `string` |  |
 | `ws_board` | `int` |  |
 
@@ -431,7 +432,7 @@ Create an instance: `$catalog = $client->Catalog();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `int` |  |
-| `thread` | `array` |  |
+| `threads` | `array` |  |
 
 #### Example: List
 
@@ -455,7 +456,7 @@ Create an instance: `$index = $client->Index();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `array` |  |
+| `posts` | `array` |  |
 
 #### Example: List
 
@@ -494,18 +495,18 @@ Create an instance: `$thread = $client->Thread();`
 | `fsize` | `int` |  |
 | `h` | `int` |  |
 | `id` | `string` |  |
-| `image` | `int` |  |
 | `imagelimit` | `int` |  |
+| `images` | `int` |  |
 | `last_modified` | `int` |  |
 | `m_img` | `int` |  |
 | `md5` | `string` |  |
 | `name` | `string` |  |
 | `no` | `int` |  |
 | `now` | `string` |  |
-| `omitted_image` | `int` |  |
-| `omitted_post` | `int` |  |
+| `omitted_images` | `int` |  |
+| `omitted_posts` | `int` |  |
 | `page` | `int` |  |
-| `reply` | `int` |  |
+| `replies` | `int` |  |
 | `resto` | `int` |  |
 | `semantic_url` | `string` |  |
 | `since4pass` | `int` |  |
@@ -513,13 +514,13 @@ Create an instance: `$thread = $client->Thread();`
 | `sticky` | `int` |  |
 | `sub` | `string` |  |
 | `tag` | `string` |  |
-| `thread` | `array` |  |
+| `threads` | `array` |  |
 | `tim` | `int` |  |
 | `time` | `int` |  |
 | `tn_h` | `int` |  |
 | `tn_w` | `int` |  |
 | `trip` | `string` |  |
-| `unique_ip` | `int` |  |
+| `unique_ips` | `int` |  |
 | `w` | `int` |  |
 
 #### Example: List
@@ -606,11 +607,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$archive = $client->Archive();
-$archive->list();
+$catalog = $client->Catalog();
+$catalog->list();
 
-// $archive->data_get() now returns the archive data from the last list
-// $archive->match_get() returns the last match criteria
+// $catalog->data_get() now returns the catalog data from the last list
+// $catalog->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

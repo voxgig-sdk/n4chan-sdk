@@ -2,17 +2,17 @@
   "existing": {
     "index": {
       "INDEX00": {
-        "post": [],
+        "posts": [],
         "board": "BOARD01",
         "page": "PAGE01"
       },
       "INDEX01": {
-        "post": [],
+        "posts": [],
         "board": "BOARD01",
         "page": "PAGE01"
       },
       "INDEX02": {
-        "post": [],
+        "posts": [],
         "board": "BOARD01",
         "page": "PAGE01"
       }
@@ -21,7 +21,7 @@
   "new": {
     "index": {
       "index_ref01": {
-        "post": []
+        "posts": []
       }
     }
   }

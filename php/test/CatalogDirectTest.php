@@ -80,11 +80,11 @@ function catalog_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "N_CHAN_TEST_CATALOG_ENTID" => [],
-        "N_CHAN_TEST_LIVE" => "FALSE",
+        "N4CHAN_TEST_CATALOG_ENTID" => [],
+        "N4CHAN_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["N_CHAN_TEST_LIVE"] === "TRUE";
+    $live = $env["N4CHAN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

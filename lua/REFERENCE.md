@@ -153,20 +153,20 @@ local board = client:Board(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `board` | `string` | No |  |
-| `board_flag` | `table` | No |  |
+| `board_flags` | `table` | No |  |
 | `bump_limit` | `number` | No |  |
-| `cooldown` | `table` | No |  |
-| `custom_spoiler` | `number` | No |  |
+| `cooldowns` | `table` | No |  |
+| `custom_spoilers` | `number` | No |  |
 | `image_limit` | `number` | No |  |
 | `is_archived` | `number` | No |  |
-| `max_comment_char` | `number` | No |  |
+| `max_comment_chars` | `number` | No |  |
 | `max_filesize` | `number` | No |  |
 | `max_webm_duration` | `number` | No |  |
 | `max_webm_filesize` | `number` | No |  |
 | `meta_description` | `string` | No |  |
-| `page` | `number` | No |  |
+| `pages` | `number` | No |  |
 | `per_page` | `number` | No |  |
-| `spoiler` | `number` | No |  |
+| `spoilers` | `number` | No |  |
 | `title` | `string` | No |  |
 | `ws_board` | `number` | No |  |
 
@@ -221,7 +221,7 @@ local catalog = client:Catalog(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `page` | `number` | No |  |
-| `thread` | `table` | No |  |
+| `threads` | `table` | No |  |
 
 ### Operations
 
@@ -273,7 +273,7 @@ local index = client:Index(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | `table` | No |  |
+| `posts` | `table` | No |  |
 
 ### Operations
 
@@ -340,18 +340,18 @@ local thread = client:Thread(nil)
 | `fsize` | `number` | No |  |
 | `h` | `number` | No |  |
 | `id` | `string` | No |  |
-| `image` | `number` | No |  |
 | `imagelimit` | `number` | No |  |
+| `images` | `number` | No |  |
 | `last_modified` | `number` | No |  |
 | `m_img` | `number` | No |  |
 | `md5` | `string` | No |  |
 | `name` | `string` | No |  |
 | `no` | `number` | Yes |  |
 | `now` | `string` | Yes |  |
-| `omitted_image` | `number` | No |  |
-| `omitted_post` | `number` | No |  |
+| `omitted_images` | `number` | No |  |
+| `omitted_posts` | `number` | No |  |
 | `page` | `number` | No |  |
-| `reply` | `number` | No |  |
+| `replies` | `number` | No |  |
 | `resto` | `number` | No |  |
 | `semantic_url` | `string` | No |  |
 | `since4pass` | `number` | No |  |
@@ -359,13 +359,13 @@ local thread = client:Thread(nil)
 | `sticky` | `number` | No |  |
 | `sub` | `string` | No |  |
 | `tag` | `string` | No |  |
-| `thread` | `table` | No |  |
+| `threads` | `table` | No |  |
 | `tim` | `number` | No |  |
 | `time` | `number` | Yes |  |
 | `tn_h` | `number` | No |  |
 | `tn_w` | `number` | No |  |
 | `trip` | `string` | No |  |
-| `unique_ip` | `number` | No |  |
+| `unique_ips` | `number` | No |  |
 | `w` | `number` | No |  |
 
 ### Operations

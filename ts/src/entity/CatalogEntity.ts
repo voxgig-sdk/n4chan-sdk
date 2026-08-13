@@ -37,7 +37,7 @@ class CatalogEntity extends N4chanEntityBase<Catalog> {
 
 
 
-  async list(this: any, reqmatch?: CatalogListMatch, ctrl?: Control): Promise<Catalog[]> {
+  async list(this: any, reqmatch?: CatalogListMatch, ctrl?: Control): Promise<CatalogEntity[]> {
 
     const utility = this._utility
 

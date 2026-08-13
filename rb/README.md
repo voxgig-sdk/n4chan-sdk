@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  archives = client.Archive.list()
+  catalogs = client.Catalog.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = N4chanSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-archive = client.Archive.list()
-puts archive
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+catalog = client.Catalog.list()
+puts catalog
 ```
 
 ### Use a custom fetch function
@@ -250,20 +251,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `board` |  |
-| `board_flag` |  |
+| `board_flags` |  |
 | `bump_limit` |  |
-| `cooldown` |  |
-| `custom_spoiler` |  |
+| `cooldowns` |  |
+| `custom_spoilers` |  |
 | `image_limit` |  |
 | `is_archived` |  |
-| `max_comment_char` |  |
+| `max_comment_chars` |  |
 | `max_filesize` |  |
 | `max_webm_duration` |  |
 | `max_webm_filesize` |  |
 | `meta_description` |  |
-| `page` |  |
+| `pages` |  |
 | `per_page` |  |
-| `spoiler` |  |
+| `spoilers` |  |
 | `title` |  |
 | `ws_board` |  |
 
@@ -276,7 +277,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `page` |  |
-| `thread` |  |
+| `threads` |  |
 
 Operations: List.
 
@@ -286,7 +287,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `post` |  |
+| `posts` |  |
 
 Operations: List.
 
@@ -311,18 +312,18 @@ API path: `/{board}/{page}.json`
 | `fsize` |  |
 | `h` |  |
 | `id` |  |
-| `image` |  |
 | `imagelimit` |  |
+| `images` |  |
 | `last_modified` |  |
 | `m_img` |  |
 | `md5` |  |
 | `name` |  |
 | `no` |  |
 | `now` |  |
-| `omitted_image` |  |
-| `omitted_post` |  |
+| `omitted_images` |  |
+| `omitted_posts` |  |
 | `page` |  |
-| `reply` |  |
+| `replies` |  |
 | `resto` |  |
 | `semantic_url` |  |
 | `since4pass` |  |
@@ -330,13 +331,13 @@ API path: `/{board}/{page}.json`
 | `sticky` |  |
 | `sub` |  |
 | `tag` |  |
-| `thread` |  |
+| `threads` |  |
 | `tim` |  |
 | `time` |  |
 | `tn_h` |  |
 | `tn_w` |  |
 | `trip` |  |
-| `unique_ip` |  |
+| `unique_ips` |  |
 | `w` |  |
 
 Operations: List.
@@ -381,20 +382,20 @@ Create an instance: `board = client.Board`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `String` |  |
-| `board_flag` | `Hash` |  |
+| `board_flags` | `Hash` |  |
 | `bump_limit` | `Integer` |  |
-| `cooldown` | `Hash` |  |
-| `custom_spoiler` | `Integer` |  |
+| `cooldowns` | `Hash` |  |
+| `custom_spoilers` | `Integer` |  |
 | `image_limit` | `Integer` |  |
 | `is_archived` | `Integer` |  |
-| `max_comment_char` | `Integer` |  |
+| `max_comment_chars` | `Integer` |  |
 | `max_filesize` | `Integer` |  |
 | `max_webm_duration` | `Integer` |  |
 | `max_webm_filesize` | `Integer` |  |
 | `meta_description` | `String` |  |
-| `page` | `Integer` |  |
+| `pages` | `Integer` |  |
 | `per_page` | `Integer` |  |
-| `spoiler` | `Integer` |  |
+| `spoilers` | `Integer` |  |
 | `title` | `String` |  |
 | `ws_board` | `Integer` |  |
 
@@ -421,7 +422,7 @@ Create an instance: `catalog = client.Catalog`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `Integer` |  |
-| `thread` | `Array` |  |
+| `threads` | `Array` |  |
 
 #### Example: List
 
@@ -445,7 +446,7 @@ Create an instance: `index = client.Index`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `Array` |  |
+| `posts` | `Array` |  |
 
 #### Example: List
 
@@ -484,18 +485,18 @@ Create an instance: `thread = client.Thread`
 | `fsize` | `Integer` |  |
 | `h` | `Integer` |  |
 | `id` | `String` |  |
-| `image` | `Integer` |  |
 | `imagelimit` | `Integer` |  |
+| `images` | `Integer` |  |
 | `last_modified` | `Integer` |  |
 | `m_img` | `Integer` |  |
 | `md5` | `String` |  |
 | `name` | `String` |  |
 | `no` | `Integer` |  |
 | `now` | `String` |  |
-| `omitted_image` | `Integer` |  |
-| `omitted_post` | `Integer` |  |
+| `omitted_images` | `Integer` |  |
+| `omitted_posts` | `Integer` |  |
 | `page` | `Integer` |  |
-| `reply` | `Integer` |  |
+| `replies` | `Integer` |  |
 | `resto` | `Integer` |  |
 | `semantic_url` | `String` |  |
 | `since4pass` | `Integer` |  |
@@ -503,13 +504,13 @@ Create an instance: `thread = client.Thread`
 | `sticky` | `Integer` |  |
 | `sub` | `String` |  |
 | `tag` | `String` |  |
-| `thread` | `Array` |  |
+| `threads` | `Array` |  |
 | `tim` | `Integer` |  |
 | `time` | `Integer` |  |
 | `tn_h` | `Integer` |  |
 | `tn_w` | `Integer` |  |
 | `trip` | `String` |  |
-| `unique_ip` | `Integer` |  |
+| `unique_ips` | `Integer` |  |
 | `w` | `Integer` |  |
 
 #### Example: List
@@ -596,11 +597,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-archive = client.Archive
-archive.list()
+catalog = client.Catalog
+catalog.list()
 
-# archive.data_get now returns the archive data from the last list
-# archive.match_get returns the last match criteria
+# catalog.data_get now returns the catalog data from the last list
+# catalog.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

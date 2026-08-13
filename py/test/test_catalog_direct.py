@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from n4chan_sdk.utility.voxgig_struct import voxgig_struct as vs
 from n4chan_sdk import N4chanSDK
-from core import helpers
+from n4chan_sdk.core import helpers
 from test import runner
 
 
@@ -70,11 +70,11 @@ def _catalog_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "N_CHAN_TEST_CATALOG_ENTID": {},
-        "N_CHAN_TEST_LIVE": "FALSE",
+        "N4CHAN_TEST_CATALOG_ENTID": {},
+        "N4CHAN_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("N_CHAN_TEST_LIVE") == "TRUE"
+    live = env.get("N4CHAN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -156,20 +156,20 @@ board = client.Board
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `board` | `String` | No |  |
-| `board_flag` | `Hash` | No |  |
+| `board_flags` | `Hash` | No |  |
 | `bump_limit` | `Integer` | No |  |
-| `cooldown` | `Hash` | No |  |
-| `custom_spoiler` | `Integer` | No |  |
+| `cooldowns` | `Hash` | No |  |
+| `custom_spoilers` | `Integer` | No |  |
 | `image_limit` | `Integer` | No |  |
 | `is_archived` | `Integer` | No |  |
-| `max_comment_char` | `Integer` | No |  |
+| `max_comment_chars` | `Integer` | No |  |
 | `max_filesize` | `Integer` | No |  |
 | `max_webm_duration` | `Integer` | No |  |
 | `max_webm_filesize` | `Integer` | No |  |
 | `meta_description` | `String` | No |  |
-| `page` | `Integer` | No |  |
+| `pages` | `Integer` | No |  |
 | `per_page` | `Integer` | No |  |
-| `spoiler` | `Integer` | No |  |
+| `spoilers` | `Integer` | No |  |
 | `title` | `String` | No |  |
 | `ws_board` | `Integer` | No |  |
 
@@ -224,7 +224,7 @@ catalog = client.Catalog
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `page` | `Integer` | No |  |
-| `thread` | `Array` | No |  |
+| `threads` | `Array` | No |  |
 
 ### Operations
 
@@ -276,7 +276,7 @@ index = client.Index
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | `Array` | No |  |
+| `posts` | `Array` | No |  |
 
 ### Operations
 
@@ -343,18 +343,18 @@ thread = client.Thread
 | `fsize` | `Integer` | No |  |
 | `h` | `Integer` | No |  |
 | `id` | `String` | No |  |
-| `image` | `Integer` | No |  |
 | `imagelimit` | `Integer` | No |  |
+| `images` | `Integer` | No |  |
 | `last_modified` | `Integer` | No |  |
 | `m_img` | `Integer` | No |  |
 | `md5` | `String` | No |  |
 | `name` | `String` | No |  |
 | `no` | `Integer` | Yes |  |
 | `now` | `String` | Yes |  |
-| `omitted_image` | `Integer` | No |  |
-| `omitted_post` | `Integer` | No |  |
+| `omitted_images` | `Integer` | No |  |
+| `omitted_posts` | `Integer` | No |  |
 | `page` | `Integer` | No |  |
-| `reply` | `Integer` | No |  |
+| `replies` | `Integer` | No |  |
 | `resto` | `Integer` | No |  |
 | `semantic_url` | `String` | No |  |
 | `since4pass` | `Integer` | No |  |
@@ -362,13 +362,13 @@ thread = client.Thread
 | `sticky` | `Integer` | No |  |
 | `sub` | `String` | No |  |
 | `tag` | `String` | No |  |
-| `thread` | `Array` | No |  |
+| `threads` | `Array` | No |  |
 | `tim` | `Integer` | No |  |
 | `time` | `Integer` | Yes |  |
 | `tn_h` | `Integer` | No |  |
 | `tn_w` | `Integer` | No |  |
 | `trip` | `String` | No |  |
-| `unique_ip` | `Integer` | No |  |
+| `unique_ips` | `Integer` | No |  |
 | `w` | `Integer` | No |  |
 
 ### Operations

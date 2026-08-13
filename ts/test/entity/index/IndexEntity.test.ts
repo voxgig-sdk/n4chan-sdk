@@ -38,7 +38,7 @@ describe('IndexEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.N_CHAN_TEST_LIVE
+    const live = 'TRUE' === process.env.N4CHAN_TEST_LIVE
     for (const op of ['list']) {
       if (maybeSkipControl(t, 'entityOp', 'index.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('IndexEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set N_CHAN_TEST_INDEX_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set N4CHAN_TEST_INDEX_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -65,7 +65,7 @@ describe('IndexEntity', async () => {
     index_ref01_match['board'] = setup.idmap['board01']
     index_ref01_match['page'] = setup.idmap['page01']
 
-    const index_ref01_list = await index_ref01_ent.list(index_ref01_match)
+    const index_ref01_list = (await index_ref01_ent.list(index_ref01_match)).map((e: any) => e.data())
 
 
   })
@@ -108,18 +108,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['N_CHAN_TEST_INDEX_ENTID']
+  const idmapEnvVal = process.env['N4CHAN_TEST_INDEX_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'N_CHAN_TEST_INDEX_ENTID': idmap,
-    'N_CHAN_TEST_LIVE': 'FALSE',
-    'N_CHAN_TEST_EXPLAIN': 'FALSE',
+    'N4CHAN_TEST_INDEX_ENTID': idmap,
+    'N4CHAN_TEST_LIVE': 'FALSE',
+    'N4CHAN_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['N_CHAN_TEST_INDEX_ENTID']
+  idmap = env['N4CHAN_TEST_INDEX_ENTID']
 
-  const live = 'TRUE' === env.N_CHAN_TEST_LIVE
+  const live = 'TRUE' === env.N4CHAN_TEST_LIVE
 
   if (live) {
     client = new N4chanSDK(merge([
@@ -136,7 +136,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.N_CHAN_TEST_EXPLAIN,
+    explain: 'TRUE' === env.N4CHAN_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

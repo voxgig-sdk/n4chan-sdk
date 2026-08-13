@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ N4chanUtility::setRegistrar(function (N4chanUtility $u): void {
     $u->prepare_params = [N4chanPrepareParams::class, 'call'];
     $u->prepare_path = [N4chanPreparePath::class, 'call'];
     $u->prepare_query = [N4chanPrepareQuery::class, 'call'];
+    $u->graphql_body = [N4chanGraphql::class, 'body'];
+    $u->graphql_errors = [N4chanGraphql::class, 'errors'];
     $u->result_basic = [N4chanResultBasic::class, 'call'];
     $u->result_body = [N4chanResultBody::class, 'call'];
     $u->result_headers = [N4chanResultHeaders::class, 'call'];

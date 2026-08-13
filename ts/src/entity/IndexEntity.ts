@@ -37,7 +37,7 @@ class IndexEntity extends N4chanEntityBase<Index> {
 
 
 
-  async list(this: any, reqmatch?: IndexListMatch, ctrl?: Control): Promise<Index[]> {
+  async list(this: any, reqmatch?: IndexListMatch, ctrl?: Control): Promise<IndexEntity[]> {
 
     const utility = this._utility
 

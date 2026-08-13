@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local archives, err = client:Archive():list()
+local catalogs, err = client:Catalog():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Archive():list()
+local result, err = client:Catalog():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local archive, err = client:Archive():load()
+    local archive, err = client:Archive():list()
     if err then error(err) end
-    -- archive is the loaded record
+    -- archive is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -245,20 +245,20 @@ API path: `/{board}/archive.json`
 | Field | Description |
 | --- | --- |
 | `board` |  |
-| `board_flag` |  |
+| `board_flags` |  |
 | `bump_limit` |  |
-| `cooldown` |  |
-| `custom_spoiler` |  |
+| `cooldowns` |  |
+| `custom_spoilers` |  |
 | `image_limit` |  |
 | `is_archived` |  |
-| `max_comment_char` |  |
+| `max_comment_chars` |  |
 | `max_filesize` |  |
 | `max_webm_duration` |  |
 | `max_webm_filesize` |  |
 | `meta_description` |  |
-| `page` |  |
+| `pages` |  |
 | `per_page` |  |
-| `spoiler` |  |
+| `spoilers` |  |
 | `title` |  |
 | `ws_board` |  |
 
@@ -271,7 +271,7 @@ API path: `/boards.json`
 | Field | Description |
 | --- | --- |
 | `page` |  |
-| `thread` |  |
+| `threads` |  |
 
 Operations: List.
 
@@ -281,7 +281,7 @@ API path: `/{board}/catalog.json`
 
 | Field | Description |
 | --- | --- |
-| `post` |  |
+| `posts` |  |
 
 Operations: List.
 
@@ -306,18 +306,18 @@ API path: `/{board}/{page}.json`
 | `fsize` |  |
 | `h` |  |
 | `id` |  |
-| `image` |  |
 | `imagelimit` |  |
+| `images` |  |
 | `last_modified` |  |
 | `m_img` |  |
 | `md5` |  |
 | `name` |  |
 | `no` |  |
 | `now` |  |
-| `omitted_image` |  |
-| `omitted_post` |  |
+| `omitted_images` |  |
+| `omitted_posts` |  |
 | `page` |  |
-| `reply` |  |
+| `replies` |  |
 | `resto` |  |
 | `semantic_url` |  |
 | `since4pass` |  |
@@ -325,13 +325,13 @@ API path: `/{board}/{page}.json`
 | `sticky` |  |
 | `sub` |  |
 | `tag` |  |
-| `thread` |  |
+| `threads` |  |
 | `tim` |  |
 | `time` |  |
 | `tn_h` |  |
 | `tn_w` |  |
 | `trip` |  |
-| `unique_ip` |  |
+| `unique_ips` |  |
 | `w` |  |
 
 Operations: List.
@@ -375,20 +375,20 @@ Create an instance: `local board = client:Board(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `board` | `string` |  |
-| `board_flag` | `table` |  |
+| `board_flags` | `table` |  |
 | `bump_limit` | `number` |  |
-| `cooldown` | `table` |  |
-| `custom_spoiler` | `number` |  |
+| `cooldowns` | `table` |  |
+| `custom_spoilers` | `number` |  |
 | `image_limit` | `number` |  |
 | `is_archived` | `number` |  |
-| `max_comment_char` | `number` |  |
+| `max_comment_chars` | `number` |  |
 | `max_filesize` | `number` |  |
 | `max_webm_duration` | `number` |  |
 | `max_webm_filesize` | `number` |  |
 | `meta_description` | `string` |  |
-| `page` | `number` |  |
+| `pages` | `number` |  |
 | `per_page` | `number` |  |
-| `spoiler` | `number` |  |
+| `spoilers` | `number` |  |
 | `title` | `string` |  |
 | `ws_board` | `number` |  |
 
@@ -414,7 +414,7 @@ Create an instance: `local catalog = client:Catalog(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `page` | `number` |  |
-| `thread` | `table` |  |
+| `threads` | `table` |  |
 
 #### Example: List
 
@@ -437,7 +437,7 @@ Create an instance: `local index = client:Index(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `post` | `table` |  |
+| `posts` | `table` |  |
 
 #### Example: List
 
@@ -475,18 +475,18 @@ Create an instance: `local thread = client:Thread(nil)`
 | `fsize` | `number` |  |
 | `h` | `number` |  |
 | `id` | `string` |  |
-| `image` | `number` |  |
 | `imagelimit` | `number` |  |
+| `images` | `number` |  |
 | `last_modified` | `number` |  |
 | `m_img` | `number` |  |
 | `md5` | `string` |  |
 | `name` | `string` |  |
 | `no` | `number` |  |
 | `now` | `string` |  |
-| `omitted_image` | `number` |  |
-| `omitted_post` | `number` |  |
+| `omitted_images` | `number` |  |
+| `omitted_posts` | `number` |  |
 | `page` | `number` |  |
-| `reply` | `number` |  |
+| `replies` | `number` |  |
 | `resto` | `number` |  |
 | `semantic_url` | `string` |  |
 | `since4pass` | `number` |  |
@@ -494,13 +494,13 @@ Create an instance: `local thread = client:Thread(nil)`
 | `sticky` | `number` |  |
 | `sub` | `string` |  |
 | `tag` | `string` |  |
-| `thread` | `table` |  |
+| `threads` | `table` |  |
 | `tim` | `number` |  |
 | `time` | `number` |  |
 | `tn_h` | `number` |  |
 | `tn_w` | `number` |  |
 | `trip` | `string` |  |
-| `unique_ip` | `number` |  |
+| `unique_ips` | `number` |  |
 | `w` | `number` |  |
 
 #### Example: List
@@ -586,11 +586,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local archive = client:Archive()
-archive:list()
+local catalog = client:Catalog()
+catalog:list()
 
--- archive:data_get() now returns the archive data from the last list
--- archive:match_get() returns the last match criteria
+-- catalog:data_get() now returns the catalog data from the last list
+-- catalog:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -106,7 +106,7 @@ archive = client.Archive()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Archive().list()
+results = client.Archive().list({"board": "example"})
 for archive in results:
     print(archive)
 ```
@@ -151,20 +151,20 @@ board = client.Board()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `board` | `str` | No |  |
-| `board_flag` | `dict` | No |  |
+| `board_flags` | `dict` | No |  |
 | `bump_limit` | `int` | No |  |
-| `cooldown` | `dict` | No |  |
-| `custom_spoiler` | `int` | No |  |
+| `cooldowns` | `dict` | No |  |
+| `custom_spoilers` | `int` | No |  |
 | `image_limit` | `int` | No |  |
 | `is_archived` | `int` | No |  |
-| `max_comment_char` | `int` | No |  |
+| `max_comment_chars` | `int` | No |  |
 | `max_filesize` | `int` | No |  |
 | `max_webm_duration` | `int` | No |  |
 | `max_webm_filesize` | `int` | No |  |
 | `meta_description` | `str` | No |  |
-| `page` | `int` | No |  |
+| `pages` | `int` | No |  |
 | `per_page` | `int` | No |  |
-| `spoiler` | `int` | No |  |
+| `spoilers` | `int` | No |  |
 | `title` | `str` | No |  |
 | `ws_board` | `int` | No |  |
 
@@ -220,7 +220,7 @@ catalog = client.Catalog()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `page` | `int` | No |  |
-| `thread` | `list` | No |  |
+| `threads` | `list` | No |  |
 
 ### Operations
 
@@ -229,7 +229,7 @@ catalog = client.Catalog()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Catalog().list()
+results = client.Catalog().list({"board": "example"})
 for catalog in results:
     print(catalog)
 ```
@@ -273,7 +273,7 @@ index = client.Index()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `post` | `list` | No |  |
+| `posts` | `list` | No |  |
 
 ### Operations
 
@@ -282,7 +282,7 @@ index = client.Index()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Index().list()
+results = client.Index().list({"board": "example", "page": 1})
 for index in results:
     print(index)
 ```
@@ -341,18 +341,18 @@ thread = client.Thread()
 | `fsize` | `int` | No |  |
 | `h` | `int` | No |  |
 | `id` | `str` | No |  |
-| `image` | `int` | No |  |
 | `imagelimit` | `int` | No |  |
+| `images` | `int` | No |  |
 | `last_modified` | `int` | No |  |
 | `m_img` | `int` | No |  |
 | `md5` | `str` | No |  |
 | `name` | `str` | No |  |
 | `no` | `int` | Yes |  |
 | `now` | `str` | Yes |  |
-| `omitted_image` | `int` | No |  |
-| `omitted_post` | `int` | No |  |
+| `omitted_images` | `int` | No |  |
+| `omitted_posts` | `int` | No |  |
 | `page` | `int` | No |  |
-| `reply` | `int` | No |  |
+| `replies` | `int` | No |  |
 | `resto` | `int` | No |  |
 | `semantic_url` | `str` | No |  |
 | `since4pass` | `int` | No |  |
@@ -360,13 +360,13 @@ thread = client.Thread()
 | `sticky` | `int` | No |  |
 | `sub` | `str` | No |  |
 | `tag` | `str` | No |  |
-| `thread` | `list` | No |  |
+| `threads` | `list` | No |  |
 | `tim` | `int` | No |  |
 | `time` | `int` | Yes |  |
 | `tn_h` | `int` | No |  |
 | `tn_w` | `int` | No |  |
 | `trip` | `str` | No |  |
-| `unique_ip` | `int` | No |  |
+| `unique_ips` | `int` | No |  |
 | `w` | `int` | No |  |
 
 ### Operations
@@ -376,7 +376,7 @@ thread = client.Thread()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Thread().list()
+results = client.Thread().list({"board": "example"})
 for thread in results:
     print(thread)
 ```

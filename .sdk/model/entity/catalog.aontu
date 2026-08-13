@@ -11,7 +11,7 @@ main: kit: entity: catalog: {
       type: "`$INTEGER`"
     }
     {
-      name: "thread"
+      name: "threads"
       req: false
       type: "`$ARRAY`"
     }

@@ -23,6 +23,7 @@ build = {
   modules = {
     ["n4chan_sdk"] = "n4chan_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

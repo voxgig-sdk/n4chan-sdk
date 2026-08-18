@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from n4chan_sdk.config import make_config
+from n4chan_sdk.config import shared_config
 from n4chan_sdk.features import _make_feature
 from n4chan_sdk.core.control import N4chanControl
 from n4chan_sdk.core.error import N4chanError
@@ -24,7 +24,7 @@ from n4chan_sdk.core.spec import N4chanSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

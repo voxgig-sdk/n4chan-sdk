@@ -40,7 +40,7 @@ class ArchiveEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = N4chanConfig::make_config();
+        $cfg = N4chanConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = N4chanSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

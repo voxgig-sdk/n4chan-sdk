@@ -28,7 +28,7 @@ class N4chanSDK
     utility = N4chanUtility.new
     @_utility = utility
 
-    config = N4chanConfig.make_config
+    config = N4chanConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

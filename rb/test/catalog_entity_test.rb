@@ -33,7 +33,7 @@ class CatalogEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = N4chanConfig.make_config
+    cfg = N4chanConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = N4chanSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

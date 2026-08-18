@@ -15,7 +15,7 @@ require_relative "../N4chan_sdk"
 module N4chanFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = N4chanConfig.make_config["feature"]
+    f = N4chanConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -40,7 +40,7 @@ class N4chanSDK
         $utility = new N4chanUtility();
         $this->_utility = $utility;
 
-        $config = N4chanConfig::make_config();
+        $config = N4chanConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

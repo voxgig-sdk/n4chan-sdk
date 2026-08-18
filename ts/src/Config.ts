@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://a.4cdn.org',
+    base: "https://a.4cdn.org",
 
     headers: {
       "content-type": "application/json"
@@ -73,27 +73,22 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -113,11 +108,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -127,123 +120,72 @@ class Config {
     "board": {
       "fields": [
         {
-          "active": true,
           "name": "board",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "board_flags",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "bump_limit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "cooldowns",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "custom_spoilers",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "image_limit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 5
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "is_archived",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "max_comment_chars",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "max_filesize",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "max_webm_duration",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "max_webm_filesize",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 10
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "meta_description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "pages",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 12
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "per_page",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 13
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "spoilers",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 14
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "title",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 15
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "ws_board",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 16
+          "type": "`$INTEGER`"
         }
       ],
       "name": "board",
@@ -253,15 +195,12 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -280,11 +219,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.boards`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -294,18 +231,12 @@ class Config {
     "catalog": {
       "fields": [
         {
-          "active": true,
           "name": "page",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "threads",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "catalog",
@@ -315,27 +246,22 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -355,11 +281,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -369,11 +293,8 @@ class Config {
     "index": {
       "fields": [
         {
-          "active": true,
           "name": "posts",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         }
       ],
       "name": "index",
@@ -383,36 +304,29 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "page",
                     "orig": "page",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "index$": 1
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -433,11 +347,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.threads`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -447,298 +359,175 @@ class Config {
     "thread": {
       "fields": [
         {
-          "active": true,
           "name": "archived",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "archived_on",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "bumplimit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "capcode",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "closed",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "com",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "country",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "country_name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "custom_spoiler",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 8
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "ext",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "filedeleted",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 10
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "filename",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 11
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "fsize",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 12
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "h",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 13
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 14
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "imagelimit",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 15
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "images",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 16
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "last_modified",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 17
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "m_img",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 18
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "md5",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 19
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "name",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 20
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "no",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 21
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "now",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 22
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "omitted_images",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 23
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "omitted_posts",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 24
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "page",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 25
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "replies",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 26
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "resto",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 27
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "semantic_url",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 28
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "since4pass",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 29
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "spoiler",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 30
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "sticky",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 31
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "sub",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 32
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "tag",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 33
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "threads",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 34
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "tim",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 35
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "time",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 36
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "tn_h",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 37
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "tn_w",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 38
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "trip",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 39
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "unique_ips",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 40
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "w",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 41
+          "type": "`$INTEGER`"
         }
       ],
       "name": "thread",
@@ -748,21 +537,17 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "board",
                     "orig": "board",
@@ -770,7 +555,6 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "thread_id",
                     "orig": "thread_id",
@@ -798,31 +582,25 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.posts`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "header": [
                   {
-                    "active": true,
                     "kind": "header",
                     "name": "if_modified_since",
                     "orig": "if_modified_since",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ],
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "board",
                     "orig": "board",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -842,11 +620,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

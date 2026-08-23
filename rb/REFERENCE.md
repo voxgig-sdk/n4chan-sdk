@@ -155,23 +155,23 @@ board = client.Board
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `board` | `String` | No |  |
-| `board_flags` | `Hash` | No |  |
-| `bump_limit` | `Integer` | No |  |
-| `cooldowns` | `Hash` | No |  |
-| `custom_spoilers` | `Integer` | No |  |
-| `image_limit` | `Integer` | No |  |
-| `is_archived` | `Integer` | No |  |
-| `max_comment_chars` | `Integer` | No |  |
-| `max_filesize` | `Integer` | No |  |
-| `max_webm_duration` | `Integer` | No |  |
-| `max_webm_filesize` | `Integer` | No |  |
-| `meta_description` | `String` | No |  |
-| `pages` | `Integer` | No |  |
-| `per_page` | `Integer` | No |  |
-| `spoilers` | `Integer` | No |  |
-| `title` | `String` | No |  |
-| `ws_board` | `Integer` | No |  |
+| `board` | `String` | No | Board identifier |
+| `board_flags` | `Hash` | No | Board flags configuration |
+| `bump_limit` | `Integer` | No | Bump limit for threads |
+| `cooldowns` | `Hash` | No | Cooldown periods for posting |
+| `custom_spoilers` | `Integer` | No | Number of custom spoiler images |
+| `image_limit` | `Integer` | No | Image limit for threads |
+| `is_archived` | `Integer` | No | Archive enabled flag |
+| `max_comment_chars` | `Integer` | No | Maximum comment length |
+| `max_filesize` | `Integer` | No | Maximum filesize in bytes |
+| `max_webm_duration` | `Integer` | No | Maximum WebM duration in seconds |
+| `max_webm_filesize` | `Integer` | No | Maximum WebM filesize in bytes |
+| `meta_description` | `String` | No | Board meta description |
+| `pages` | `Integer` | No | Number of pages |
+| `per_page` | `Integer` | No | Threads per page |
+| `spoilers` | `Integer` | No | Custom spoilers enabled flag |
+| `title` | `String` | No | Board title |
+| `ws_board` | `Integer` | No | Worksafe board flag (1 for worksafe, 0 for NSFW) |
 
 ### Operations
 
@@ -223,7 +223,7 @@ catalog = client.Catalog
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | `Integer` | No |  |
+| `page` | `Integer` | No | Page number |
 | `threads` | `Array` | No |  |
 
 ### Operations
@@ -328,48 +328,48 @@ thread = client.Thread
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | `Integer` | No |  |
-| `archived_on` | `Integer` | No |  |
-| `bumplimit` | `Integer` | No |  |
-| `capcode` | `String` | No |  |
-| `closed` | `Integer` | No |  |
-| `com` | `String` | No |  |
-| `country` | `String` | No |  |
-| `country_name` | `String` | No |  |
-| `custom_spoiler` | `Integer` | No |  |
-| `ext` | `String` | No |  |
-| `filedeleted` | `Integer` | No |  |
-| `filename` | `String` | No |  |
-| `fsize` | `Integer` | No |  |
-| `h` | `Integer` | No |  |
-| `id` | `String` | No |  |
-| `imagelimit` | `Integer` | No |  |
-| `images` | `Integer` | No |  |
-| `last_modified` | `Integer` | No |  |
-| `m_img` | `Integer` | No |  |
-| `md5` | `String` | No |  |
-| `name` | `String` | No |  |
-| `no` | `Integer` | Yes |  |
-| `now` | `String` | Yes |  |
-| `omitted_images` | `Integer` | No |  |
-| `omitted_posts` | `Integer` | No |  |
-| `page` | `Integer` | No |  |
-| `replies` | `Integer` | No |  |
-| `resto` | `Integer` | No |  |
-| `semantic_url` | `String` | No |  |
-| `since4pass` | `Integer` | No |  |
-| `spoiler` | `Integer` | No |  |
-| `sticky` | `Integer` | No |  |
-| `sub` | `String` | No |  |
-| `tag` | `String` | No |  |
+| `archived` | `Integer` | No | Archived flag |
+| `archived_on` | `Integer` | No | Unix timestamp when archived |
+| `bumplimit` | `Integer` | No | Bump limit reached flag |
+| `capcode` | `String` | No | Capcode (mod, admin, etc.) |
+| `closed` | `Integer` | No | Closed flag |
+| `com` | `String` | No | Comment (HTML escaped) |
+| `country` | `String` | No | Country code |
+| `country_name` | `String` | No | Country name |
+| `custom_spoiler` | `Integer` | No | Custom spoiler ID |
+| `ext` | `String` | No | File extension |
+| `filedeleted` | `Integer` | No | File deleted flag |
+| `filename` | `String` | No | Original filename |
+| `fsize` | `Integer` | No | File size in bytes |
+| `h` | `Integer` | No | Image height |
+| `id` | `String` | No | Poster ID |
+| `imagelimit` | `Integer` | No | Image limit reached flag |
+| `images` | `Integer` | No | Number of images |
+| `last_modified` | `Integer` | No | Unix timestamp of last modification |
+| `m_img` | `Integer` | No | Mobile optimized image flag |
+| `md5` | `String` | No | MD5 hash in base64 |
+| `name` | `String` | No | Poster name |
+| `no` | `Integer` | Yes | Post number |
+| `now` | `String` | Yes | Formatted date and time |
+| `omitted_images` | `Integer` | No | Number of omitted images |
+| `omitted_posts` | `Integer` | No | Number of omitted posts |
+| `page` | `Integer` | No | Page number |
+| `replies` | `Integer` | No | Number of replies |
+| `resto` | `Integer` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `String` | No | SEO-friendly URL slug |
+| `since4pass` | `Integer` | No | Year 4chan pass purchased |
+| `spoiler` | `Integer` | No | Spoiler flag |
+| `sticky` | `Integer` | No | Sticky flag |
+| `sub` | `String` | No | Subject |
+| `tag` | `String` | No | Tag |
 | `threads` | `Array` | No |  |
-| `tim` | `Integer` | No |  |
-| `time` | `Integer` | Yes |  |
-| `tn_h` | `Integer` | No |  |
-| `tn_w` | `Integer` | No |  |
-| `trip` | `String` | No |  |
-| `unique_ips` | `Integer` | No |  |
-| `w` | `Integer` | No |  |
+| `tim` | `Integer` | No | Unix timestamp for image |
+| `time` | `Integer` | Yes | Unix timestamp |
+| `tn_h` | `Integer` | No | Thumbnail height |
+| `tn_w` | `Integer` | No | Thumbnail width |
+| `trip` | `String` | No | Tripcode |
+| `unique_ips` | `Integer` | No | Number of unique poster IPs |
+| `w` | `Integer` | No | Image width |
 
 ### Operations
 

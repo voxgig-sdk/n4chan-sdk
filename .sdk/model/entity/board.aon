@@ -8,86 +8,103 @@ main: kit: entity: board: {
     {
       name: "board"
       req: false
+      short: "Board identifier"
       type: "`$STRING`"
     }
     {
       name: "board_flags"
       req: false
+      short: "Board flags configuration"
       type: "`$OBJECT`"
     }
     {
       name: "bump_limit"
       req: false
+      short: "Bump limit for threads"
       type: "`$INTEGER`"
     }
     {
       name: "cooldowns"
       req: false
+      short: "Cooldown periods for posting"
       type: "`$OBJECT`"
     }
     {
       name: "custom_spoilers"
       req: false
+      short: "Number of custom spoiler images"
       type: "`$INTEGER`"
     }
     {
       name: "image_limit"
       req: false
+      short: "Image limit for threads"
       type: "`$INTEGER`"
     }
     {
       name: "is_archived"
       req: false
+      short: "Archive enabled flag"
       type: "`$INTEGER`"
     }
     {
       name: "max_comment_chars"
       req: false
+      short: "Maximum comment length"
       type: "`$INTEGER`"
     }
     {
       name: "max_filesize"
       req: false
+      short: "Maximum filesize in bytes"
       type: "`$INTEGER`"
     }
     {
       name: "max_webm_duration"
       req: false
+      short: "Maximum WebM duration in seconds"
       type: "`$INTEGER`"
     }
     {
       name: "max_webm_filesize"
       req: false
+      short: "Maximum WebM filesize in bytes"
       type: "`$INTEGER`"
     }
     {
       name: "meta_description"
       req: false
+      short: "Board meta description"
       type: "`$STRING`"
     }
     {
       name: "pages"
       req: false
+      short: "Number of pages"
       type: "`$INTEGER`"
     }
     {
       name: "per_page"
       req: false
+      short: "Threads per page"
       type: "`$INTEGER`"
     }
     {
       name: "spoilers"
       req: false
+      short: "Custom spoilers enabled flag"
       type: "`$INTEGER`"
     }
     {
       name: "title"
       req: false
+      short: "Board title"
       type: "`$STRING`"
     }
     {
       name: "ws_board"
       req: false
+      short: "Worksafe board flag (1 for worksafe, 0 for NSFW)"
       type: "`$INTEGER`"
     }
   ]

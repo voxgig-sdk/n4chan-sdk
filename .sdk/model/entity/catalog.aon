@@ -8,6 +8,7 @@ main: kit: entity: catalog: {
     {
       name: "page"
       req: false
+      short: "Page number"
       type: "`$INTEGER`"
     }
     {

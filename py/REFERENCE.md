@@ -150,23 +150,23 @@ board = client.Board()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `board` | `str` | No |  |
-| `board_flags` | `dict` | No |  |
-| `bump_limit` | `int` | No |  |
-| `cooldowns` | `dict` | No |  |
-| `custom_spoilers` | `int` | No |  |
-| `image_limit` | `int` | No |  |
-| `is_archived` | `int` | No |  |
-| `max_comment_chars` | `int` | No |  |
-| `max_filesize` | `int` | No |  |
-| `max_webm_duration` | `int` | No |  |
-| `max_webm_filesize` | `int` | No |  |
-| `meta_description` | `str` | No |  |
-| `pages` | `int` | No |  |
-| `per_page` | `int` | No |  |
-| `spoilers` | `int` | No |  |
-| `title` | `str` | No |  |
-| `ws_board` | `int` | No |  |
+| `board` | `str` | No | Board identifier |
+| `board_flags` | `dict` | No | Board flags configuration |
+| `bump_limit` | `int` | No | Bump limit for threads |
+| `cooldowns` | `dict` | No | Cooldown periods for posting |
+| `custom_spoilers` | `int` | No | Number of custom spoiler images |
+| `image_limit` | `int` | No | Image limit for threads |
+| `is_archived` | `int` | No | Archive enabled flag |
+| `max_comment_chars` | `int` | No | Maximum comment length |
+| `max_filesize` | `int` | No | Maximum filesize in bytes |
+| `max_webm_duration` | `int` | No | Maximum WebM duration in seconds |
+| `max_webm_filesize` | `int` | No | Maximum WebM filesize in bytes |
+| `meta_description` | `str` | No | Board meta description |
+| `pages` | `int` | No | Number of pages |
+| `per_page` | `int` | No | Threads per page |
+| `spoilers` | `int` | No | Custom spoilers enabled flag |
+| `title` | `str` | No | Board title |
+| `ws_board` | `int` | No | Worksafe board flag (1 for worksafe, 0 for NSFW) |
 
 ### Operations
 
@@ -219,7 +219,7 @@ catalog = client.Catalog()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `page` | `int` | No |  |
+| `page` | `int` | No | Page number |
 | `threads` | `list` | No |  |
 
 ### Operations
@@ -326,48 +326,48 @@ thread = client.Thread()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | `int` | No |  |
-| `archived_on` | `int` | No |  |
-| `bumplimit` | `int` | No |  |
-| `capcode` | `str` | No |  |
-| `closed` | `int` | No |  |
-| `com` | `str` | No |  |
-| `country` | `str` | No |  |
-| `country_name` | `str` | No |  |
-| `custom_spoiler` | `int` | No |  |
-| `ext` | `str` | No |  |
-| `filedeleted` | `int` | No |  |
-| `filename` | `str` | No |  |
-| `fsize` | `int` | No |  |
-| `h` | `int` | No |  |
-| `id` | `str` | No |  |
-| `imagelimit` | `int` | No |  |
-| `images` | `int` | No |  |
-| `last_modified` | `int` | No |  |
-| `m_img` | `int` | No |  |
-| `md5` | `str` | No |  |
-| `name` | `str` | No |  |
-| `no` | `int` | Yes |  |
-| `now` | `str` | Yes |  |
-| `omitted_images` | `int` | No |  |
-| `omitted_posts` | `int` | No |  |
-| `page` | `int` | No |  |
-| `replies` | `int` | No |  |
-| `resto` | `int` | No |  |
-| `semantic_url` | `str` | No |  |
-| `since4pass` | `int` | No |  |
-| `spoiler` | `int` | No |  |
-| `sticky` | `int` | No |  |
-| `sub` | `str` | No |  |
-| `tag` | `str` | No |  |
+| `archived` | `int` | No | Archived flag |
+| `archived_on` | `int` | No | Unix timestamp when archived |
+| `bumplimit` | `int` | No | Bump limit reached flag |
+| `capcode` | `str` | No | Capcode (mod, admin, etc.) |
+| `closed` | `int` | No | Closed flag |
+| `com` | `str` | No | Comment (HTML escaped) |
+| `country` | `str` | No | Country code |
+| `country_name` | `str` | No | Country name |
+| `custom_spoiler` | `int` | No | Custom spoiler ID |
+| `ext` | `str` | No | File extension |
+| `filedeleted` | `int` | No | File deleted flag |
+| `filename` | `str` | No | Original filename |
+| `fsize` | `int` | No | File size in bytes |
+| `h` | `int` | No | Image height |
+| `id` | `str` | No | Poster ID |
+| `imagelimit` | `int` | No | Image limit reached flag |
+| `images` | `int` | No | Number of images |
+| `last_modified` | `int` | No | Unix timestamp of last modification |
+| `m_img` | `int` | No | Mobile optimized image flag |
+| `md5` | `str` | No | MD5 hash in base64 |
+| `name` | `str` | No | Poster name |
+| `no` | `int` | Yes | Post number |
+| `now` | `str` | Yes | Formatted date and time |
+| `omitted_images` | `int` | No | Number of omitted images |
+| `omitted_posts` | `int` | No | Number of omitted posts |
+| `page` | `int` | No | Page number |
+| `replies` | `int` | No | Number of replies |
+| `resto` | `int` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `str` | No | SEO-friendly URL slug |
+| `since4pass` | `int` | No | Year 4chan pass purchased |
+| `spoiler` | `int` | No | Spoiler flag |
+| `sticky` | `int` | No | Sticky flag |
+| `sub` | `str` | No | Subject |
+| `tag` | `str` | No | Tag |
 | `threads` | `list` | No |  |
-| `tim` | `int` | No |  |
-| `time` | `int` | Yes |  |
-| `tn_h` | `int` | No |  |
-| `tn_w` | `int` | No |  |
-| `trip` | `str` | No |  |
-| `unique_ips` | `int` | No |  |
-| `w` | `int` | No |  |
+| `tim` | `int` | No | Unix timestamp for image |
+| `time` | `int` | Yes | Unix timestamp |
+| `tn_h` | `int` | No | Thumbnail height |
+| `tn_w` | `int` | No | Thumbnail width |
+| `trip` | `str` | No | Tripcode |
+| `unique_ips` | `int` | No | Number of unique poster IPs |
+| `w` | `int` | No | Image width |
 
 ### Operations
 

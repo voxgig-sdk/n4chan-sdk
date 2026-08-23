@@ -260,23 +260,23 @@ API path: `/{board}/archive.json`
 
 | Field | Description |
 | --- | --- |
-| `board` |  |
-| `board_flags` |  |
-| `bump_limit` |  |
-| `cooldowns` |  |
-| `custom_spoilers` |  |
-| `image_limit` |  |
-| `is_archived` |  |
-| `max_comment_chars` |  |
-| `max_filesize` |  |
-| `max_webm_duration` |  |
-| `max_webm_filesize` |  |
-| `meta_description` |  |
-| `pages` |  |
-| `per_page` |  |
-| `spoilers` |  |
-| `title` |  |
-| `ws_board` |  |
+| `board` | Board identifier |
+| `board_flags` | Board flags configuration |
+| `bump_limit` | Bump limit for threads |
+| `cooldowns` | Cooldown periods for posting |
+| `custom_spoilers` | Number of custom spoiler images |
+| `image_limit` | Image limit for threads |
+| `is_archived` | Archive enabled flag |
+| `max_comment_chars` | Maximum comment length |
+| `max_filesize` | Maximum filesize in bytes |
+| `max_webm_duration` | Maximum WebM duration in seconds |
+| `max_webm_filesize` | Maximum WebM filesize in bytes |
+| `meta_description` | Board meta description |
+| `pages` | Number of pages |
+| `per_page` | Threads per page |
+| `spoilers` | Custom spoilers enabled flag |
+| `title` | Board title |
+| `ws_board` | Worksafe board flag (1 for worksafe, 0 for NSFW) |
 
 Operations: List.
 
@@ -286,7 +286,7 @@ API path: `/boards.json`
 
 | Field | Description |
 | --- | --- |
-| `page` |  |
+| `page` | Page number |
 | `threads` |  |
 
 Operations: List.
@@ -307,48 +307,48 @@ API path: `/{board}/{page}.json`
 
 | Field | Description |
 | --- | --- |
-| `archived` |  |
-| `archived_on` |  |
-| `bumplimit` |  |
-| `capcode` |  |
-| `closed` |  |
-| `com` |  |
-| `country` |  |
-| `country_name` |  |
-| `custom_spoiler` |  |
-| `ext` |  |
-| `filedeleted` |  |
-| `filename` |  |
-| `fsize` |  |
-| `h` |  |
-| `id` |  |
-| `imagelimit` |  |
-| `images` |  |
-| `last_modified` |  |
-| `m_img` |  |
-| `md5` |  |
-| `name` |  |
-| `no` |  |
-| `now` |  |
-| `omitted_images` |  |
-| `omitted_posts` |  |
-| `page` |  |
-| `replies` |  |
-| `resto` |  |
-| `semantic_url` |  |
-| `since4pass` |  |
-| `spoiler` |  |
-| `sticky` |  |
-| `sub` |  |
-| `tag` |  |
+| `archived` | Archived flag |
+| `archived_on` | Unix timestamp when archived |
+| `bumplimit` | Bump limit reached flag |
+| `capcode` | Capcode (mod, admin, etc.) |
+| `closed` | Closed flag |
+| `com` | Comment (HTML escaped) |
+| `country` | Country code |
+| `country_name` | Country name |
+| `custom_spoiler` | Custom spoiler ID |
+| `ext` | File extension |
+| `filedeleted` | File deleted flag |
+| `filename` | Original filename |
+| `fsize` | File size in bytes |
+| `h` | Image height |
+| `id` | Poster ID |
+| `imagelimit` | Image limit reached flag |
+| `images` | Number of images |
+| `last_modified` | Unix timestamp of last modification |
+| `m_img` | Mobile optimized image flag |
+| `md5` | MD5 hash in base64 |
+| `name` | Poster name |
+| `no` | Post number |
+| `now` | Formatted date and time |
+| `omitted_images` | Number of omitted images |
+| `omitted_posts` | Number of omitted posts |
+| `page` | Page number |
+| `replies` | Number of replies |
+| `resto` | Reply to thread ID (0 for OP) |
+| `semantic_url` | SEO-friendly URL slug |
+| `since4pass` | Year 4chan pass purchased |
+| `spoiler` | Spoiler flag |
+| `sticky` | Sticky flag |
+| `sub` | Subject |
+| `tag` | Tag |
 | `threads` |  |
-| `tim` |  |
-| `time` |  |
-| `tn_h` |  |
-| `tn_w` |  |
-| `trip` |  |
-| `unique_ips` |  |
-| `w` |  |
+| `tim` | Unix timestamp for image |
+| `time` | Unix timestamp |
+| `tn_h` | Thumbnail height |
+| `tn_w` | Thumbnail width |
+| `trip` | Tripcode |
+| `unique_ips` | Number of unique poster IPs |
+| `w` | Image width |
 
 Operations: List.
 
@@ -391,23 +391,23 @@ Create an instance: `$board = $client->Board();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `board` | `string` |  |
-| `board_flags` | `array` |  |
-| `bump_limit` | `int` |  |
-| `cooldowns` | `array` |  |
-| `custom_spoilers` | `int` |  |
-| `image_limit` | `int` |  |
-| `is_archived` | `int` |  |
-| `max_comment_chars` | `int` |  |
-| `max_filesize` | `int` |  |
-| `max_webm_duration` | `int` |  |
-| `max_webm_filesize` | `int` |  |
-| `meta_description` | `string` |  |
-| `pages` | `int` |  |
-| `per_page` | `int` |  |
-| `spoilers` | `int` |  |
-| `title` | `string` |  |
-| `ws_board` | `int` |  |
+| `board` | `string` | Board identifier |
+| `board_flags` | `array` | Board flags configuration |
+| `bump_limit` | `int` | Bump limit for threads |
+| `cooldowns` | `array` | Cooldown periods for posting |
+| `custom_spoilers` | `int` | Number of custom spoiler images |
+| `image_limit` | `int` | Image limit for threads |
+| `is_archived` | `int` | Archive enabled flag |
+| `max_comment_chars` | `int` | Maximum comment length |
+| `max_filesize` | `int` | Maximum filesize in bytes |
+| `max_webm_duration` | `int` | Maximum WebM duration in seconds |
+| `max_webm_filesize` | `int` | Maximum WebM filesize in bytes |
+| `meta_description` | `string` | Board meta description |
+| `pages` | `int` | Number of pages |
+| `per_page` | `int` | Threads per page |
+| `spoilers` | `int` | Custom spoilers enabled flag |
+| `title` | `string` | Board title |
+| `ws_board` | `int` | Worksafe board flag (1 for worksafe, 0 for NSFW) |
 
 #### Example: List
 
@@ -431,7 +431,7 @@ Create an instance: `$catalog = $client->Catalog();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `page` | `int` |  |
+| `page` | `int` | Page number |
 | `threads` | `array` |  |
 
 #### Example: List
@@ -480,48 +480,48 @@ Create an instance: `$thread = $client->Thread();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | `int` |  |
-| `archived_on` | `int` |  |
-| `bumplimit` | `int` |  |
-| `capcode` | `string` |  |
-| `closed` | `int` |  |
-| `com` | `string` |  |
-| `country` | `string` |  |
-| `country_name` | `string` |  |
-| `custom_spoiler` | `int` |  |
-| `ext` | `string` |  |
-| `filedeleted` | `int` |  |
-| `filename` | `string` |  |
-| `fsize` | `int` |  |
-| `h` | `int` |  |
-| `id` | `string` |  |
-| `imagelimit` | `int` |  |
-| `images` | `int` |  |
-| `last_modified` | `int` |  |
-| `m_img` | `int` |  |
-| `md5` | `string` |  |
-| `name` | `string` |  |
-| `no` | `int` |  |
-| `now` | `string` |  |
-| `omitted_images` | `int` |  |
-| `omitted_posts` | `int` |  |
-| `page` | `int` |  |
-| `replies` | `int` |  |
-| `resto` | `int` |  |
-| `semantic_url` | `string` |  |
-| `since4pass` | `int` |  |
-| `spoiler` | `int` |  |
-| `sticky` | `int` |  |
-| `sub` | `string` |  |
-| `tag` | `string` |  |
+| `archived` | `int` | Archived flag |
+| `archived_on` | `int` | Unix timestamp when archived |
+| `bumplimit` | `int` | Bump limit reached flag |
+| `capcode` | `string` | Capcode (mod, admin, etc.) |
+| `closed` | `int` | Closed flag |
+| `com` | `string` | Comment (HTML escaped) |
+| `country` | `string` | Country code |
+| `country_name` | `string` | Country name |
+| `custom_spoiler` | `int` | Custom spoiler ID |
+| `ext` | `string` | File extension |
+| `filedeleted` | `int` | File deleted flag |
+| `filename` | `string` | Original filename |
+| `fsize` | `int` | File size in bytes |
+| `h` | `int` | Image height |
+| `id` | `string` | Poster ID |
+| `imagelimit` | `int` | Image limit reached flag |
+| `images` | `int` | Number of images |
+| `last_modified` | `int` | Unix timestamp of last modification |
+| `m_img` | `int` | Mobile optimized image flag |
+| `md5` | `string` | MD5 hash in base64 |
+| `name` | `string` | Poster name |
+| `no` | `int` | Post number |
+| `now` | `string` | Formatted date and time |
+| `omitted_images` | `int` | Number of omitted images |
+| `omitted_posts` | `int` | Number of omitted posts |
+| `page` | `int` | Page number |
+| `replies` | `int` | Number of replies |
+| `resto` | `int` | Reply to thread ID (0 for OP) |
+| `semantic_url` | `string` | SEO-friendly URL slug |
+| `since4pass` | `int` | Year 4chan pass purchased |
+| `spoiler` | `int` | Spoiler flag |
+| `sticky` | `int` | Sticky flag |
+| `sub` | `string` | Subject |
+| `tag` | `string` | Tag |
 | `threads` | `array` |  |
-| `tim` | `int` |  |
-| `time` | `int` |  |
-| `tn_h` | `int` |  |
-| `tn_w` | `int` |  |
-| `trip` | `string` |  |
-| `unique_ips` | `int` |  |
-| `w` | `int` |  |
+| `tim` | `int` | Unix timestamp for image |
+| `time` | `int` | Unix timestamp |
+| `tn_h` | `int` | Thumbnail height |
+| `tn_w` | `int` | Thumbnail width |
+| `trip` | `string` | Tripcode |
+| `unique_ips` | `int` | Number of unique poster IPs |
+| `w` | `int` | Image width |
 
 #### Example: List
 

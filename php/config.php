@@ -33,6 +33,9 @@ class N4chanConfig
         return [
             "main" => [
                 "name" => "N4chan",
+                "slug" => "n4chan",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -112,70 +115,87 @@ class N4chanConfig
           'fields' => [
             [
               'name' => 'board',
+              'short' => 'Board identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'board_flags',
+              'short' => 'Board flags configuration',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'bump_limit',
+              'short' => 'Bump limit for threads',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'cooldowns',
+              'short' => 'Cooldown periods for posting',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'custom_spoilers',
+              'short' => 'Number of custom spoiler images',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'image_limit',
+              'short' => 'Image limit for threads',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'is_archived',
+              'short' => 'Archive enabled flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'max_comment_chars',
+              'short' => 'Maximum comment length',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'max_filesize',
+              'short' => 'Maximum filesize in bytes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'max_webm_duration',
+              'short' => 'Maximum WebM duration in seconds',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'max_webm_filesize',
+              'short' => 'Maximum WebM filesize in bytes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'meta_description',
+              'short' => 'Board meta description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'pages',
+              'short' => 'Number of pages',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'per_page',
+              'short' => 'Threads per page',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'spoilers',
+              'short' => 'Custom spoilers enabled flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'title',
+              'short' => 'Board title',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'ws_board',
+              'short' => 'Worksafe board flag (1 for worksafe, 0 for NSFW)',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -223,6 +243,7 @@ class N4chanConfig
           'fields' => [
             [
               'name' => 'page',
+              'short' => 'Page number',
               'type' => '`$INTEGER`',
             ],
             [
@@ -351,140 +372,174 @@ class N4chanConfig
           'fields' => [
             [
               'name' => 'archived',
+              'short' => 'Archived flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'archived_on',
+              'short' => 'Unix timestamp when archived',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'bumplimit',
+              'short' => 'Bump limit reached flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'capcode',
+              'short' => 'Capcode (mod, admin, etc.)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'closed',
+              'short' => 'Closed flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'com',
+              'short' => 'Comment (HTML escaped)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'country',
+              'short' => 'Country code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'country_name',
+              'short' => 'Country name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'custom_spoiler',
+              'short' => 'Custom spoiler ID',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'ext',
+              'short' => 'File extension',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'filedeleted',
+              'short' => 'File deleted flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'filename',
+              'short' => 'Original filename',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'fsize',
+              'short' => 'File size in bytes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'h',
+              'short' => 'Image height',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'id',
+              'short' => 'Poster ID',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'imagelimit',
+              'short' => 'Image limit reached flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'images',
+              'short' => 'Number of images',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'last_modified',
+              'short' => 'Unix timestamp of last modification',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'm_img',
+              'short' => 'Mobile optimized image flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'md5',
+              'short' => 'MD5 hash in base64',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Poster name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'no',
               'req' => true,
+              'short' => 'Post number',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'now',
               'req' => true,
+              'short' => 'Formatted date and time',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'omitted_images',
+              'short' => 'Number of omitted images',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'omitted_posts',
+              'short' => 'Number of omitted posts',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'page',
+              'short' => 'Page number',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'replies',
+              'short' => 'Number of replies',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'resto',
+              'short' => 'Reply to thread ID (0 for OP)',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'semantic_url',
+              'short' => 'SEO-friendly URL slug',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'since4pass',
+              'short' => 'Year 4chan pass purchased',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'spoiler',
+              'short' => 'Spoiler flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'sticky',
+              'short' => 'Sticky flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'sub',
+              'short' => 'Subject',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'tag',
+              'short' => 'Tag',
               'type' => '`$STRING`',
             ],
             [
@@ -493,31 +548,38 @@ class N4chanConfig
             ],
             [
               'name' => 'tim',
+              'short' => 'Unix timestamp for image',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'time',
               'req' => true,
+              'short' => 'Unix timestamp',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'tn_h',
+              'short' => 'Thumbnail height',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'tn_w',
+              'short' => 'Thumbnail width',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'trip',
+              'short' => 'Tripcode',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'unique_ips',
+              'short' => 'Number of unique poster IPs',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'w',
+              'short' => 'Image width',
               'type' => '`$INTEGER`',
             ],
           ],

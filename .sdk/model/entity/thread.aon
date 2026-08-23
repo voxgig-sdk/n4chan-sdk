@@ -8,171 +8,205 @@ main: kit: entity: thread: {
     {
       name: "archived"
       req: false
+      short: "Archived flag"
       type: "`$INTEGER`"
     }
     {
       name: "archived_on"
       req: false
+      short: "Unix timestamp when archived"
       type: "`$INTEGER`"
     }
     {
       name: "bumplimit"
       req: false
+      short: "Bump limit reached flag"
       type: "`$INTEGER`"
     }
     {
       name: "capcode"
       req: false
+      short: "Capcode (mod, admin, etc.)"
       type: "`$STRING`"
     }
     {
       name: "closed"
       req: false
+      short: "Closed flag"
       type: "`$INTEGER`"
     }
     {
       name: "com"
       req: false
+      short: "Comment (HTML escaped)"
       type: "`$STRING`"
     }
     {
       name: "country"
       req: false
+      short: "Country code"
       type: "`$STRING`"
     }
     {
       name: "country_name"
       req: false
+      short: "Country name"
       type: "`$STRING`"
     }
     {
       name: "custom_spoiler"
       req: false
+      short: "Custom spoiler ID"
       type: "`$INTEGER`"
     }
     {
       name: "ext"
       req: false
+      short: "File extension"
       type: "`$STRING`"
     }
     {
       name: "filedeleted"
       req: false
+      short: "File deleted flag"
       type: "`$INTEGER`"
     }
     {
       name: "filename"
       req: false
+      short: "Original filename"
       type: "`$STRING`"
     }
     {
       name: "fsize"
       req: false
+      short: "File size in bytes"
       type: "`$INTEGER`"
     }
     {
       name: "h"
       req: false
+      short: "Image height"
       type: "`$INTEGER`"
     }
     {
       name: "id"
       req: false
+      short: "Poster ID"
       type: "`$STRING`"
     }
     {
       name: "imagelimit"
       req: false
+      short: "Image limit reached flag"
       type: "`$INTEGER`"
     }
     {
       name: "images"
       req: false
+      short: "Number of images"
       type: "`$INTEGER`"
     }
     {
       name: "last_modified"
       req: false
+      short: "Unix timestamp of last modification"
       type: "`$INTEGER`"
     }
     {
       name: "m_img"
       req: false
+      short: "Mobile optimized image flag"
       type: "`$INTEGER`"
     }
     {
       name: "md5"
       req: false
+      short: "MD5 hash in base64"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: false
+      short: "Poster name"
       type: "`$STRING`"
     }
     {
       name: "no"
       req: true
+      short: "Post number"
       type: "`$INTEGER`"
     }
     {
       name: "now"
       req: true
+      short: "Formatted date and time"
       type: "`$STRING`"
     }
     {
       name: "omitted_images"
       req: false
+      short: "Number of omitted images"
       type: "`$INTEGER`"
     }
     {
       name: "omitted_posts"
       req: false
+      short: "Number of omitted posts"
       type: "`$INTEGER`"
     }
     {
       name: "page"
       req: false
+      short: "Page number"
       type: "`$INTEGER`"
     }
     {
       name: "replies"
       req: false
+      short: "Number of replies"
       type: "`$INTEGER`"
     }
     {
       name: "resto"
       req: false
+      short: "Reply to thread ID (0 for OP)"
       type: "`$INTEGER`"
     }
     {
       name: "semantic_url"
       req: false
+      short: "SEO-friendly URL slug"
       type: "`$STRING`"
     }
     {
       name: "since4pass"
       req: false
+      short: "Year 4chan pass purchased"
       type: "`$INTEGER`"
     }
     {
       name: "spoiler"
       req: false
+      short: "Spoiler flag"
       type: "`$INTEGER`"
     }
     {
       name: "sticky"
       req: false
+      short: "Sticky flag"
       type: "`$INTEGER`"
     }
     {
       name: "sub"
       req: false
+      short: "Subject"
       type: "`$STRING`"
     }
     {
       name: "tag"
       req: false
+      short: "Tag"
       type: "`$STRING`"
     }
     {
@@ -183,36 +217,43 @@ main: kit: entity: thread: {
     {
       name: "tim"
       req: false
+      short: "Unix timestamp for image"
       type: "`$INTEGER`"
     }
     {
       name: "time"
       req: true
+      short: "Unix timestamp"
       type: "`$INTEGER`"
     }
     {
       name: "tn_h"
       req: false
+      short: "Thumbnail height"
       type: "`$INTEGER`"
     }
     {
       name: "tn_w"
       req: false
+      short: "Thumbnail width"
       type: "`$INTEGER`"
     }
     {
       name: "trip"
       req: false
+      short: "Tripcode"
       type: "`$STRING`"
     }
     {
       name: "unique_ips"
       req: false
+      short: "Number of unique poster IPs"
       type: "`$INTEGER`"
     }
     {
       name: "w"
       req: false
+      short: "Image width"
       type: "`$INTEGER`"
     }
   ]

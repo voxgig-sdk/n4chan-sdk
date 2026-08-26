@@ -28,6 +28,7 @@ module N4chanConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {

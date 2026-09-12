@@ -47,9 +47,13 @@ main: kit: entity: index: {
           }
           method: "GET"
           orig: "/{board}/{page}.json"
-          parts: [
-            "{board}"
-            "{page}.json"
+          segments: [
+            {
+              var: "board"
+            }
+            {
+              lit: "{page}.json"
+            }
           ]
           select: {
             exist: [

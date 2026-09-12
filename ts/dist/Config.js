@@ -1,0 +1,737 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FEATURE_PLUGINS = exports.config = void 0;
+const TestFeature_1 = require("./feature/test/TestFeature");
+const FEATURE_CLASS = {
+    test: TestFeature_1.TestFeature,
+};
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS = {};
+exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
+class Config {
+    makeFeature(fn) {
+        const fc = FEATURE_CLASS[fn];
+        const fi = new fc();
+        // TODO: errors etc
+        return fi;
+    }
+    // False for a feature added at runtime via options.extend (station's
+    // adopt path) - the constructor uses this to skip makeFeature for names
+    // no generated class backs.
+    hasFeature(fn) {
+        return null != FEATURE_CLASS[fn];
+    }
+    main = {
+        name: 'N4chan',
+        slug: "n4chan",
+        version: "0.0.1",
+        target: "ts",
+    };
+    feature = {
+        test: {
+            "options": {
+                "active": false
+            },
+            "transport": "base"
+        },
+    };
+    options = {
+        base: "https://a.4cdn.org",
+        headers: {
+            "content-type": "application/json"
+        },
+        entity: {
+            archive: {},
+            board: {},
+            catalog: {},
+            index: {},
+            thread: {},
+        }
+    };
+    entity = {
+        "archive": {
+            "fields": [],
+            "name": "archive",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ],
+                                "params": [
+                                    {
+                                        "kind": "param",
+                                        "name": "board",
+                                        "orig": "board",
+                                        "reqd": true,
+                                        "type": "`$STRING`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/{board}/archive.json",
+                            "segments": [
+                                {
+                                    "var": "board"
+                                },
+                                {
+                                    "lit": "archive.json"
+                                }
+                            ],
+                            "select": {
+                                "exist": [
+                                    "board",
+                                    "if_modified_since"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "parts": [
+                                "{board}",
+                                "archive.json"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "board": {
+            "fields": [
+                {
+                    "name": "board",
+                    "short": "Board identifier",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "board_flags",
+                    "short": "Board flags configuration",
+                    "type": "`$OBJECT`"
+                },
+                {
+                    "name": "bump_limit",
+                    "short": "Bump limit for threads",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "cooldowns",
+                    "short": "Cooldown periods for posting",
+                    "type": "`$OBJECT`"
+                },
+                {
+                    "name": "custom_spoilers",
+                    "short": "Number of custom spoiler images",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "image_limit",
+                    "short": "Image limit for threads",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "is_archived",
+                    "short": "Archive enabled flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "max_comment_chars",
+                    "short": "Maximum comment length",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "max_filesize",
+                    "short": "Maximum filesize in bytes",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "max_webm_duration",
+                    "short": "Maximum WebM duration in seconds",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "max_webm_filesize",
+                    "short": "Maximum WebM filesize in bytes",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "meta_description",
+                    "short": "Board meta description",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "pages",
+                    "short": "Number of pages",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "per_page",
+                    "short": "Threads per page",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "spoilers",
+                    "short": "Custom spoilers enabled flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "title",
+                    "short": "Board title",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "ws_board",
+                    "short": "Worksafe board flag (1 for worksafe, 0 for NSFW)",
+                    "type": "`$INTEGER`"
+                }
+            ],
+            "name": "board",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/boards.json",
+                            "segments": [
+                                {
+                                    "lit": "boards.json"
+                                }
+                            ],
+                            "select": {
+                                "exist": [
+                                    "if_modified_since"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.boards`"
+                            },
+                            "parts": [
+                                "boards.json"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "catalog": {
+            "fields": [
+                {
+                    "name": "page",
+                    "short": "Page number",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "threads",
+                    "type": "`$ARRAY`"
+                }
+            ],
+            "name": "catalog",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ],
+                                "params": [
+                                    {
+                                        "kind": "param",
+                                        "name": "board",
+                                        "orig": "board",
+                                        "reqd": true,
+                                        "type": "`$STRING`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/{board}/catalog.json",
+                            "segments": [
+                                {
+                                    "var": "board"
+                                },
+                                {
+                                    "lit": "catalog.json"
+                                }
+                            ],
+                            "select": {
+                                "exist": [
+                                    "board",
+                                    "if_modified_since"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "parts": [
+                                "{board}",
+                                "catalog.json"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "index": {
+            "fields": [
+                {
+                    "name": "posts",
+                    "type": "`$ARRAY`"
+                }
+            ],
+            "name": "index",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ],
+                                "params": [
+                                    {
+                                        "kind": "param",
+                                        "name": "board",
+                                        "orig": "board",
+                                        "reqd": true,
+                                        "type": "`$STRING`"
+                                    },
+                                    {
+                                        "kind": "param",
+                                        "name": "page",
+                                        "orig": "page",
+                                        "reqd": true,
+                                        "type": "`$INTEGER`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/{board}/{page}.json",
+                            "segments": [
+                                {
+                                    "var": "board"
+                                },
+                                {
+                                    "lit": "{page}.json"
+                                }
+                            ],
+                            "select": {
+                                "exist": [
+                                    "board",
+                                    "if_modified_since",
+                                    "page"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.threads`"
+                            },
+                            "parts": [
+                                "{board}",
+                                "{page}.json"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
+        "thread": {
+            "fields": [
+                {
+                    "name": "archived",
+                    "short": "Archived flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "archived_on",
+                    "short": "Unix timestamp when archived",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "bumplimit",
+                    "short": "Bump limit reached flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "capcode",
+                    "short": "Capcode (mod, admin, etc.)",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "closed",
+                    "short": "Closed flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "com",
+                    "short": "Comment (HTML escaped)",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "country",
+                    "short": "Country code",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "country_name",
+                    "short": "Country name",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "custom_spoiler",
+                    "short": "Custom spoiler ID",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "ext",
+                    "short": "File extension",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "filedeleted",
+                    "short": "File deleted flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "filename",
+                    "short": "Original filename",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "fsize",
+                    "short": "File size in bytes",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "h",
+                    "short": "Image height",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "id",
+                    "short": "Poster ID",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "imagelimit",
+                    "short": "Image limit reached flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "images",
+                    "short": "Number of images",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "last_modified",
+                    "short": "Unix timestamp of last modification",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "m_img",
+                    "short": "Mobile optimized image flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "md5",
+                    "short": "MD5 hash in base64",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "name",
+                    "short": "Poster name",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "no",
+                    "req": true,
+                    "short": "Post number",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "now",
+                    "req": true,
+                    "short": "Formatted date and time",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "omitted_images",
+                    "short": "Number of omitted images",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "omitted_posts",
+                    "short": "Number of omitted posts",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "page",
+                    "short": "Page number",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "replies",
+                    "short": "Number of replies",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "resto",
+                    "short": "Reply to thread ID (0 for OP)",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "semantic_url",
+                    "short": "SEO-friendly URL slug",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "since4pass",
+                    "short": "Year 4chan pass purchased",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "spoiler",
+                    "short": "Spoiler flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "sticky",
+                    "short": "Sticky flag",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "sub",
+                    "short": "Subject",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "tag",
+                    "short": "Tag",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "threads",
+                    "type": "`$ARRAY`"
+                },
+                {
+                    "name": "tim",
+                    "short": "Unix timestamp for image",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "time",
+                    "req": true,
+                    "short": "Unix timestamp",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "tn_h",
+                    "short": "Thumbnail height",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "tn_w",
+                    "short": "Thumbnail width",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "trip",
+                    "short": "Tripcode",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "unique_ips",
+                    "short": "Number of unique poster IPs",
+                    "type": "`$INTEGER`"
+                },
+                {
+                    "name": "w",
+                    "short": "Image width",
+                    "type": "`$INTEGER`"
+                }
+            ],
+            "id": {
+                "field": "id",
+                "name": "id"
+            },
+            "name": "thread",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ],
+                                "params": [
+                                    {
+                                        "kind": "param",
+                                        "name": "board",
+                                        "orig": "board",
+                                        "reqd": true,
+                                        "type": "`$STRING`"
+                                    },
+                                    {
+                                        "kind": "param",
+                                        "name": "thread_id",
+                                        "orig": "thread_id",
+                                        "reqd": true,
+                                        "type": "`$INTEGER`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/{board}/thread/{threadId}.json",
+                            "segments": [
+                                {
+                                    "var": "board"
+                                },
+                                {
+                                    "lit": "thread"
+                                },
+                                {
+                                    "lit": "{threadId}.json"
+                                }
+                            ],
+                            "select": {
+                                "$action": "thread_id",
+                                "exist": [
+                                    "board",
+                                    "if_modified_since",
+                                    "thread_id"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.posts`"
+                            },
+                            "parts": [
+                                "{board}",
+                                "thread",
+                                "{threadId}.json"
+                            ]
+                        },
+                        {
+                            "args": {
+                                "header": [
+                                    {
+                                        "kind": "header",
+                                        "name": "if_modified_since",
+                                        "orig": "if_modified_since",
+                                        "type": "`$STRING`"
+                                    }
+                                ],
+                                "params": [
+                                    {
+                                        "kind": "param",
+                                        "name": "board",
+                                        "orig": "board",
+                                        "reqd": true,
+                                        "type": "`$STRING`"
+                                    }
+                                ]
+                            },
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/{board}/threads.json",
+                            "segments": [
+                                {
+                                    "var": "board"
+                                },
+                                {
+                                    "lit": "threads.json"
+                                }
+                            ],
+                            "select": {
+                                "exist": [
+                                    "board",
+                                    "if_modified_since"
+                                ]
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "parts": [
+                                "{board}",
+                                "threads.json"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        }
+    };
+}
+const config = new Config();
+exports.config = config;
+//# sourceMappingURL=Config.js.map

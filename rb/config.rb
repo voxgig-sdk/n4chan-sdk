@@ -76,9 +76,13 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{board}/archive.json",
-                  "parts" => [
-                    "{board}",
-                    "archive.json",
+                  "segments" => [
+                    {
+                      "var" => "board",
+                    },
+                    {
+                      "lit" => "archive.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -90,6 +94,10 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{board}",
+                    "archive.json",
+                  ],
                 },
               ],
             },
@@ -206,8 +214,10 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/boards.json",
-                  "parts" => [
-                    "boards.json",
+                  "segments" => [
+                    {
+                      "lit" => "boards.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -218,6 +228,9 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body.boards`",
                   },
+                  "parts" => [
+                    "boards.json",
+                  ],
                 },
               ],
             },
@@ -267,9 +280,13 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{board}/catalog.json",
-                  "parts" => [
-                    "{board}",
-                    "catalog.json",
+                  "segments" => [
+                    {
+                      "var" => "board",
+                    },
+                    {
+                      "lit" => "catalog.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -281,6 +298,10 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{board}",
+                    "catalog.json",
+                  ],
                 },
               ],
             },
@@ -332,9 +353,13 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{board}/{page}.json",
-                  "parts" => [
-                    "{board}",
-                    "{page}.json",
+                  "segments" => [
+                    {
+                      "var" => "board",
+                    },
+                    {
+                      "lit" => "{page}.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -347,6 +372,10 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body.threads`",
                   },
+                  "parts" => [
+                    "{board}",
+                    "{page}.json",
+                  ],
                 },
               ],
             },
@@ -570,6 +599,10 @@ module N4chanConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "thread",
           "op" => {
             "list" => {
@@ -606,10 +639,16 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{board}/thread/{threadId}.json",
-                  "parts" => [
-                    "{board}",
-                    "thread",
-                    "{threadId}.json",
+                  "segments" => [
+                    {
+                      "var" => "board",
+                    },
+                    {
+                      "lit" => "thread",
+                    },
+                    {
+                      "lit" => "{threadId}.json",
+                    },
                   ],
                   "select" => {
                     "$action" => "thread_id",
@@ -623,6 +662,11 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body.posts`",
                   },
+                  "parts" => [
+                    "{board}",
+                    "thread",
+                    "{threadId}.json",
+                  ],
                 },
                 {
                   "args" => {
@@ -647,9 +691,13 @@ module N4chanConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{board}/threads.json",
-                  "parts" => [
-                    "{board}",
-                    "threads.json",
+                  "segments" => [
+                    {
+                      "var" => "board",
+                    },
+                    {
+                      "lit" => "threads.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -661,16 +709,16 @@ module N4chanConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{board}",
+                    "threads.json",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "thread",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

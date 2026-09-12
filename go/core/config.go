@@ -68,9 +68,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{board}/archive.json",
-								"parts": []any{
-									"{board}",
-									"archive.json",
+								"segments": []any{
+									map[string]any{
+										"var": "board",
+									},
+									map[string]any{
+										"lit": "archive.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -81,6 +85,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"{board}",
+									"archive.json",
 								},
 							},
 						},
@@ -198,8 +206,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/boards.json",
-								"parts": []any{
-									"boards.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "boards.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -209,6 +219,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.boards`",
+								},
+								"parts": []any{
+									"boards.json",
 								},
 							},
 						},
@@ -259,9 +272,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{board}/catalog.json",
-								"parts": []any{
-									"{board}",
-									"catalog.json",
+								"segments": []any{
+									map[string]any{
+										"var": "board",
+									},
+									map[string]any{
+										"lit": "catalog.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -272,6 +289,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"{board}",
+									"catalog.json",
 								},
 							},
 						},
@@ -324,9 +345,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{board}/{page}.json",
-								"parts": []any{
-									"{board}",
-									"{page}.json",
+								"segments": []any{
+									map[string]any{
+										"var": "board",
+									},
+									map[string]any{
+										"lit": "{page}.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -338,6 +363,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.threads`",
+								},
+								"parts": []any{
+									"{board}",
+									"{page}.json",
 								},
 							},
 						},
@@ -562,6 +591,10 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "thread",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -598,10 +631,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{board}/thread/{threadId}.json",
-								"parts": []any{
-									"{board}",
-									"thread",
-									"{threadId}.json",
+								"segments": []any{
+									map[string]any{
+										"var": "board",
+									},
+									map[string]any{
+										"lit": "thread",
+									},
+									map[string]any{
+										"lit": "{threadId}.json",
+									},
 								},
 								"select": map[string]any{
 									"$action": "thread_id",
@@ -614,6 +653,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.posts`",
+								},
+								"parts": []any{
+									"{board}",
+									"thread",
+									"{threadId}.json",
 								},
 							},
 							map[string]any{
@@ -639,9 +683,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{board}/threads.json",
-								"parts": []any{
-									"{board}",
-									"threads.json",
+								"segments": []any{
+									map[string]any{
+										"var": "board",
+									},
+									map[string]any{
+										"lit": "threads.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -653,20 +701,31 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"{board}",
+									"threads.json",
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"thread",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

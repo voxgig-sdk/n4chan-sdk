@@ -298,10 +298,16 @@ main: kit: entity: thread: {
           }
           method: "GET"
           orig: "/{board}/thread/{threadId}.json"
-          parts: [
-            "{board}"
-            "thread"
-            "{threadId}.json"
+          segments: [
+            {
+              var: "board"
+            }
+            {
+              lit: "thread"
+            }
+            {
+              lit: "{threadId}.json"
+            }
           ]
           select: {
             "$action": "thread_id"
@@ -339,9 +345,13 @@ main: kit: entity: thread: {
           }
           method: "GET"
           orig: "/{board}/threads.json"
-          parts: [
-            "{board}"
-            "threads.json"
+          segments: [
+            {
+              var: "board"
+            }
+            {
+              lit: "threads.json"
+            }
           ]
           select: {
             exist: [
@@ -356,14 +366,6 @@ main: kit: entity: thread: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "thread"
-      ]
-    ]
   }
 
 

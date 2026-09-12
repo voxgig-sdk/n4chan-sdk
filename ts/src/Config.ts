@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -107,9 +118,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{board}/archive.json",
-              "parts": [
-                "{board}",
-                "archive.json"
+              "segments": [
+                {
+                  "var": "board"
+                },
+                {
+                  "lit": "archive.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -120,7 +135,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "{board}",
+                "archive.json"
+              ]
             }
           ]
         }
@@ -237,8 +256,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/boards.json",
-              "parts": [
-                "boards.json"
+              "segments": [
+                {
+                  "lit": "boards.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -248,7 +269,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.boards`"
-              }
+              },
+              "parts": [
+                "boards.json"
+              ]
             }
           ]
         }
@@ -298,9 +322,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{board}/catalog.json",
-              "parts": [
-                "{board}",
-                "catalog.json"
+              "segments": [
+                {
+                  "var": "board"
+                },
+                {
+                  "lit": "catalog.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -311,7 +339,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "{board}",
+                "catalog.json"
+              ]
             }
           ]
         }
@@ -363,9 +395,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{board}/{page}.json",
-              "parts": [
-                "{board}",
-                "{page}.json"
+              "segments": [
+                {
+                  "var": "board"
+                },
+                {
+                  "lit": "{page}.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -377,7 +413,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.threads`"
-              }
+              },
+              "parts": [
+                "{board}",
+                "{page}.json"
+              ]
             }
           ]
         }
@@ -601,6 +641,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "thread",
       "op": {
         "list": {
@@ -637,10 +681,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{board}/thread/{threadId}.json",
-              "parts": [
-                "{board}",
-                "thread",
-                "{threadId}.json"
+              "segments": [
+                {
+                  "var": "board"
+                },
+                {
+                  "lit": "thread"
+                },
+                {
+                  "lit": "{threadId}.json"
+                }
               ],
               "select": {
                 "$action": "thread_id",
@@ -653,7 +703,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.posts`"
-              }
+              },
+              "parts": [
+                "{board}",
+                "thread",
+                "{threadId}.json"
+              ]
             },
             {
               "args": {
@@ -678,9 +733,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/{board}/threads.json",
-              "parts": [
-                "{board}",
-                "threads.json"
+              "segments": [
+                {
+                  "var": "board"
+                },
+                {
+                  "lit": "threads.json"
+                }
               ],
               "select": {
                 "exist": [
@@ -691,17 +750,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "{board}",
+                "threads.json"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "thread"
-          ]
-        ]
+        "ancestors": []
       }
     }
   }
@@ -711,6 +770,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

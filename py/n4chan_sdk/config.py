@@ -1,6 +1,14 @@
 # N4chan SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -85,9 +93,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{board}/archive.json",
-                "parts": [
-                  "{board}",
-                  "archive.json",
+                "segments": [
+                  {
+                    "var": "board",
+                  },
+                  {
+                    "lit": "archive.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -99,6 +111,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{board}",
+                  "archive.json",
+                ],
               },
             ],
           },
@@ -215,8 +231,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/boards.json",
-                "parts": [
-                  "boards.json",
+                "segments": [
+                  {
+                    "lit": "boards.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -227,6 +245,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.boards`",
                 },
+                "parts": [
+                  "boards.json",
+                ],
               },
             ],
           },
@@ -276,9 +297,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{board}/catalog.json",
-                "parts": [
-                  "{board}",
-                  "catalog.json",
+                "segments": [
+                  {
+                    "var": "board",
+                  },
+                  {
+                    "lit": "catalog.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -290,6 +315,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{board}",
+                  "catalog.json",
+                ],
               },
             ],
           },
@@ -341,9 +370,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{board}/{page}.json",
-                "parts": [
-                  "{board}",
-                  "{page}.json",
+                "segments": [
+                  {
+                    "var": "board",
+                  },
+                  {
+                    "lit": "{page}.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -356,6 +389,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.threads`",
                 },
+                "parts": [
+                  "{board}",
+                  "{page}.json",
+                ],
               },
             ],
           },
@@ -579,6 +616,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "thread",
         "op": {
           "list": {
@@ -615,10 +656,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{board}/thread/{threadId}.json",
-                "parts": [
-                  "{board}",
-                  "thread",
-                  "{threadId}.json",
+                "segments": [
+                  {
+                    "var": "board",
+                  },
+                  {
+                    "lit": "thread",
+                  },
+                  {
+                    "lit": "{threadId}.json",
+                  },
                 ],
                 "select": {
                   "$action": "thread_id",
@@ -632,6 +679,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.posts`",
                 },
+                "parts": [
+                  "{board}",
+                  "thread",
+                  "{threadId}.json",
+                ],
               },
               {
                 "args": {
@@ -656,9 +708,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{board}/threads.json",
-                "parts": [
-                  "{board}",
-                  "threads.json",
+                "segments": [
+                  {
+                    "var": "board",
+                  },
+                  {
+                    "lit": "threads.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -670,16 +726,16 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{board}",
+                  "threads.json",
+                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "thread",
-            ],
-          ],
+          "ancestors": [],
         },
       },
     },

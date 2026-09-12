@@ -128,8 +128,10 @@ main: kit: entity: board: {
           }
           method: "GET"
           orig: "/boards.json"
-          parts: [
-            "boards.json"
+          segments: [
+            {
+              lit: "boards.json"
+            }
           ]
           select: {
             exist: [

@@ -65,9 +65,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/archive.json",
-                  "parts": [
-                    "{board}",
-                    "archive.json"
+                  "segments": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "archive.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -236,8 +240,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/boards.json",
-                  "parts": [
-                    "boards.json"
+                  "segments": [
+                    {
+                      "lit": "boards.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -309,9 +315,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/catalog.json",
-                  "parts": [
-                    "{board}",
-                    "catalog.json"
+                  "segments": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "catalog.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -385,9 +395,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/{page}.json",
-                  "parts": [
-                    "{board}",
-                    "{page}.json"
+                  "segments": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "{page}.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -753,10 +767,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/thread/{threadId}.json",
-                  "parts": [
-                    "{board}",
-                    "thread",
-                    "{threadId}.json"
+                  "segments": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "thread"
+                    },
+                    {
+                      "lit": "{threadId}.json"
+                    }
                   ],
                   "select": {
                     "$action": "thread_id",
@@ -798,9 +818,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/threads.json",
-                  "parts": [
-                    "{board}",
-                    "threads.json"
+                  "segments": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "threads.json"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -817,11 +841,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "thread"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -889,8 +909,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1136,6 +1159,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1161,6 +1187,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1212,6 +1242,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1236,6 +1267,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1287,6 +1319,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1311,6 +1344,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1351,6 +1385,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1376,6 +1413,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1410,6 +1450,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1435,6 +1478,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1475,6 +1521,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1500,6 +1549,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1545,6 +1597,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1570,6 +1625,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1587,11 +1645,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1620,6 +1673,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1644,6 +1700,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

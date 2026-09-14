@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { N4chanSDK } from '@voxgig-sdk/n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan-sdk'
 
 const client = new N4chanSDK()
 ```
@@ -648,7 +648,7 @@ n4chan/
 Import the SDK from the package root:
 
 ```ts
-import { N4chanSDK } from '@voxgig-sdk/n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan-sdk'
 ```
 
 ### Entity state

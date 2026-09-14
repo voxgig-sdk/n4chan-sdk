@@ -105,7 +105,7 @@ local results, err = client:Catalog():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
+| TypeScript | `@voxgig-sdk/n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
 | Python | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
 | PHP | `voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/n4chan-sdk/go` | `go get github.com/voxgig-sdk/n4chan-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Catalog():list()
 ### TypeScript
 
 ```ts
-import { N4chanSDK } from '@voxgig-sdk/n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan-sdk'
 
 const client = new N4chanSDK()
 

@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/n4chan",
+  "name": "@voxgig-sdk/n4chan-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the 4chan public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

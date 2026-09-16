@@ -2,17 +2,17 @@
   "existing": {
     "catalog": {
       "CATALOG00": {
-        "page": "s14",
+        "page": 20,
         "threads": [],
         "board": "BOARD01"
       },
       "CATALOG01": {
-        "page": "s28",
+        "page": 40,
         "threads": [],
         "board": "BOARD01"
       },
       "CATALOG02": {
-        "page": "s3c",
+        "page": 60,
         "threads": [],
         "board": "BOARD01"
       }
@@ -21,8 +21,243 @@
   "new": {
     "catalog": {
       "catalog_ref01": {
-        "page": "s50",
+        "page": 80,
         "threads": []
+      }
+    }
+  },
+  "requests": {
+    "GET /{board}/catalog.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBoardCatalog",
+        "parameters": [
+          {
+            "description": "Board identifier (e.g., 'g' for technology, 'a' for anime)",
+            "in": "path",
+            "name": "board",
+            "required": true,
+            "schema": {
+              "pattern": "^[a-z0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "HTTP date for conditional requests. Returns 304 if content hasn't been modified.",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "page": {
+                        "description": "Page number",
+                        "type": "integer"
+                      },
+                      "threads": {
+                        "items": {
+                          "properties": {
+                            "archived": {
+                              "description": "Archived flag",
+                              "type": "integer"
+                            },
+                            "archived_on": {
+                              "description": "Unix timestamp when archived",
+                              "type": "integer"
+                            },
+                            "bumplimit": {
+                              "description": "Bump limit reached flag",
+                              "type": "integer"
+                            },
+                            "capcode": {
+                              "description": "Capcode (mod, admin, etc.)",
+                              "type": "string"
+                            },
+                            "closed": {
+                              "description": "Closed flag",
+                              "type": "integer"
+                            },
+                            "com": {
+                              "description": "Comment (HTML escaped)",
+                              "type": "string"
+                            },
+                            "country": {
+                              "description": "Country code",
+                              "type": "string"
+                            },
+                            "country_name": {
+                              "description": "Country name",
+                              "type": "string"
+                            },
+                            "custom_spoiler": {
+                              "description": "Custom spoiler ID",
+                              "type": "integer"
+                            },
+                            "ext": {
+                              "description": "File extension",
+                              "type": "string"
+                            },
+                            "filedeleted": {
+                              "description": "File deleted flag",
+                              "type": "integer"
+                            },
+                            "filename": {
+                              "description": "Original filename",
+                              "type": "string"
+                            },
+                            "fsize": {
+                              "description": "File size in bytes",
+                              "type": "integer"
+                            },
+                            "h": {
+                              "description": "Image height",
+                              "type": "integer"
+                            },
+                            "id": {
+                              "description": "Poster ID",
+                              "type": "string"
+                            },
+                            "imagelimit": {
+                              "description": "Image limit reached flag",
+                              "type": "integer"
+                            },
+                            "images": {
+                              "description": "Number of images",
+                              "type": "integer"
+                            },
+                            "last_modified": {
+                              "description": "Unix timestamp of last modification",
+                              "type": "integer"
+                            },
+                            "m_img": {
+                              "description": "Mobile optimized image flag",
+                              "type": "integer"
+                            },
+                            "md5": {
+                              "description": "MD5 hash in base64",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Poster name",
+                              "type": "string"
+                            },
+                            "no": {
+                              "description": "Post number",
+                              "type": "integer"
+                            },
+                            "now": {
+                              "description": "Formatted date and time",
+                              "type": "string"
+                            },
+                            "omitted_images": {
+                              "description": "Number of omitted images",
+                              "type": "integer"
+                            },
+                            "omitted_posts": {
+                              "description": "Number of omitted posts",
+                              "type": "integer"
+                            },
+                            "replies": {
+                              "description": "Number of replies",
+                              "type": "integer"
+                            },
+                            "resto": {
+                              "description": "Reply to thread ID (0 for OP)",
+                              "type": "integer"
+                            },
+                            "semantic_url": {
+                              "description": "SEO-friendly URL slug",
+                              "type": "string"
+                            },
+                            "since4pass": {
+                              "description": "Year 4chan pass purchased",
+                              "type": "integer"
+                            },
+                            "spoiler": {
+                              "description": "Spoiler flag",
+                              "type": "integer"
+                            },
+                            "sticky": {
+                              "description": "Sticky flag",
+                              "type": "integer"
+                            },
+                            "sub": {
+                              "description": "Subject",
+                              "type": "string"
+                            },
+                            "tag": {
+                              "description": "Tag",
+                              "type": "string"
+                            },
+                            "tim": {
+                              "description": "Unix timestamp for image",
+                              "type": "integer"
+                            },
+                            "time": {
+                              "description": "Unix timestamp",
+                              "type": "integer"
+                            },
+                            "tn_h": {
+                              "description": "Thumbnail height",
+                              "type": "integer"
+                            },
+                            "tn_w": {
+                              "description": "Thumbnail width",
+                              "type": "integer"
+                            },
+                            "trip": {
+                              "description": "Tripcode",
+                              "type": "string"
+                            },
+                            "unique_ips": {
+                              "description": "Number of unique poster IPs",
+                              "type": "integer"
+                            },
+                            "w": {
+                              "description": "Image width",
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "no",
+                            "time",
+                            "now"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response with catalog data"
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board not found"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

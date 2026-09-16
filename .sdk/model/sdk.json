@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "archive": {
           "active": true,
@@ -61,6 +125,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{board}/archive.json",
+                    "json": "{\"operationId\":\"getBoardArchive\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"Archived thread ID\",\"type\":\"integer\"},\"type\":\"array\"}}},\"description\":\"Successful response with archived thread IDs\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found or archive not available\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -237,6 +307,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /boards.json",
+                    "json": "{\"operationId\":\"getBoards\",\"parameters\":[{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"boards\":{\"items\":{\"properties\":{\"board\":{\"description\":\"Board identifier\",\"type\":\"string\"},\"board_flags\":{\"description\":\"Board flags configuration\",\"type\":\"object\"},\"bump_limit\":{\"description\":\"Bump limit for threads\",\"type\":\"integer\"},\"cooldowns\":{\"description\":\"Cooldown periods for posting\",\"type\":\"object\"},\"custom_spoilers\":{\"description\":\"Number of custom spoiler images\",\"type\":\"integer\"},\"image_limit\":{\"description\":\"Image limit for threads\",\"type\":\"integer\"},\"is_archived\":{\"description\":\"Archive enabled flag\",\"type\":\"integer\"},\"max_comment_chars\":{\"description\":\"Maximum comment length\",\"type\":\"integer\"},\"max_filesize\":{\"description\":\"Maximum filesize in bytes\",\"type\":\"integer\"},\"max_webm_duration\":{\"description\":\"Maximum WebM duration in seconds\",\"type\":\"integer\"},\"max_webm_filesize\":{\"description\":\"Maximum WebM filesize in bytes\",\"type\":\"integer\"},\"meta_description\":{\"description\":\"Board meta description\",\"type\":\"string\"},\"pages\":{\"description\":\"Number of pages\",\"type\":\"integer\"},\"per_page\":{\"description\":\"Threads per page\",\"type\":\"integer\"},\"spoilers\":{\"description\":\"Custom spoilers enabled flag\",\"type\":\"integer\"},\"title\":{\"description\":\"Board title\",\"type\":\"string\"},\"ws_board\":{\"description\":\"Worksafe board flag (1 for worksafe, 0 for NSFW)\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with board list\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/boards.json",
@@ -311,6 +387,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{board}/catalog.json",
+                    "json": "{\"operationId\":\"getBoardCatalog\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"page\":{\"description\":\"Page number\",\"type\":\"integer\"},\"threads\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with catalog data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -391,6 +473,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /{board}/{page}.json",
+                    "json": "{\"operationId\":\"getBoardIndex\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"Page number (typically 1-10)\",\"in\":\"path\",\"name\":\"page\",\"required\":true,\"schema\":{\"maximum\":10,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"threads\":{\"items\":{\"properties\":{\"posts\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with index page data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board or page not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -764,6 +852,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{board}/thread/{threadId}.json",
+                    "json": "{\"operationId\":\"getThread\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"Thread ID (post number of the opening post)\",\"in\":\"path\",\"name\":\"threadId\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"posts\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with thread data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Thread not found or has been deleted\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/thread/{threadId}.json",
@@ -815,6 +909,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /{board}/threads.json",
+                    "json": "{\"operationId\":\"getThreadList\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"page\":{\"description\":\"Page number\",\"type\":\"integer\"},\"threads\":{\"items\":{\"properties\":{\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"no\":{\"description\":\"Thread ID (OP post number)\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with thread list\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{board}/threads.json",
@@ -846,13 +946,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -942,6 +1252,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -1120,6 +1526,48 @@
         ]
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1674,13 +2122,14 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "@voxgig-sdk/n4chan-sdk",
+              "package": "",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {
@@ -1715,7 +2164,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

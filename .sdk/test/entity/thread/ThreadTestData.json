@@ -2,140 +2,140 @@
   "existing": {
     "thread": {
       "THREAD00": {
-        "archived": "s1a4",
-        "archived_on": "s1a5",
-        "bumplimit": "s1a6",
+        "archived": 420,
+        "archived_on": 421,
+        "bumplimit": 422,
         "capcode": "s1a7",
-        "closed": "s1a8",
+        "closed": 424,
         "com": "s1a9",
         "country": "s1aa",
         "country_name": "s1ab",
-        "custom_spoiler": "s1ac",
+        "custom_spoiler": 428,
         "ext": "s1ad",
-        "filedeleted": "s1ae",
+        "filedeleted": 430,
         "filename": "s1af",
-        "fsize": "s1b0",
-        "h": "s1b1",
+        "fsize": 432,
+        "h": 433,
         "id": "THREAD00",
-        "imagelimit": "s1b3",
-        "images": "s1b4",
-        "last_modified": "s1b5",
-        "m_img": "s1b6",
+        "imagelimit": 435,
+        "images": 436,
+        "last_modified": 437,
+        "m_img": 438,
         "md5": "s1b7",
         "name": "s1b8",
-        "no": "s1b9",
+        "no": 441,
         "now": "s1ba",
-        "omitted_images": "s1bb",
-        "omitted_posts": "s1bc",
-        "page": "s1bd",
-        "replies": "s1be",
-        "resto": "s1bf",
+        "omitted_images": 443,
+        "omitted_posts": 444,
+        "page": 445,
+        "replies": 446,
+        "resto": 447,
         "semantic_url": "s1c0",
-        "since4pass": "s1c1",
-        "spoiler": "s1c2",
-        "sticky": "s1c3",
+        "since4pass": 449,
+        "spoiler": 450,
+        "sticky": 451,
         "sub": "s1c4",
         "tag": "s1c5",
         "threads": [],
-        "tim": "s1c7",
-        "time": "s1c8",
-        "tn_h": "s1c9",
-        "tn_w": "s1ca",
+        "tim": 455,
+        "time": 456,
+        "tn_h": 457,
+        "tn_w": 458,
         "trip": "s1cb",
-        "unique_ips": "s1cc",
-        "w": "s1cd",
+        "unique_ips": 460,
+        "w": 461,
         "board": "BOARD01",
         "thread_id": "THREAD01"
       },
       "THREAD01": {
-        "archived": "s348",
-        "archived_on": "s349",
-        "bumplimit": "s34a",
+        "archived": 840,
+        "archived_on": 841,
+        "bumplimit": 842,
         "capcode": "s34b",
-        "closed": "s34c",
+        "closed": 844,
         "com": "s34d",
         "country": "s34e",
         "country_name": "s34f",
-        "custom_spoiler": "s350",
+        "custom_spoiler": 848,
         "ext": "s351",
-        "filedeleted": "s352",
+        "filedeleted": 850,
         "filename": "s353",
-        "fsize": "s354",
-        "h": "s355",
+        "fsize": 852,
+        "h": 853,
         "id": "THREAD01",
-        "imagelimit": "s357",
-        "images": "s358",
-        "last_modified": "s359",
-        "m_img": "s35a",
+        "imagelimit": 855,
+        "images": 856,
+        "last_modified": 857,
+        "m_img": 858,
         "md5": "s35b",
         "name": "s35c",
-        "no": "s35d",
+        "no": 861,
         "now": "s35e",
-        "omitted_images": "s35f",
-        "omitted_posts": "s360",
-        "page": "s361",
-        "replies": "s362",
-        "resto": "s363",
+        "omitted_images": 863,
+        "omitted_posts": 864,
+        "page": 865,
+        "replies": 866,
+        "resto": 867,
         "semantic_url": "s364",
-        "since4pass": "s365",
-        "spoiler": "s366",
-        "sticky": "s367",
+        "since4pass": 869,
+        "spoiler": 870,
+        "sticky": 871,
         "sub": "s368",
         "tag": "s369",
         "threads": [],
-        "tim": "s36b",
-        "time": "s36c",
-        "tn_h": "s36d",
-        "tn_w": "s36e",
+        "tim": 875,
+        "time": 876,
+        "tn_h": 877,
+        "tn_w": 878,
         "trip": "s36f",
-        "unique_ips": "s370",
-        "w": "s371",
+        "unique_ips": 880,
+        "w": 881,
         "board": "BOARD01",
         "thread_id": "THREAD01"
       },
       "THREAD02": {
-        "archived": "s4ec",
-        "archived_on": "s4ed",
-        "bumplimit": "s4ee",
+        "archived": 1260,
+        "archived_on": 1261,
+        "bumplimit": 1262,
         "capcode": "s4ef",
-        "closed": "s4f0",
+        "closed": 1264,
         "com": "s4f1",
         "country": "s4f2",
         "country_name": "s4f3",
-        "custom_spoiler": "s4f4",
+        "custom_spoiler": 1268,
         "ext": "s4f5",
-        "filedeleted": "s4f6",
+        "filedeleted": 1270,
         "filename": "s4f7",
-        "fsize": "s4f8",
-        "h": "s4f9",
+        "fsize": 1272,
+        "h": 1273,
         "id": "THREAD02",
-        "imagelimit": "s4fb",
-        "images": "s4fc",
-        "last_modified": "s4fd",
-        "m_img": "s4fe",
+        "imagelimit": 1275,
+        "images": 1276,
+        "last_modified": 1277,
+        "m_img": 1278,
         "md5": "s4ff",
         "name": "s500",
-        "no": "s501",
+        "no": 1281,
         "now": "s502",
-        "omitted_images": "s503",
-        "omitted_posts": "s504",
-        "page": "s505",
-        "replies": "s506",
-        "resto": "s507",
+        "omitted_images": 1283,
+        "omitted_posts": 1284,
+        "page": 1285,
+        "replies": 1286,
+        "resto": 1287,
         "semantic_url": "s508",
-        "since4pass": "s509",
-        "spoiler": "s50a",
-        "sticky": "s50b",
+        "since4pass": 1289,
+        "spoiler": 1290,
+        "sticky": 1291,
         "sub": "s50c",
         "tag": "s50d",
         "threads": [],
-        "tim": "s50f",
-        "time": "s510",
-        "tn_h": "s511",
-        "tn_w": "s512",
+        "tim": 1295,
+        "time": 1296,
+        "tn_h": 1297,
+        "tn_w": 1298,
         "trip": "s513",
-        "unique_ips": "s514",
-        "w": "s515",
+        "unique_ips": 1300,
+        "w": 1301,
         "board": "BOARD01",
         "thread_id": "THREAD01"
       }
@@ -144,47 +144,364 @@
   "new": {
     "thread": {
       "thread_ref01": {
-        "archived": "s690",
-        "archived_on": "s691",
-        "bumplimit": "s692",
+        "archived": 1680,
+        "archived_on": 1681,
+        "bumplimit": 1682,
         "capcode": "s693",
-        "closed": "s694",
+        "closed": 1684,
         "com": "s695",
         "country": "s696",
         "country_name": "s697",
-        "custom_spoiler": "s698",
+        "custom_spoiler": 1688,
         "ext": "s699",
-        "filedeleted": "s69a",
+        "filedeleted": 1690,
         "filename": "s69b",
-        "fsize": "s69c",
-        "h": "s69d",
-        "imagelimit": "s69f",
-        "images": "s6a0",
-        "last_modified": "s6a1",
-        "m_img": "s6a2",
+        "fsize": 1692,
+        "h": 1693,
+        "imagelimit": 1695,
+        "images": 1696,
+        "last_modified": 1697,
+        "m_img": 1698,
         "md5": "s6a3",
         "name": "s6a4",
-        "no": "s6a5",
+        "no": 1701,
         "now": "s6a6",
-        "omitted_images": "s6a7",
-        "omitted_posts": "s6a8",
-        "page": "s6a9",
-        "replies": "s6aa",
-        "resto": "s6ab",
+        "omitted_images": 1703,
+        "omitted_posts": 1704,
+        "page": 1705,
+        "replies": 1706,
+        "resto": 1707,
         "semantic_url": "s6ac",
-        "since4pass": "s6ad",
-        "spoiler": "s6ae",
-        "sticky": "s6af",
+        "since4pass": 1709,
+        "spoiler": 1710,
+        "sticky": 1711,
         "sub": "s6b0",
         "tag": "s6b1",
         "threads": [],
-        "tim": "s6b3",
-        "time": "s6b4",
-        "tn_h": "s6b5",
-        "tn_w": "s6b6",
+        "tim": 1715,
+        "time": 1716,
+        "tn_h": 1717,
+        "tn_w": 1718,
         "trip": "s6b7",
-        "unique_ips": "s6b8",
-        "w": "s6b9"
+        "unique_ips": 1720,
+        "w": 1721
+      }
+    }
+  },
+  "requests": {
+    "GET /{board}/thread/{threadId}.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getThread",
+        "parameters": [
+          {
+            "description": "Board identifier (e.g., 'g' for technology, 'a' for anime)",
+            "in": "path",
+            "name": "board",
+            "required": true,
+            "schema": {
+              "pattern": "^[a-z0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Thread ID (post number of the opening post)",
+            "in": "path",
+            "name": "threadId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "HTTP date for conditional requests. Returns 304 if content hasn't been modified.",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "posts": {
+                      "items": {
+                        "properties": {
+                          "archived": {
+                            "description": "Archived flag",
+                            "type": "integer"
+                          },
+                          "archived_on": {
+                            "description": "Unix timestamp when archived",
+                            "type": "integer"
+                          },
+                          "bumplimit": {
+                            "description": "Bump limit reached flag",
+                            "type": "integer"
+                          },
+                          "capcode": {
+                            "description": "Capcode (mod, admin, etc.)",
+                            "type": "string"
+                          },
+                          "closed": {
+                            "description": "Closed flag",
+                            "type": "integer"
+                          },
+                          "com": {
+                            "description": "Comment (HTML escaped)",
+                            "type": "string"
+                          },
+                          "country": {
+                            "description": "Country code",
+                            "type": "string"
+                          },
+                          "country_name": {
+                            "description": "Country name",
+                            "type": "string"
+                          },
+                          "custom_spoiler": {
+                            "description": "Custom spoiler ID",
+                            "type": "integer"
+                          },
+                          "ext": {
+                            "description": "File extension",
+                            "type": "string"
+                          },
+                          "filedeleted": {
+                            "description": "File deleted flag",
+                            "type": "integer"
+                          },
+                          "filename": {
+                            "description": "Original filename",
+                            "type": "string"
+                          },
+                          "fsize": {
+                            "description": "File size in bytes",
+                            "type": "integer"
+                          },
+                          "h": {
+                            "description": "Image height",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "Poster ID",
+                            "type": "string"
+                          },
+                          "imagelimit": {
+                            "description": "Image limit reached flag",
+                            "type": "integer"
+                          },
+                          "images": {
+                            "description": "Number of images",
+                            "type": "integer"
+                          },
+                          "last_modified": {
+                            "description": "Unix timestamp of last modification",
+                            "type": "integer"
+                          },
+                          "m_img": {
+                            "description": "Mobile optimized image flag",
+                            "type": "integer"
+                          },
+                          "md5": {
+                            "description": "MD5 hash in base64",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Poster name",
+                            "type": "string"
+                          },
+                          "no": {
+                            "description": "Post number",
+                            "type": "integer"
+                          },
+                          "now": {
+                            "description": "Formatted date and time",
+                            "type": "string"
+                          },
+                          "omitted_images": {
+                            "description": "Number of omitted images",
+                            "type": "integer"
+                          },
+                          "omitted_posts": {
+                            "description": "Number of omitted posts",
+                            "type": "integer"
+                          },
+                          "replies": {
+                            "description": "Number of replies",
+                            "type": "integer"
+                          },
+                          "resto": {
+                            "description": "Reply to thread ID (0 for OP)",
+                            "type": "integer"
+                          },
+                          "semantic_url": {
+                            "description": "SEO-friendly URL slug",
+                            "type": "string"
+                          },
+                          "since4pass": {
+                            "description": "Year 4chan pass purchased",
+                            "type": "integer"
+                          },
+                          "spoiler": {
+                            "description": "Spoiler flag",
+                            "type": "integer"
+                          },
+                          "sticky": {
+                            "description": "Sticky flag",
+                            "type": "integer"
+                          },
+                          "sub": {
+                            "description": "Subject",
+                            "type": "string"
+                          },
+                          "tag": {
+                            "description": "Tag",
+                            "type": "string"
+                          },
+                          "tim": {
+                            "description": "Unix timestamp for image",
+                            "type": "integer"
+                          },
+                          "time": {
+                            "description": "Unix timestamp",
+                            "type": "integer"
+                          },
+                          "tn_h": {
+                            "description": "Thumbnail height",
+                            "type": "integer"
+                          },
+                          "tn_w": {
+                            "description": "Thumbnail width",
+                            "type": "integer"
+                          },
+                          "trip": {
+                            "description": "Tripcode",
+                            "type": "string"
+                          },
+                          "unique_ips": {
+                            "description": "Number of unique poster IPs",
+                            "type": "integer"
+                          },
+                          "w": {
+                            "description": "Image width",
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "no",
+                          "time",
+                          "now"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with thread data"
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Thread not found or has been deleted"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /{board}/threads.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getThreadList",
+        "parameters": [
+          {
+            "description": "Board identifier (e.g., 'g' for technology, 'a' for anime)",
+            "in": "path",
+            "name": "board",
+            "required": true,
+            "schema": {
+              "pattern": "^[a-z0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "HTTP date for conditional requests. Returns 304 if content hasn't been modified.",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "page": {
+                        "description": "Page number",
+                        "type": "integer"
+                      },
+                      "threads": {
+                        "items": {
+                          "properties": {
+                            "last_modified": {
+                              "description": "Unix timestamp of last modification",
+                              "type": "integer"
+                            },
+                            "no": {
+                              "description": "Thread ID (OP post number)",
+                              "type": "integer"
+                            },
+                            "replies": {
+                              "description": "Number of replies",
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response with thread list"
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "404": {
+            "description": "Board not found"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

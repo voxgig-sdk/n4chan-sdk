@@ -126,6 +126,12 @@ main: kit: entity: board: {
               }
             ]
           }
+          contract: {
+            id: "GET /boards.json"
+            json: "{\"operationId\":\"getBoards\",\"parameters\":[{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"boards\":{\"items\":{\"properties\":{\"board\":{\"description\":\"Board identifier\",\"type\":\"string\"},\"board_flags\":{\"description\":\"Board flags configuration\",\"type\":\"object\"},\"bump_limit\":{\"description\":\"Bump limit for threads\",\"type\":\"integer\"},\"cooldowns\":{\"description\":\"Cooldown periods for posting\",\"type\":\"object\"},\"custom_spoilers\":{\"description\":\"Number of custom spoiler images\",\"type\":\"integer\"},\"image_limit\":{\"description\":\"Image limit for threads\",\"type\":\"integer\"},\"is_archived\":{\"description\":\"Archive enabled flag\",\"type\":\"integer\"},\"max_comment_chars\":{\"description\":\"Maximum comment length\",\"type\":\"integer\"},\"max_filesize\":{\"description\":\"Maximum filesize in bytes\",\"type\":\"integer\"},\"max_webm_duration\":{\"description\":\"Maximum WebM duration in seconds\",\"type\":\"integer\"},\"max_webm_filesize\":{\"description\":\"Maximum WebM filesize in bytes\",\"type\":\"integer\"},\"meta_description\":{\"description\":\"Board meta description\",\"type\":\"string\"},\"pages\":{\"description\":\"Number of pages\",\"type\":\"integer\"},\"per_page\":{\"description\":\"Threads per page\",\"type\":\"integer\"},\"spoilers\":{\"description\":\"Custom spoilers enabled flag\",\"type\":\"integer\"},\"title\":{\"description\":\"Board title\",\"type\":\"string\"},\"ws_board\":{\"description\":\"Worksafe board flag (1 for worksafe, 0 for NSFW)\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with board list\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/boards.json"
           segments: [

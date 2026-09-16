@@ -4,59 +4,59 @@
       "BOARD00": {
         "board": "saa",
         "board_flags": {},
-        "bump_limit": "sac",
+        "bump_limit": 172,
         "cooldowns": {},
-        "custom_spoilers": "sae",
-        "image_limit": "saf",
-        "is_archived": "sb0",
-        "max_comment_chars": "sb1",
-        "max_filesize": "sb2",
-        "max_webm_duration": "sb3",
-        "max_webm_filesize": "sb4",
+        "custom_spoilers": 174,
+        "image_limit": 175,
+        "is_archived": 176,
+        "max_comment_chars": 177,
+        "max_filesize": 178,
+        "max_webm_duration": 179,
+        "max_webm_filesize": 180,
         "meta_description": "sb5",
-        "pages": "sb6",
-        "per_page": "sb7",
-        "spoilers": "sb8",
+        "pages": 182,
+        "per_page": 183,
+        "spoilers": 184,
         "title": "sb9",
-        "ws_board": "sba"
+        "ws_board": 186
       },
       "BOARD01": {
         "board": "s154",
         "board_flags": {},
-        "bump_limit": "s156",
+        "bump_limit": 342,
         "cooldowns": {},
-        "custom_spoilers": "s158",
-        "image_limit": "s159",
-        "is_archived": "s15a",
-        "max_comment_chars": "s15b",
-        "max_filesize": "s15c",
-        "max_webm_duration": "s15d",
-        "max_webm_filesize": "s15e",
+        "custom_spoilers": 344,
+        "image_limit": 345,
+        "is_archived": 346,
+        "max_comment_chars": 347,
+        "max_filesize": 348,
+        "max_webm_duration": 349,
+        "max_webm_filesize": 350,
         "meta_description": "s15f",
-        "pages": "s160",
-        "per_page": "s161",
-        "spoilers": "s162",
+        "pages": 352,
+        "per_page": 353,
+        "spoilers": 354,
         "title": "s163",
-        "ws_board": "s164"
+        "ws_board": 356
       },
       "BOARD02": {
         "board": "s1fe",
         "board_flags": {},
-        "bump_limit": "s200",
+        "bump_limit": 512,
         "cooldowns": {},
-        "custom_spoilers": "s202",
-        "image_limit": "s203",
-        "is_archived": "s204",
-        "max_comment_chars": "s205",
-        "max_filesize": "s206",
-        "max_webm_duration": "s207",
-        "max_webm_filesize": "s208",
+        "custom_spoilers": 514,
+        "image_limit": 515,
+        "is_archived": 516,
+        "max_comment_chars": 517,
+        "max_filesize": 518,
+        "max_webm_duration": 519,
+        "max_webm_filesize": 520,
         "meta_description": "s209",
-        "pages": "s20a",
-        "per_page": "s20b",
-        "spoilers": "s20c",
+        "pages": 522,
+        "per_page": 523,
+        "spoilers": 524,
         "title": "s20d",
-        "ws_board": "s20e"
+        "ws_board": 526
       }
     }
   },
@@ -65,21 +65,139 @@
       "board_ref01": {
         "board": "s2a8",
         "board_flags": {},
-        "bump_limit": "s2aa",
+        "bump_limit": 682,
         "cooldowns": {},
-        "custom_spoilers": "s2ac",
-        "image_limit": "s2ad",
-        "is_archived": "s2ae",
-        "max_comment_chars": "s2af",
-        "max_filesize": "s2b0",
-        "max_webm_duration": "s2b1",
-        "max_webm_filesize": "s2b2",
+        "custom_spoilers": 684,
+        "image_limit": 685,
+        "is_archived": 686,
+        "max_comment_chars": 687,
+        "max_filesize": 688,
+        "max_webm_duration": 689,
+        "max_webm_filesize": 690,
         "meta_description": "s2b3",
-        "pages": "s2b4",
-        "per_page": "s2b5",
-        "spoilers": "s2b6",
+        "pages": 692,
+        "per_page": 693,
+        "spoilers": 694,
         "title": "s2b7",
-        "ws_board": "s2b8"
+        "ws_board": 696
+      }
+    }
+  },
+  "requests": {
+    "GET /boards.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBoards",
+        "parameters": [
+          {
+            "description": "HTTP date for conditional requests. Returns 304 if content hasn't been modified.",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "boards": {
+                      "items": {
+                        "properties": {
+                          "board": {
+                            "description": "Board identifier",
+                            "type": "string"
+                          },
+                          "board_flags": {
+                            "description": "Board flags configuration",
+                            "type": "object"
+                          },
+                          "bump_limit": {
+                            "description": "Bump limit for threads",
+                            "type": "integer"
+                          },
+                          "cooldowns": {
+                            "description": "Cooldown periods for posting",
+                            "type": "object"
+                          },
+                          "custom_spoilers": {
+                            "description": "Number of custom spoiler images",
+                            "type": "integer"
+                          },
+                          "image_limit": {
+                            "description": "Image limit for threads",
+                            "type": "integer"
+                          },
+                          "is_archived": {
+                            "description": "Archive enabled flag",
+                            "type": "integer"
+                          },
+                          "max_comment_chars": {
+                            "description": "Maximum comment length",
+                            "type": "integer"
+                          },
+                          "max_filesize": {
+                            "description": "Maximum filesize in bytes",
+                            "type": "integer"
+                          },
+                          "max_webm_duration": {
+                            "description": "Maximum WebM duration in seconds",
+                            "type": "integer"
+                          },
+                          "max_webm_filesize": {
+                            "description": "Maximum WebM filesize in bytes",
+                            "type": "integer"
+                          },
+                          "meta_description": {
+                            "description": "Board meta description",
+                            "type": "string"
+                          },
+                          "pages": {
+                            "description": "Number of pages",
+                            "type": "integer"
+                          },
+                          "per_page": {
+                            "description": "Threads per page",
+                            "type": "integer"
+                          },
+                          "spoilers": {
+                            "description": "Custom spoilers enabled flag",
+                            "type": "integer"
+                          },
+                          "title": {
+                            "description": "Board title",
+                            "type": "string"
+                          },
+                          "ws_board": {
+                            "description": "Worksafe board flag (1 for worksafe, 0 for NSFW)",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with board list"
+          },
+          "304": {
+            "description": "Not Modified - Content has not changed since last request"
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

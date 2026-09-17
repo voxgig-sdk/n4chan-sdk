@@ -326,48 +326,8 @@ thread = client.Thread()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | `int` | No | Archived flag |
-| `archived_on` | `int` | No | Unix timestamp when archived |
-| `bumplimit` | `int` | No | Bump limit reached flag |
-| `capcode` | `str` | No | Capcode (mod, admin, etc.) |
-| `closed` | `int` | No | Closed flag |
-| `com` | `str` | No | Comment (HTML escaped) |
-| `country` | `str` | No | Country code |
-| `country_name` | `str` | No | Country name |
-| `custom_spoiler` | `int` | No | Custom spoiler ID |
-| `ext` | `str` | No | File extension |
-| `filedeleted` | `int` | No | File deleted flag |
-| `filename` | `str` | No | Original filename |
-| `fsize` | `int` | No | File size in bytes |
-| `h` | `int` | No | Image height |
-| `id` | `str` | No | Poster ID |
-| `imagelimit` | `int` | No | Image limit reached flag |
-| `images` | `int` | No | Number of images |
-| `last_modified` | `int` | No | Unix timestamp of last modification |
-| `m_img` | `int` | No | Mobile optimized image flag |
-| `md5` | `str` | No | MD5 hash in base64 |
-| `name` | `str` | No | Poster name |
-| `no` | `int` | Yes | Post number |
-| `now` | `str` | Yes | Formatted date and time |
-| `omitted_images` | `int` | No | Number of omitted images |
-| `omitted_posts` | `int` | No | Number of omitted posts |
 | `page` | `int` | No | Page number |
-| `replies` | `int` | No | Number of replies |
-| `resto` | `int` | No | Reply to thread ID (0 for OP) |
-| `semantic_url` | `str` | No | SEO-friendly URL slug |
-| `since4pass` | `int` | No | Year 4chan pass purchased |
-| `spoiler` | `int` | No | Spoiler flag |
-| `sticky` | `int` | No | Sticky flag |
-| `sub` | `str` | No | Subject |
-| `tag` | `str` | No | Tag |
 | `threads` | `list` | No |  |
-| `tim` | `int` | No | Unix timestamp for image |
-| `time` | `int` | Yes | Unix timestamp |
-| `tn_h` | `int` | No | Thumbnail height |
-| `tn_w` | `int` | No | Thumbnail width |
-| `trip` | `str` | No | Tripcode |
-| `unique_ips` | `int` | No | Number of unique poster IPs |
-| `w` | `int` | No | Image width |
 
 ### Operations
 

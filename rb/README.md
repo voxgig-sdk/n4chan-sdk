@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  catalogs = client.Catalog.list()
+  threads = client.Thread.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -121,8 +121,8 @@ client = N4chanSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-catalog = client.Catalog.list()
-puts catalog
+thread = client.Thread.list()
+puts thread
 ```
 
 ### Use a custom fetch function
@@ -297,48 +297,8 @@ API path: `/{board}/{page}.json`
 
 | Field | Description |
 | --- | --- |
-| `archived` | Archived flag |
-| `archived_on` | Unix timestamp when archived |
-| `bumplimit` | Bump limit reached flag |
-| `capcode` | Capcode (mod, admin, etc.) |
-| `closed` | Closed flag |
-| `com` | Comment (HTML escaped) |
-| `country` | Country code |
-| `country_name` | Country name |
-| `custom_spoiler` | Custom spoiler ID |
-| `ext` | File extension |
-| `filedeleted` | File deleted flag |
-| `filename` | Original filename |
-| `fsize` | File size in bytes |
-| `h` | Image height |
-| `id` | Poster ID |
-| `imagelimit` | Image limit reached flag |
-| `images` | Number of images |
-| `last_modified` | Unix timestamp of last modification |
-| `m_img` | Mobile optimized image flag |
-| `md5` | MD5 hash in base64 |
-| `name` | Poster name |
-| `no` | Post number |
-| `now` | Formatted date and time |
-| `omitted_images` | Number of omitted images |
-| `omitted_posts` | Number of omitted posts |
 | `page` | Page number |
-| `replies` | Number of replies |
-| `resto` | Reply to thread ID (0 for OP) |
-| `semantic_url` | SEO-friendly URL slug |
-| `since4pass` | Year 4chan pass purchased |
-| `spoiler` | Spoiler flag |
-| `sticky` | Sticky flag |
-| `sub` | Subject |
-| `tag` | Tag |
 | `threads` |  |
-| `tim` | Unix timestamp for image |
-| `time` | Unix timestamp |
-| `tn_h` | Thumbnail height |
-| `tn_w` | Thumbnail width |
-| `trip` | Tripcode |
-| `unique_ips` | Number of unique poster IPs |
-| `w` | Image width |
 
 Operations: List.
 
@@ -470,48 +430,8 @@ Create an instance: `thread = client.Thread`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | `Integer` | Archived flag |
-| `archived_on` | `Integer` | Unix timestamp when archived |
-| `bumplimit` | `Integer` | Bump limit reached flag |
-| `capcode` | `String` | Capcode (mod, admin, etc.) |
-| `closed` | `Integer` | Closed flag |
-| `com` | `String` | Comment (HTML escaped) |
-| `country` | `String` | Country code |
-| `country_name` | `String` | Country name |
-| `custom_spoiler` | `Integer` | Custom spoiler ID |
-| `ext` | `String` | File extension |
-| `filedeleted` | `Integer` | File deleted flag |
-| `filename` | `String` | Original filename |
-| `fsize` | `Integer` | File size in bytes |
-| `h` | `Integer` | Image height |
-| `id` | `String` | Poster ID |
-| `imagelimit` | `Integer` | Image limit reached flag |
-| `images` | `Integer` | Number of images |
-| `last_modified` | `Integer` | Unix timestamp of last modification |
-| `m_img` | `Integer` | Mobile optimized image flag |
-| `md5` | `String` | MD5 hash in base64 |
-| `name` | `String` | Poster name |
-| `no` | `Integer` | Post number |
-| `now` | `String` | Formatted date and time |
-| `omitted_images` | `Integer` | Number of omitted images |
-| `omitted_posts` | `Integer` | Number of omitted posts |
 | `page` | `Integer` | Page number |
-| `replies` | `Integer` | Number of replies |
-| `resto` | `Integer` | Reply to thread ID (0 for OP) |
-| `semantic_url` | `String` | SEO-friendly URL slug |
-| `since4pass` | `Integer` | Year 4chan pass purchased |
-| `spoiler` | `Integer` | Spoiler flag |
-| `sticky` | `Integer` | Sticky flag |
-| `sub` | `String` | Subject |
-| `tag` | `String` | Tag |
 | `threads` | `Array` |  |
-| `tim` | `Integer` | Unix timestamp for image |
-| `time` | `Integer` | Unix timestamp |
-| `tn_h` | `Integer` | Thumbnail height |
-| `tn_w` | `Integer` | Thumbnail width |
-| `trip` | `String` | Tripcode |
-| `unique_ips` | `Integer` | Number of unique poster IPs |
-| `w` | `Integer` | Image width |
 
 #### Example: List
 
@@ -663,6 +583,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── N4chan_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations
@@ -681,11 +602,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-catalog = client.Catalog
-catalog.list()
+thread = client.Thread
+thread.list()
 
-# catalog.data_get now returns the catalog data from the last list
-# catalog.match_get returns the last match criteria
+# thread.data_get now returns the thread data from the last list
+# thread.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

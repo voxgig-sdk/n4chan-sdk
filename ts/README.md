@@ -54,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const catalogs = await client.Catalog().list()
-  console.log(catalogs)
+  const threads = await client.Thread().list()
+  console.log(threads)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -121,10 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N4chanSDK.test()
 
-const catalog = await client.Catalog().list()
-// catalog is the entity, populated with mock response data
-// — call catalog.data() for the record itself
-console.log(catalog)
+const thread = await client.Thread().list()
+// thread is the entity, populated with mock response data
+// — call thread.data() for the record itself
+console.log(thread)
 ```
 
 You can also use the instance method:
@@ -139,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Catalog()
+const entity = client.Thread()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -352,48 +352,8 @@ API path: `/{board}/{page}.json`
 
 | Field | Description |
 | --- | --- |
-| `archived` | Archived flag |
-| `archived_on` | Unix timestamp when archived |
-| `bumplimit` | Bump limit reached flag |
-| `capcode` | Capcode (mod, admin, etc.) |
-| `closed` | Closed flag |
-| `com` | Comment (HTML escaped) |
-| `country` | Country code |
-| `country_name` | Country name |
-| `custom_spoiler` | Custom spoiler ID |
-| `ext` | File extension |
-| `filedeleted` | File deleted flag |
-| `filename` | Original filename |
-| `fsize` | File size in bytes |
-| `h` | Image height |
-| `id` | Poster ID |
-| `imagelimit` | Image limit reached flag |
-| `images` | Number of images |
-| `last_modified` | Unix timestamp of last modification |
-| `m_img` | Mobile optimized image flag |
-| `md5` | MD5 hash in base64 |
-| `name` | Poster name |
-| `no` | Post number |
-| `now` | Formatted date and time |
-| `omitted_images` | Number of omitted images |
-| `omitted_posts` | Number of omitted posts |
 | `page` | Page number |
-| `replies` | Number of replies |
-| `resto` | Reply to thread ID (0 for OP) |
-| `semantic_url` | SEO-friendly URL slug |
-| `since4pass` | Year 4chan pass purchased |
-| `spoiler` | Spoiler flag |
-| `sticky` | Sticky flag |
-| `sub` | Subject |
-| `tag` | Tag |
 | `threads` |  |
-| `tim` | Unix timestamp for image |
-| `time` | Unix timestamp |
-| `tn_h` | Thumbnail height |
-| `tn_w` | Thumbnail width |
-| `trip` | Tripcode |
-| `unique_ips` | Number of unique poster IPs |
-| `w` | Image width |
 
 Operations: list.
 
@@ -521,48 +481,8 @@ Create an instance: `const thread = client.Thread()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `archived` | `number` | Archived flag |
-| `archived_on` | `number` | Unix timestamp when archived |
-| `bumplimit` | `number` | Bump limit reached flag |
-| `capcode` | `string` | Capcode (mod, admin, etc.) |
-| `closed` | `number` | Closed flag |
-| `com` | `string` | Comment (HTML escaped) |
-| `country` | `string` | Country code |
-| `country_name` | `string` | Country name |
-| `custom_spoiler` | `number` | Custom spoiler ID |
-| `ext` | `string` | File extension |
-| `filedeleted` | `number` | File deleted flag |
-| `filename` | `string` | Original filename |
-| `fsize` | `number` | File size in bytes |
-| `h` | `number` | Image height |
-| `id` | `string` | Poster ID |
-| `imagelimit` | `number` | Image limit reached flag |
-| `images` | `number` | Number of images |
-| `last_modified` | `number` | Unix timestamp of last modification |
-| `m_img` | `number` | Mobile optimized image flag |
-| `md5` | `string` | MD5 hash in base64 |
-| `name` | `string` | Poster name |
-| `no` | `number` | Post number |
-| `now` | `string` | Formatted date and time |
-| `omitted_images` | `number` | Number of omitted images |
-| `omitted_posts` | `number` | Number of omitted posts |
 | `page` | `number` | Page number |
-| `replies` | `number` | Number of replies |
-| `resto` | `number` | Reply to thread ID (0 for OP) |
-| `semantic_url` | `string` | SEO-friendly URL slug |
-| `since4pass` | `number` | Year 4chan pass purchased |
-| `spoiler` | `number` | Spoiler flag |
-| `sticky` | `number` | Sticky flag |
-| `sub` | `string` | Subject |
-| `tag` | `string` | Tag |
 | `threads` | `any[]` |  |
-| `tim` | `number` | Unix timestamp for image |
-| `time` | `number` | Unix timestamp |
-| `tn_h` | `number` | Thumbnail height |
-| `tn_w` | `number` | Thumbnail width |
-| `trip` | `string` | Tripcode |
-| `unique_ips` | `number` | Number of unique poster IPs |
-| `w` | `number` | Image width |
 
 #### Example: List
 
@@ -724,11 +644,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const catalog = client.Catalog()
-await catalog.list()
+const thread = client.Thread()
+await thread.list()
 
-// catalog.data() now returns the catalog data from the last `list`
-// catalog.match() returns the last match criteria
+// thread.data() now returns the thread data from the last `list`
+// thread.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

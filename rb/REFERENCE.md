@@ -328,48 +328,8 @@ thread = client.Thread
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | `Integer` | No | Archived flag |
-| `archived_on` | `Integer` | No | Unix timestamp when archived |
-| `bumplimit` | `Integer` | No | Bump limit reached flag |
-| `capcode` | `String` | No | Capcode (mod, admin, etc.) |
-| `closed` | `Integer` | No | Closed flag |
-| `com` | `String` | No | Comment (HTML escaped) |
-| `country` | `String` | No | Country code |
-| `country_name` | `String` | No | Country name |
-| `custom_spoiler` | `Integer` | No | Custom spoiler ID |
-| `ext` | `String` | No | File extension |
-| `filedeleted` | `Integer` | No | File deleted flag |
-| `filename` | `String` | No | Original filename |
-| `fsize` | `Integer` | No | File size in bytes |
-| `h` | `Integer` | No | Image height |
-| `id` | `String` | No | Poster ID |
-| `imagelimit` | `Integer` | No | Image limit reached flag |
-| `images` | `Integer` | No | Number of images |
-| `last_modified` | `Integer` | No | Unix timestamp of last modification |
-| `m_img` | `Integer` | No | Mobile optimized image flag |
-| `md5` | `String` | No | MD5 hash in base64 |
-| `name` | `String` | No | Poster name |
-| `no` | `Integer` | Yes | Post number |
-| `now` | `String` | Yes | Formatted date and time |
-| `omitted_images` | `Integer` | No | Number of omitted images |
-| `omitted_posts` | `Integer` | No | Number of omitted posts |
 | `page` | `Integer` | No | Page number |
-| `replies` | `Integer` | No | Number of replies |
-| `resto` | `Integer` | No | Reply to thread ID (0 for OP) |
-| `semantic_url` | `String` | No | SEO-friendly URL slug |
-| `since4pass` | `Integer` | No | Year 4chan pass purchased |
-| `spoiler` | `Integer` | No | Spoiler flag |
-| `sticky` | `Integer` | No | Sticky flag |
-| `sub` | `String` | No | Subject |
-| `tag` | `String` | No | Tag |
 | `threads` | `Array` | No |  |
-| `tim` | `Integer` | No | Unix timestamp for image |
-| `time` | `Integer` | Yes | Unix timestamp |
-| `tn_h` | `Integer` | No | Thumbnail height |
-| `tn_w` | `Integer` | No | Thumbnail width |
-| `trip` | `String` | No | Tripcode |
-| `unique_ips` | `Integer` | No | Number of unique poster IPs |
-| `w` | `Integer` | No | Image width |
 
 ### Operations
 

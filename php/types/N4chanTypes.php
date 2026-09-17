@@ -96,48 +96,8 @@ class IndexListMatch
 /** Thread entity data model. */
 class Thread
 {
-    public ?int $archived = null;
-    public ?int $archived_on = null;
-    public ?int $bumplimit = null;
-    public ?string $capcode = null;
-    public ?int $closed = null;
-    public ?string $com = null;
-    public ?string $country = null;
-    public ?string $country_name = null;
-    public ?int $custom_spoiler = null;
-    public ?string $ext = null;
-    public ?int $filedeleted = null;
-    public ?string $filename = null;
-    public ?int $fsize = null;
-    public ?int $h = null;
-    public ?string $id = null;
-    public ?int $imagelimit = null;
-    public ?int $images = null;
-    public ?int $last_modified = null;
-    public ?int $m_img = null;
-    public ?string $md5 = null;
-    public ?string $name = null;
-    public int $no;
-    public string $now;
-    public ?int $omitted_images = null;
-    public ?int $omitted_posts = null;
     public ?int $page = null;
-    public ?int $replies = null;
-    public ?int $resto = null;
-    public ?string $semantic_url = null;
-    public ?int $since4pass = null;
-    public ?int $spoiler = null;
-    public ?int $sticky = null;
-    public ?string $sub = null;
-    public ?string $tag = null;
     public ?array $threads = null;
-    public ?int $tim = null;
-    public int $time;
-    public ?int $tn_h = null;
-    public ?int $tn_w = null;
-    public ?string $trip = null;
-    public ?int $unique_ips = null;
-    public ?int $w = null;
 }
 
 /** Request payload for Thread#list. */

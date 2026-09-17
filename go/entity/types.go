@@ -87,48 +87,8 @@ type IndexListMatch struct {
 
 // Thread is the typed data model for the thread entity.
 type Thread struct {
-	Archived *int `json:"archived,omitempty"`
-	ArchivedOn *int `json:"archived_on,omitempty"`
-	Bumplimit *int `json:"bumplimit,omitempty"`
-	Capcode *string `json:"capcode,omitempty"`
-	Closed *int `json:"closed,omitempty"`
-	Com *string `json:"com,omitempty"`
-	Country *string `json:"country,omitempty"`
-	CountryName *string `json:"country_name,omitempty"`
-	CustomSpoiler *int `json:"custom_spoiler,omitempty"`
-	Ext *string `json:"ext,omitempty"`
-	Filedeleted *int `json:"filedeleted,omitempty"`
-	Filename *string `json:"filename,omitempty"`
-	Fsize *int `json:"fsize,omitempty"`
-	H *int `json:"h,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Imagelimit *int `json:"imagelimit,omitempty"`
-	Images *int `json:"images,omitempty"`
-	LastModified *int `json:"last_modified,omitempty"`
-	MImg *int `json:"m_img,omitempty"`
-	Md5 *string `json:"md5,omitempty"`
-	Name *string `json:"name,omitempty"`
-	No int `json:"no"`
-	Now string `json:"now"`
-	OmittedImages *int `json:"omitted_images,omitempty"`
-	OmittedPosts *int `json:"omitted_posts,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Replies *int `json:"replies,omitempty"`
-	Resto *int `json:"resto,omitempty"`
-	SemanticUrl *string `json:"semantic_url,omitempty"`
-	Since4pass *int `json:"since4pass,omitempty"`
-	Spoiler *int `json:"spoiler,omitempty"`
-	Sticky *int `json:"sticky,omitempty"`
-	Sub *string `json:"sub,omitempty"`
-	Tag *string `json:"tag,omitempty"`
 	Threads *[]any `json:"threads,omitempty"`
-	Tim *int `json:"tim,omitempty"`
-	Time int `json:"time"`
-	TnH *int `json:"tn_h,omitempty"`
-	TnW *int `json:"tn_w,omitempty"`
-	Trip *string `json:"trip,omitempty"`
-	UniqueIps *int `json:"unique_ips,omitempty"`
-	W *int `json:"w,omitempty"`
 }
 
 // ThreadListMatch is the typed request payload for Thread.ListTyped.

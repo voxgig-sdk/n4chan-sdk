@@ -1,7 +1,7 @@
 # Entity Models
 
-@"archive.aon"
-@"board.aon"
-@"catalog.aon"
-@"index.aon"
-@"thread.aon"
+@"./archive.aon"
+@"./board.aon"
+@"./catalog.aon"
+@"./index.aon"
+@"./thread.aon"

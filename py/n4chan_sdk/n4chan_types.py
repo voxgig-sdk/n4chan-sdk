@@ -82,52 +82,9 @@ class IndexListMatch(TypedDict):
     page: int
 
 
-class ThreadRequired(TypedDict):
-    no: int
-    now: str
-    time: int
-
-
-class Thread(ThreadRequired, total=False):
-    archived: int
-    archived_on: int
-    bumplimit: int
-    capcode: str
-    closed: int
-    com: str
-    country: str
-    country_name: str
-    custom_spoiler: int
-    ext: str
-    filedeleted: int
-    filename: str
-    fsize: int
-    h: int
-    id: str
-    imagelimit: int
-    images: int
-    last_modified: int
-    m_img: int
-    md5: str
-    name: str
-    omitted_images: int
-    omitted_posts: int
+class Thread(TypedDict, total=False):
     page: int
-    replies: int
-    resto: int
-    semantic_url: str
-    since4pass: int
-    spoiler: int
-    sticky: int
-    sub: str
-    tag: str
     threads: list
-    tim: int
-    tn_h: int
-    tn_w: int
-    trip: str
-    unique_ips: int
-    w: int
 
 
 class ThreadListMatch(TypedDict):

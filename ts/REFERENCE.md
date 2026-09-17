@@ -375,48 +375,8 @@ const thread = client.Thread()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `archived` | `number` | No | Archived flag |
-| `archived_on` | `number` | No | Unix timestamp when archived |
-| `bumplimit` | `number` | No | Bump limit reached flag |
-| `capcode` | `string` | No | Capcode (mod, admin, etc.) |
-| `closed` | `number` | No | Closed flag |
-| `com` | `string` | No | Comment (HTML escaped) |
-| `country` | `string` | No | Country code |
-| `country_name` | `string` | No | Country name |
-| `custom_spoiler` | `number` | No | Custom spoiler ID |
-| `ext` | `string` | No | File extension |
-| `filedeleted` | `number` | No | File deleted flag |
-| `filename` | `string` | No | Original filename |
-| `fsize` | `number` | No | File size in bytes |
-| `h` | `number` | No | Image height |
-| `id` | `string` | No | Poster ID |
-| `imagelimit` | `number` | No | Image limit reached flag |
-| `images` | `number` | No | Number of images |
-| `last_modified` | `number` | No | Unix timestamp of last modification |
-| `m_img` | `number` | No | Mobile optimized image flag |
-| `md5` | `string` | No | MD5 hash in base64 |
-| `name` | `string` | No | Poster name |
-| `no` | `number` | Yes | Post number |
-| `now` | `string` | Yes | Formatted date and time |
-| `omitted_images` | `number` | No | Number of omitted images |
-| `omitted_posts` | `number` | No | Number of omitted posts |
 | `page` | `number` | No | Page number |
-| `replies` | `number` | No | Number of replies |
-| `resto` | `number` | No | Reply to thread ID (0 for OP) |
-| `semantic_url` | `string` | No | SEO-friendly URL slug |
-| `since4pass` | `number` | No | Year 4chan pass purchased |
-| `spoiler` | `number` | No | Spoiler flag |
-| `sticky` | `number` | No | Sticky flag |
-| `sub` | `string` | No | Subject |
-| `tag` | `string` | No | Tag |
 | `threads` | `any[]` | No |  |
-| `tim` | `number` | No | Unix timestamp for image |
-| `time` | `number` | Yes | Unix timestamp |
-| `tn_h` | `number` | No | Thumbnail height |
-| `tn_w` | `number` | No | Thumbnail width |
-| `trip` | `string` | No | Tripcode |
-| `unique_ips` | `number` | No | Number of unique poster IPs |
-| `w` | `number` | No | Image width |
 
 ### Actions
 

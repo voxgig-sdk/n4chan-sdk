@@ -24,71 +24,6 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "archive": {
           "active": true,
@@ -518,181 +453,6 @@
           "fields": [
             {
               "active": true,
-              "name": "archived",
-              "req": false,
-              "short": "Archived flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "archived_on",
-              "req": false,
-              "short": "Unix timestamp when archived",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "bumplimit",
-              "req": false,
-              "short": "Bump limit reached flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "capcode",
-              "req": false,
-              "short": "Capcode (mod, admin, etc.)",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "closed",
-              "req": false,
-              "short": "Closed flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "com",
-              "req": false,
-              "short": "Comment (HTML escaped)",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country code",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "country_name",
-              "req": false,
-              "short": "Country name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "custom_spoiler",
-              "req": false,
-              "short": "Custom spoiler ID",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "ext",
-              "req": false,
-              "short": "File extension",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "filedeleted",
-              "req": false,
-              "short": "File deleted flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "filename",
-              "req": false,
-              "short": "Original filename",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "fsize",
-              "req": false,
-              "short": "File size in bytes",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "h",
-              "req": false,
-              "short": "Image height",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Poster ID",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "imagelimit",
-              "req": false,
-              "short": "Image limit reached flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "images",
-              "req": false,
-              "short": "Number of images",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "last_modified",
-              "req": false,
-              "short": "Unix timestamp of last modification",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "m_img",
-              "req": false,
-              "short": "Mobile optimized image flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "md5",
-              "req": false,
-              "short": "MD5 hash in base64",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Poster name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "no",
-              "req": true,
-              "short": "Post number",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "now",
-              "req": true,
-              "short": "Formatted date and time",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "omitted_images",
-              "req": false,
-              "short": "Number of omitted images",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "omitted_posts",
-              "req": false,
-              "short": "Number of omitted posts",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
               "name": "page",
               "req": false,
               "short": "Page number",
@@ -700,120 +460,11 @@
             },
             {
               "active": true,
-              "name": "replies",
-              "req": false,
-              "short": "Number of replies",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "resto",
-              "req": false,
-              "short": "Reply to thread ID (0 for OP)",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "semantic_url",
-              "req": false,
-              "short": "SEO-friendly URL slug",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "since4pass",
-              "req": false,
-              "short": "Year 4chan pass purchased",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "spoiler",
-              "req": false,
-              "short": "Spoiler flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "sticky",
-              "req": false,
-              "short": "Sticky flag",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "sub",
-              "req": false,
-              "short": "Subject",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "tag",
-              "req": false,
-              "short": "Tag",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "name": "threads",
               "req": false,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "tim",
-              "req": false,
-              "short": "Unix timestamp for image",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "time",
-              "req": true,
-              "short": "Unix timestamp",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "tn_h",
-              "req": false,
-              "short": "Thumbnail height",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "tn_w",
-              "req": false,
-              "short": "Thumbnail width",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "trip",
-              "req": false,
-              "short": "Tripcode",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "unique_ips",
-              "req": false,
-              "short": "Number of unique poster IPs",
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "w",
-              "req": false,
-              "short": "Image width",
-              "type": "`$INTEGER`"
             }
           ],
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
           "name": "thread",
           "op": {
             "list": {
@@ -1534,6 +1185,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -1608,6 +1261,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1834,6 +1488,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1899,6 +1554,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1970,6 +1626,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2046,6 +1703,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

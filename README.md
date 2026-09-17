@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = N4chanSDK.test({
   entity: {
-    catalog: {
+    thread: {
       test01: { id: 'test01' },
     },
   },
 })
-const catalogs = await client.Catalog().list()
-// catalogs is an array of Catalog entities, populated with mock data
-// — call catalogs[0].data() for the record itself
-console.log(catalogs)
+const threads = await client.Thread().list()
+// threads is an array of Thread entities, populated with mock data
+// — call threads[0].data() for the record itself
+console.log(threads)
 ```
 
 ### Python
 
 ```python
 client = N4chanSDK.test()
-catalogs = client.Catalog().list()
-print(catalogs)
+threads = client.Thread().list()
+print(threads)
 ```
 
 ### PHP
@@ -70,16 +70,16 @@ print(catalogs)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = N4chanSDK::test([
-    "entity" => ["catalog" => ["test01" => []]],
+    "entity" => ["thread" => ["test01" => []]],
 ]);
-$catalogs = $client->Catalog()->list();
+$threads = $client->Thread()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Catalog(nil).List(
+result, err := client.Thread(nil).List(
     nil, nil,
 )
 ```
@@ -89,28 +89,28 @@ result, err := client.Catalog(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = N4chanSDK.test({
-  "entity" => { "catalog" => { "test01" => {} } },
+  "entity" => { "thread" => { "test01" => {} } },
 })
-catalogs = client.Catalog.list()
+threads = client.Thread.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Catalog():list()
+local results, err = client:Thread():list()
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
-| Python | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
-| PHP | `voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
+| TypeScript | `@voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| Python | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| PHP | `voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/n4chan-sdk/go` | `go get github.com/voxgig-sdk/n4chan-sdk/go@latest` |
-| Ruby | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
-| Lua | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/releases) |
+| Ruby | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| Lua | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/n4chan-sdk/go-cli` | `go install github.com/voxgig-sdk/n4chan-sdk/go-cli/cmd/n4chan@latest` |
 | Go MCP server | `github.com/voxgig-sdk/n4chan-sdk/go-mcp` | `go get github.com/voxgig-sdk/n4chan-sdk/go-mcp@latest` |
 

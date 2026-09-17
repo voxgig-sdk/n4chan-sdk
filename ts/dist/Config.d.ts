@@ -278,22 +278,11 @@ declare class Config {
                 name: string;
                 short: string;
                 type: string;
-                req?: undefined;
-            } | {
-                name: string;
-                req: boolean;
-                short: string;
-                type: string;
             } | {
                 name: string;
                 type: string;
                 short?: undefined;
-                req?: undefined;
             })[];
-            id: {
-                field: string;
-                name: string;
-            };
             name: string;
             op: {
                 list: {

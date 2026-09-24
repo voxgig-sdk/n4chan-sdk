@@ -18,7 +18,7 @@ describe("ThreadDirect", function()
       return
     end
     if setup.live then
-      for _, _live_key in ipairs({"board01", "thread01"}) do
+      for _, _live_key in ipairs({"board01"}) do
         if setup.idmap[_live_key] == nil then
           pending("live test needs " .. _live_key .. " via *_ENTID env var (synthetic IDs only)")
           return
@@ -33,14 +33,9 @@ describe("ThreadDirect", function()
     else
       params["board"] = "direct01"
     end
-    if setup.live then
-      params["thread_id"] = setup.idmap["thread01"]
-    else
-      params["thread_id"] = "direct01"
-    end
 
     local result, err = client:direct({
-      path = "{board}/thread/{thread_id}.json",
+      path = "{board}/threads.json",
       method = "GET",
       params = params,
     })

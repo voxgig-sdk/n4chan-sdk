@@ -337,6 +337,12 @@ class N4chanSDK:
         return ThreadEntity(self, data)
 
 
+    def ThreadId(self, data=None) -> "ThreadIdEntity":
+        """Entity factory: client.ThreadId().list() / client.ThreadId().load({"id": ...})."""
+        from n4chan_sdk.entity.thread_id_entity import ThreadIdEntity
+        return ThreadIdEntity(self, data)
+
+
 
     @classmethod
     def test(cls, testopts=None, sdkopts=None) -> "N4chanSDK":
@@ -369,3 +375,4 @@ if TYPE_CHECKING:
     from n4chan_sdk.entity.catalog_entity import CatalogEntity
     from n4chan_sdk.entity.index_entity import IndexEntity
     from n4chan_sdk.entity.thread_entity import ThreadEntity
+    from n4chan_sdk.entity.thread_id_entity import ThreadIdEntity

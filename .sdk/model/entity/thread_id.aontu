@@ -1,0 +1,364 @@
+# Entity: thread_id
+
+main: kit: entity: thread_id: {
+
+  alias: field: {}
+
+  fields: {
+    archived: {
+      h: "Archived"
+      n: "archived"
+      r: false
+      sh: "Archived flag"
+      t: "`$INTEGER`"
+    }
+    archived_on: {
+      h: "Archived On"
+      n: "archived_on"
+      r: false
+      sh: "Unix timestamp when archived"
+      t: "`$INTEGER`"
+    }
+    bumplimit: {
+      h: "Bumplimit"
+      n: "bumplimit"
+      r: false
+      sh: "Bump limit reached flag"
+      t: "`$INTEGER`"
+    }
+    capcode: {
+      h: "Capcode"
+      n: "capcode"
+      r: false
+      sh: "Capcode (mod, admin, etc.)"
+      t: "`$STRING`"
+    }
+    closed: {
+      h: "Closed"
+      n: "closed"
+      r: false
+      sh: "Closed flag"
+      t: "`$INTEGER`"
+    }
+    com: {
+      h: "Com"
+      n: "com"
+      r: false
+      sh: "Comment (HTML escaped)"
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      sh: "Country code"
+      t: "`$STRING`"
+    }
+    country_name: {
+      h: "Country Name"
+      n: "country_name"
+      r: false
+      sh: "Country name"
+      t: "`$STRING`"
+    }
+    custom_spoiler: {
+      h: "Custom Spoiler"
+      n: "custom_spoiler"
+      r: false
+      sh: "Custom spoiler ID"
+      t: "`$INTEGER`"
+    }
+    ext: {
+      h: "Ext"
+      n: "ext"
+      r: false
+      sh: "File extension"
+      t: "`$STRING`"
+    }
+    filedeleted: {
+      h: "Filedeleted"
+      n: "filedeleted"
+      r: false
+      sh: "File deleted flag"
+      t: "`$INTEGER`"
+    }
+    filename: {
+      h: "Filename"
+      n: "filename"
+      r: false
+      sh: "Original filename"
+      t: "`$STRING`"
+    }
+    fsize: {
+      h: "Fsize"
+      n: "fsize"
+      r: false
+      sh: "File size in bytes"
+      t: "`$INTEGER`"
+    }
+    h: {
+      h: "H"
+      n: "h"
+      r: false
+      sh: "Image height"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Poster ID"
+      t: "`$STRING`"
+    }
+    imagelimit: {
+      h: "Imagelimit"
+      n: "imagelimit"
+      r: false
+      sh: "Image limit reached flag"
+      t: "`$INTEGER`"
+    }
+    images: {
+      h: "Images"
+      n: "images"
+      r: false
+      sh: "Number of images"
+      t: "`$INTEGER`"
+    }
+    last_modified: {
+      h: "Last Modified"
+      n: "last_modified"
+      r: false
+      sh: "Unix timestamp of last modification"
+      t: "`$INTEGER`"
+    }
+    m_img: {
+      h: "M Img"
+      n: "m_img"
+      r: false
+      sh: "Mobile optimized image flag"
+      t: "`$INTEGER`"
+    }
+    md5: {
+      h: "Md5"
+      n: "md5"
+      r: false
+      sh: "MD5 hash in base64"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Poster name"
+      t: "`$STRING`"
+    }
+    no: {
+      h: "No"
+      n: "no"
+      r: true
+      sh: "Post number"
+      t: "`$INTEGER`"
+    }
+    now: {
+      h: "Now"
+      n: "now"
+      r: true
+      sh: "Formatted date and time"
+      t: "`$STRING`"
+    }
+    omitted_images: {
+      h: "Omitted Images"
+      n: "omitted_images"
+      r: false
+      sh: "Number of omitted images"
+      t: "`$INTEGER`"
+    }
+    omitted_posts: {
+      h: "Omitted Posts"
+      n: "omitted_posts"
+      r: false
+      sh: "Number of omitted posts"
+      t: "`$INTEGER`"
+    }
+    replies: {
+      h: "Replies"
+      n: "replies"
+      r: false
+      sh: "Number of replies"
+      t: "`$INTEGER`"
+    }
+    resto: {
+      h: "Resto"
+      n: "resto"
+      r: false
+      sh: "Reply to thread ID (0 for OP)"
+      t: "`$INTEGER`"
+    }
+    semantic_url: {
+      h: "Semantic Url"
+      n: "semantic_url"
+      r: false
+      sh: "SEO-friendly URL slug"
+      t: "`$STRING`"
+    }
+    since4pass: {
+      h: "Since4pass"
+      n: "since4pass"
+      r: false
+      sh: "Year 4chan pass purchased"
+      t: "`$INTEGER`"
+    }
+    spoiler: {
+      h: "Spoiler"
+      n: "spoiler"
+      r: false
+      sh: "Spoiler flag"
+      t: "`$INTEGER`"
+    }
+    sticky: {
+      h: "Sticky"
+      n: "sticky"
+      r: false
+      sh: "Sticky flag"
+      t: "`$INTEGER`"
+    }
+    sub: {
+      h: "Sub"
+      n: "sub"
+      r: false
+      sh: "Subject"
+      t: "`$STRING`"
+    }
+    tag: {
+      h: "Tag"
+      n: "tag"
+      r: false
+      sh: "Tag"
+      t: "`$STRING`"
+    }
+    tim: {
+      h: "Tim"
+      n: "tim"
+      r: false
+      sh: "Unix timestamp for image"
+      t: "`$INTEGER`"
+    }
+    time: {
+      h: "Time"
+      n: "time"
+      r: true
+      sh: "Unix timestamp"
+      t: "`$INTEGER`"
+    }
+    tn_h: {
+      h: "Tn H"
+      n: "tn_h"
+      r: false
+      sh: "Thumbnail height"
+      t: "`$INTEGER`"
+    }
+    tn_w: {
+      h: "Tn W"
+      n: "tn_w"
+      r: false
+      sh: "Thumbnail width"
+      t: "`$INTEGER`"
+    }
+    trip: {
+      h: "Trip"
+      n: "trip"
+      r: false
+      sh: "Tripcode"
+      t: "`$STRING`"
+    }
+    unique_ips: {
+      h: "Unique Ips"
+      n: "unique_ips"
+      r: false
+      sh: "Number of unique poster IPs"
+      t: "`$INTEGER`"
+    }
+    w: {
+      h: "W"
+      n: "w"
+      r: false
+      sh: "Image width"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "thread_id"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{board}/thread/{threadId}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "if_modified_since"
+                or: "if_modified_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "board"
+                or: "board"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "thread_id"
+                or: "thread_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{board}/thread/{threadId}.json"
+          q: {
+            exist: [
+              "board"
+              "if_modified_since"
+              "thread_id"
+            ]
+          }
+          s: [
+            {
+              var: "board"
+            }
+            {
+              lit: "thread"
+            }
+            {
+              lit: "{threadId}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.posts`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

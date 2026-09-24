@@ -108,6 +108,18 @@ Create a new `Thread` entity instance.
 
 **Returns:** `ThreadEntity` instance.
 
+#### `ThreadId(data?: object)`
+
+Create a new `ThreadId` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `ThreadIdEntity` instance.
+
 #### `options()`
 
 Return a deep copy of the current SDK options.
@@ -378,26 +390,6 @@ const thread = client.Thread()
 | `page` | `number` | No | Page number |
 | `threads` | `any[]` | No |  |
 
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `thread_id` | `/{board}/thread/{threadId}.json` | `client.Thread().list({ $action: 'thread_id', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-Thread record — check the API definition for its shape.
-
-```ts
-const result = await client.Thread().list({
-  $action: 'thread_id',
-  /* ...the action's own arguments */
-})
-```
-
 ### Operations
 
 #### `list(match: object, ctrl?: object)`
@@ -423,6 +415,95 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `ThreadEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `N4chanSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## ThreadIdEntity
+
+```ts
+const thread_id = client.ThreadId()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `archived` | `number` | No | Archived flag |
+| `archived_on` | `number` | No | Unix timestamp when archived |
+| `bumplimit` | `number` | No | Bump limit reached flag |
+| `capcode` | `string` | No | Capcode (mod, admin, etc.) |
+| `closed` | `number` | No | Closed flag |
+| `com` | `string` | No | Comment (HTML escaped) |
+| `country` | `string` | No | Country code |
+| `country_name` | `string` | No | Country name |
+| `custom_spoiler` | `number` | No | Custom spoiler ID |
+| `ext` | `string` | No | File extension |
+| `filedeleted` | `number` | No | File deleted flag |
+| `filename` | `string` | No | Original filename |
+| `fsize` | `number` | No | File size in bytes |
+| `h` | `number` | No | Image height |
+| `id` | `string` | No | Poster ID |
+| `imagelimit` | `number` | No | Image limit reached flag |
+| `images` | `number` | No | Number of images |
+| `last_modified` | `number` | No | Unix timestamp of last modification |
+| `m_img` | `number` | No | Mobile optimized image flag |
+| `md5` | `string` | No | MD5 hash in base64 |
+| `name` | `string` | No | Poster name |
+| `no` | `number` | Yes | Post number |
+| `now` | `string` | Yes | Formatted date and time |
+| `omitted_images` | `number` | No | Number of omitted images |
+| `omitted_posts` | `number` | No | Number of omitted posts |
+| `replies` | `number` | No | Number of replies |
+| `resto` | `number` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `string` | No | SEO-friendly URL slug |
+| `since4pass` | `number` | No | Year 4chan pass purchased |
+| `spoiler` | `number` | No | Spoiler flag |
+| `sticky` | `number` | No | Sticky flag |
+| `sub` | `string` | No | Subject |
+| `tag` | `string` | No | Tag |
+| `tim` | `number` | No | Unix timestamp for image |
+| `time` | `number` | Yes | Unix timestamp |
+| `tn_h` | `number` | No | Thumbnail height |
+| `tn_w` | `number` | No | Thumbnail width |
+| `trip` | `string` | No | Tripcode |
+| `unique_ips` | `number` | No | Number of unique poster IPs |
+| `w` | `number` | No | Image width |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.ThreadId().list({ board: "example", thread_id: 1 })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `ThreadIdEntity` instance with the same client and
 options.
 
 #### `client()`

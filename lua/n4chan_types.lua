@@ -1,7 +1,7 @@
 -- Typed models for the N4chan SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -69,6 +69,52 @@
 
 ---@class ThreadListMatch
 ---@field board string
+
+---@class ThreadId
+---@field archived? number
+---@field archived_on? number
+---@field bumplimit? number
+---@field capcode? string
+---@field closed? number
+---@field com? string
+---@field country? string
+---@field country_name? string
+---@field custom_spoiler? number
+---@field ext? string
+---@field filedeleted? number
+---@field filename? string
+---@field fsize? number
+---@field h? number
+---@field id? string
+---@field imagelimit? number
+---@field images? number
+---@field last_modified? number
+---@field m_img? number
+---@field md5? string
+---@field name? string
+---@field no number
+---@field now string
+---@field omitted_images? number
+---@field omitted_posts? number
+---@field replies? number
+---@field resto? number
+---@field semantic_url? string
+---@field since4pass? number
+---@field spoiler? number
+---@field sticky? number
+---@field sub? string
+---@field tag? string
+---@field tim? number
+---@field time number
+---@field tn_h? number
+---@field tn_w? number
+---@field trip? string
+---@field unique_ips? number
+---@field w? number
+
+---@class ThreadIdListMatch
+---@field board string
+---@field thread_id number
 
 local M = {}
 

@@ -17,7 +17,7 @@ class ThreadDirectTest < Minitest::Test
       return
     end
     if setup[:live]
-      ["board01", "thread01"].each do |_live_key|
+      ["board01"].each do |_live_key|
         if setup[:idmap][_live_key].nil?
           skip "live test needs #{_live_key} via *_ENTID env var (synthetic IDs only)"
           return
@@ -32,14 +32,9 @@ class ThreadDirectTest < Minitest::Test
     else
       params["board"] = "direct01"
     end
-    if setup[:live]
-      params["thread_id"] = setup[:idmap]["thread01"]
-    else
-      params["thread_id"] = "direct01"
-    end
 
     result = client.direct({
-      "path" => "{board}/thread/{thread_id}.json",
+      "path" => "{board}/threads.json",
       "method" => "GET",
       "params" => params,
     })

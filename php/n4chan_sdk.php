@@ -431,6 +431,24 @@ class N4chanSDK
     }
 
 
+    private $_thread_id = null;
+
+    // Canonical facade: $client->ThreadId()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->thread_id()
+    // resolves here too.
+    public function ThreadId($data = null)
+    {
+        require_once __DIR__ . '/entity/thread_id_entity.php';
+        if ($data === null) {
+            if ($this->_thread_id === null) {
+                $this->_thread_id = new ThreadIdEntity($this, null);
+            }
+            return $this->_thread_id;
+        }
+        return new ThreadIdEntity($this, $data);
+    }
+
+
 
     public static function test(?array $testopts = null, ?array $sdkopts = null): self
     {

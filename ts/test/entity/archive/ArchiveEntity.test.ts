@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('ArchiveEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"archive","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"header":[{"active":true,"kind":"header","name":"if_modified_since","orig":"if_modified_since","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"kind":"param","name":"board","orig":"board","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /{board}/archive.json","json":"{\"operationId\":\"getBoardArchive\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"Archived thread ID\",\"type\":\"integer\"},\"type\":\"array\"}}},\"description\":\"Successful response with archived thread IDs\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found or archive not available\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/{board}/archive.json","segments":[{"var":"board"},{"lit":"archive.json"}],"select":{"exist":["board","if_modified_since"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"archive","name__orig":"archive","Name":"Archive","name_":"archive","name-":"archive","NAME":"ARCHIVE","index$":0}, {"active":true,"entity":"archive","key$":"BasicArchiveFlow","kind":"basic","name":"BasicArchiveFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{"board":"board01"},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"archive_ref01"}}],"index$":0}]}, 'Archive')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"archive","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /{board}/archive.json","source":"openapi3","version":2},"g":{"header":[{"a":true,"k":"header","n":"if_modified_since","or":"if_modified_since","r":false,"t":"`$STRING`","index$":0}],"params":[{"a":true,"k":"param","n":"board","or":"board","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/{board}/archive.json","q":{"exist":["board","if_modified_since"]},"r":{},"s":[{"var":"board"},{"lit":"archive.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"archive","name__orig":"archive","Name":"Archive","name_":"archive","name-":"archive","NAME":"ARCHIVE","index$":0}, {"active":true,"entity":"archive","key$":"BasicArchiveFlow","kind":"basic","name":"BasicArchiveFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{"board":"board01"},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"archive_ref01"}}],"index$":0}]}, 'Archive', {"GET /{board}/archive.json":{"protocol":"http","operationId":"getBoardArchive","responses":{"200":{"description":"Successful response with archived thread IDs","content":{"application/json":{"schema":{"type":"array","items":{"type":"integer","description":"Archived thread ID","key$":"items"},"x-ref":"#/components/schemas/ArchiveResponse"}}}},"304":{"description":"Not Modified - Content has not changed since last request"},"404":{"description":"Board not found or archive not available"},"429":{"description":"Too Many Requests - Rate limit exceeded"}},"parameters":[{"name":"board","in":"path","description":"Board identifier (e.g., 'g' for technology, 'a' for anime)","required":true,"schema":{"type":"string","pattern":"^[a-z0-9]+$"},"x-ref":"#/components/parameters/BoardParameter","index$":0},{"name":"If-Modified-Since","in":"header","description":"HTTP date for conditional requests. Returns 304 if content hasn't been modified.","required":false,"schema":{"type":"string","format":"date-time"},"x-ref":"#/components/parameters/IfModifiedSince","index$":1}],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct
@@ -101,7 +97,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['archive01','archive02','archive03'],
+    ['archive01','archive02','archive03','board01'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',

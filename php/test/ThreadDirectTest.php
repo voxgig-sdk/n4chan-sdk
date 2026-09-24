@@ -22,7 +22,7 @@ class ThreadDirectTest extends TestCase
             return;
         }
         if ($setup["live"]) {
-            foreach (["board01", "thread01"] as $_liveKey) {
+            foreach (["board01"] as $_liveKey) {
                 if (!isset($setup["idmap"][$_liveKey]) || $setup["idmap"][$_liveKey] === null) {
                     $this->markTestSkipped("live test needs $_liveKey via *_ENTID env var (synthetic IDs only)");
                     return;
@@ -37,14 +37,9 @@ class ThreadDirectTest extends TestCase
         } else {
             $params["board"] = "direct01";
         }
-        if ($setup["live"]) {
-            $params["thread_id"] = $setup["idmap"]["thread01"];
-        } else {
-            $params["thread_id"] = "direct01";
-        }
 
         $result = $client->direct([
-            "path" => "{board}/thread/{thread_id}.json",
+            "path" => "{board}/threads.json",
             "method" => "GET",
             "params" => $params,
         ]);

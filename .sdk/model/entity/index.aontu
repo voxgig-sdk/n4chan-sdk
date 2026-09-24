@@ -1,0 +1,82 @@
+# Entity: index
+
+main: kit: entity: index: {
+
+  alias: field: {}
+
+  fields: {
+    posts: {
+      h: "Posts"
+      n: "posts"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "index"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{board}/{page}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "if_modified_since"
+                or: "if_modified_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "board"
+                or: "board"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "page"
+                or: "page"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{board}/{page}.json"
+          q: {
+            exist: [
+              "board"
+              "if_modified_since"
+              "page"
+            ]
+          }
+          s: [
+            {
+              var: "board"
+            }
+            {
+              lit: "{page}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.threads`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

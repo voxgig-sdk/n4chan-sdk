@@ -1,0 +1,174 @@
+# Entity: board
+
+main: kit: entity: board: {
+
+  alias: field: {}
+
+  fields: {
+    board: {
+      h: "Board"
+      n: "board"
+      r: false
+      sh: "Board identifier"
+      t: "`$STRING`"
+    }
+    board_flags: {
+      h: "Board Flags"
+      n: "board_flags"
+      r: false
+      sh: "Board flags configuration"
+      t: "`$OBJECT`"
+    }
+    bump_limit: {
+      h: "Bump Limit"
+      n: "bump_limit"
+      r: false
+      sh: "Bump limit for threads"
+      t: "`$INTEGER`"
+    }
+    cooldowns: {
+      h: "Cooldowns"
+      n: "cooldowns"
+      r: false
+      sh: "Cooldown periods for posting"
+      t: "`$OBJECT`"
+    }
+    custom_spoilers: {
+      h: "Custom Spoilers"
+      n: "custom_spoilers"
+      r: false
+      sh: "Number of custom spoiler images"
+      t: "`$INTEGER`"
+    }
+    image_limit: {
+      h: "Image Limit"
+      n: "image_limit"
+      r: false
+      sh: "Image limit for threads"
+      t: "`$INTEGER`"
+    }
+    is_archived: {
+      h: "Is Archived"
+      n: "is_archived"
+      r: false
+      sh: "Archive enabled flag"
+      t: "`$INTEGER`"
+    }
+    max_comment_chars: {
+      h: "Max Comment Chars"
+      n: "max_comment_chars"
+      r: false
+      sh: "Maximum comment length"
+      t: "`$INTEGER`"
+    }
+    max_filesize: {
+      h: "Max Filesize"
+      n: "max_filesize"
+      r: false
+      sh: "Maximum filesize in bytes"
+      t: "`$INTEGER`"
+    }
+    max_webm_duration: {
+      h: "Max Webm Duration"
+      n: "max_webm_duration"
+      r: false
+      sh: "Maximum WebM duration in seconds"
+      t: "`$INTEGER`"
+    }
+    max_webm_filesize: {
+      h: "Max Webm Filesize"
+      n: "max_webm_filesize"
+      r: false
+      sh: "Maximum WebM filesize in bytes"
+      t: "`$INTEGER`"
+    }
+    meta_description: {
+      h: "Meta Description"
+      n: "meta_description"
+      r: false
+      sh: "Board meta description"
+      t: "`$STRING`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Number of pages"
+      t: "`$INTEGER`"
+    }
+    per_page: {
+      h: "Per Page"
+      n: "per_page"
+      r: false
+      sh: "Threads per page"
+      t: "`$INTEGER`"
+    }
+    spoilers: {
+      h: "Spoilers"
+      n: "spoilers"
+      r: false
+      sh: "Custom spoilers enabled flag"
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Board title"
+      t: "`$STRING`"
+    }
+    ws_board: {
+      h: "Ws Board"
+      n: "ws_board"
+      r: false
+      sh: "Worksafe board flag (1 for worksafe, 0 for NSFW)"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "board"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /boards.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "if_modified_since"
+                or: "if_modified_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/boards.json"
+          q: {
+            exist: [
+              "if_modified_since"
+            ]
+          }
+          s: [
+            {
+              lit: "boards.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.boards`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

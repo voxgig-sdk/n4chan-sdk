@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    threads = client.Thread().list()
-    print(threads)
+    catalogs = client.Catalog().list()
+    print(catalogs)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -126,8 +126,8 @@ client = N4chanSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-thread = client.Thread().list()
-# thread contains the mock response record
+catalog = client.Catalog().list()
+# catalog contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -208,6 +208,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `Catalog` | `(data) -> CatalogEntity` | Create a Catalog entity instance. |
 | `Index` | `(data) -> IndexEntity` | Create an Index entity instance. |
 | `Thread` | `(data) -> ThreadEntity` | Create a Thread entity instance. |
+| `ThreadId` | `(data) -> ThreadIdEntity` | Create a ThreadId entity instance. |
 
 ### Entity interface
 
@@ -305,6 +306,55 @@ API path: `/{board}/{page}.json`
 | --- | --- |
 | `page` | Page number |
 | `threads` |  |
+
+Operations: List.
+
+API path: `/{board}/threads.json`
+
+#### ThreadId
+
+| Field | Description |
+| --- | --- |
+| `archived` | Archived flag |
+| `archived_on` | Unix timestamp when archived |
+| `bumplimit` | Bump limit reached flag |
+| `capcode` | Capcode (mod, admin, etc.) |
+| `closed` | Closed flag |
+| `com` | Comment (HTML escaped) |
+| `country` | Country code |
+| `country_name` | Country name |
+| `custom_spoiler` | Custom spoiler ID |
+| `ext` | File extension |
+| `filedeleted` | File deleted flag |
+| `filename` | Original filename |
+| `fsize` | File size in bytes |
+| `h` | Image height |
+| `id` | Poster ID |
+| `imagelimit` | Image limit reached flag |
+| `images` | Number of images |
+| `last_modified` | Unix timestamp of last modification |
+| `m_img` | Mobile optimized image flag |
+| `md5` | MD5 hash in base64 |
+| `name` | Poster name |
+| `no` | Post number |
+| `now` | Formatted date and time |
+| `omitted_images` | Number of omitted images |
+| `omitted_posts` | Number of omitted posts |
+| `replies` | Number of replies |
+| `resto` | Reply to thread ID (0 for OP) |
+| `semantic_url` | SEO-friendly URL slug |
+| `since4pass` | Year 4chan pass purchased |
+| `spoiler` | Spoiler flag |
+| `sticky` | Sticky flag |
+| `sub` | Subject |
+| `tag` | Tag |
+| `tim` | Unix timestamp for image |
+| `time` | Unix timestamp |
+| `tn_h` | Thumbnail height |
+| `tn_w` | Thumbnail width |
+| `trip` | Tripcode |
+| `unique_ips` | Number of unique poster IPs |
+| `w` | Image width |
 
 Operations: List.
 
@@ -439,6 +489,68 @@ Create an instance: `thread = client.Thread()`
 
 ```python
 threads = client.Thread().list({"board": "example"})
+```
+
+
+### ThreadId
+
+Create an instance: `thread_id = client.ThreadId()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `archived` | `int` | Archived flag |
+| `archived_on` | `int` | Unix timestamp when archived |
+| `bumplimit` | `int` | Bump limit reached flag |
+| `capcode` | `str` | Capcode (mod, admin, etc.) |
+| `closed` | `int` | Closed flag |
+| `com` | `str` | Comment (HTML escaped) |
+| `country` | `str` | Country code |
+| `country_name` | `str` | Country name |
+| `custom_spoiler` | `int` | Custom spoiler ID |
+| `ext` | `str` | File extension |
+| `filedeleted` | `int` | File deleted flag |
+| `filename` | `str` | Original filename |
+| `fsize` | `int` | File size in bytes |
+| `h` | `int` | Image height |
+| `id` | `str` | Poster ID |
+| `imagelimit` | `int` | Image limit reached flag |
+| `images` | `int` | Number of images |
+| `last_modified` | `int` | Unix timestamp of last modification |
+| `m_img` | `int` | Mobile optimized image flag |
+| `md5` | `str` | MD5 hash in base64 |
+| `name` | `str` | Poster name |
+| `no` | `int` | Post number |
+| `now` | `str` | Formatted date and time |
+| `omitted_images` | `int` | Number of omitted images |
+| `omitted_posts` | `int` | Number of omitted posts |
+| `replies` | `int` | Number of replies |
+| `resto` | `int` | Reply to thread ID (0 for OP) |
+| `semantic_url` | `str` | SEO-friendly URL slug |
+| `since4pass` | `int` | Year 4chan pass purchased |
+| `spoiler` | `int` | Spoiler flag |
+| `sticky` | `int` | Sticky flag |
+| `sub` | `str` | Subject |
+| `tag` | `str` | Tag |
+| `tim` | `int` | Unix timestamp for image |
+| `time` | `int` | Unix timestamp |
+| `tn_h` | `int` | Thumbnail height |
+| `tn_w` | `int` | Thumbnail width |
+| `trip` | `str` | Tripcode |
+| `unique_ips` | `int` | Number of unique poster IPs |
+| `w` | `int` | Image width |
+
+#### Example: List
+
+```python
+thread_ids = client.ThreadId().list({"board": "example", "thread_id": 1})
 ```
 
 ## Features
@@ -602,11 +714,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-thread = client.Thread()
-thread.list()
+catalog = client.Catalog()
+catalog.list()
 
-# thread.data_get() now returns the thread data from the last list
-# thread.match_get() returns the last match criteria
+# catalog.data_get() now returns the catalog data from the last list
+# catalog.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

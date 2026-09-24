@@ -61,6 +61,10 @@ Create a new `IndexEntity` instance. Pass `None` for no initial data.
 
 Create a new `ThreadEntity` instance. Pass `None` for no initial data.
 
+#### `ThreadId(data=None)`
+
+Create a new `ThreadIdEntity` instance. Pass `None` for no initial data.
+
 #### `options_map() -> dict`
 
 Return a deep copy of the current SDK options.
@@ -362,6 +366,98 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ThreadEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## ThreadIdEntity
+
+```python
+thread_id = client.ThreadId()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `archived` | `int` | No | Archived flag |
+| `archived_on` | `int` | No | Unix timestamp when archived |
+| `bumplimit` | `int` | No | Bump limit reached flag |
+| `capcode` | `str` | No | Capcode (mod, admin, etc.) |
+| `closed` | `int` | No | Closed flag |
+| `com` | `str` | No | Comment (HTML escaped) |
+| `country` | `str` | No | Country code |
+| `country_name` | `str` | No | Country name |
+| `custom_spoiler` | `int` | No | Custom spoiler ID |
+| `ext` | `str` | No | File extension |
+| `filedeleted` | `int` | No | File deleted flag |
+| `filename` | `str` | No | Original filename |
+| `fsize` | `int` | No | File size in bytes |
+| `h` | `int` | No | Image height |
+| `id` | `str` | No | Poster ID |
+| `imagelimit` | `int` | No | Image limit reached flag |
+| `images` | `int` | No | Number of images |
+| `last_modified` | `int` | No | Unix timestamp of last modification |
+| `m_img` | `int` | No | Mobile optimized image flag |
+| `md5` | `str` | No | MD5 hash in base64 |
+| `name` | `str` | No | Poster name |
+| `no` | `int` | Yes | Post number |
+| `now` | `str` | Yes | Formatted date and time |
+| `omitted_images` | `int` | No | Number of omitted images |
+| `omitted_posts` | `int` | No | Number of omitted posts |
+| `replies` | `int` | No | Number of replies |
+| `resto` | `int` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `str` | No | SEO-friendly URL slug |
+| `since4pass` | `int` | No | Year 4chan pass purchased |
+| `spoiler` | `int` | No | Spoiler flag |
+| `sticky` | `int` | No | Sticky flag |
+| `sub` | `str` | No | Subject |
+| `tag` | `str` | No | Tag |
+| `tim` | `int` | No | Unix timestamp for image |
+| `time` | `int` | Yes | Unix timestamp |
+| `tn_h` | `int` | No | Thumbnail height |
+| `tn_w` | `int` | No | Thumbnail width |
+| `trip` | `str` | No | Tripcode |
+| `unique_ips` | `int` | No | Number of unique poster IPs |
+| `w` | `int` | No | Image width |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.ThreadId().list({"board": "example", "thread_id": 1})
+for thread_id in results:
+    print(thread_id)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `ThreadIdEntity` instance with the same options.
 
 #### `get_name() -> str`
 

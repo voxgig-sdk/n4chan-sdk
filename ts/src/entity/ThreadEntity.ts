@@ -19,7 +19,6 @@ import type {
   ThreadListMatch,
 } from '../N4chanTypes'
 
-// TODO: needs Entity superclass
 class ThreadEntity extends N4chanEntityBase<Thread> {
 
   constructor(client: N4chanSDK, entopts: any) {

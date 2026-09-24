@@ -1,7 +1,7 @@
 # Typed models for the N4chan SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -89,3 +89,54 @@ class Thread(TypedDict, total=False):
 
 class ThreadListMatch(TypedDict):
     board: str
+
+
+class ThreadIdRequired(TypedDict):
+    no: int
+    now: str
+    time: int
+
+
+class ThreadId(ThreadIdRequired, total=False):
+    archived: int
+    archived_on: int
+    bumplimit: int
+    capcode: str
+    closed: int
+    com: str
+    country: str
+    country_name: str
+    custom_spoiler: int
+    ext: str
+    filedeleted: int
+    filename: str
+    fsize: int
+    h: int
+    id: str
+    imagelimit: int
+    images: int
+    last_modified: int
+    m_img: int
+    md5: str
+    name: str
+    omitted_images: int
+    omitted_posts: int
+    replies: int
+    resto: int
+    semantic_url: str
+    since4pass: int
+    spoiler: int
+    sticky: int
+    sub: str
+    tag: str
+    tim: int
+    tn_h: int
+    tn_w: int
+    trip: str
+    unique_ips: int
+    w: int
+
+
+class ThreadIdListMatch(TypedDict):
+    board: str
+    thread_id: int

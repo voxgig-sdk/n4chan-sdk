@@ -19,7 +19,6 @@ import type {
   BoardListMatch,
 } from '../N4chanTypes'
 
-// TODO: needs Entity superclass
 class BoardEntity extends N4chanEntityBase<Board> {
 
   constructor(client: N4chanSDK, entopts: any) {

@@ -22,7 +22,7 @@ class TestThreadDirect:
             pytest.skip(_reason or "skipped via sdk-test-control.json")
             return
         if setup["live"]:
-            for _live_key in ["board01", "thread01"]:
+            for _live_key in ["board01"]:
                 if setup["idmap"].get(_live_key) is None:
                     # pytest already imported at module scope
                     pytest.skip(f"live test needs {_live_key} via *_ENTID env var (synthetic IDs only)")
@@ -35,13 +35,9 @@ class TestThreadDirect:
             params["board"] = setup["idmap"]["board01"]
         else:
             params["board"] = "direct01"
-        if setup["live"]:
-            params["thread_id"] = setup["idmap"]["thread01"]
-        else:
-            params["thread_id"] = "direct01"
 
         result = client.direct({
-            "path": "{board}/thread/{thread_id}.json",
+            "path": "{board}/threads.json",
             "method": "GET",
             "params": params,
         })

@@ -1,0 +1,27 @@
+# BasicThreadIdFlow
+
+main: kit: flow: BasicThreadIdFlow:
+{
+  entity: "thread_id",
+  kind: "basic",
+  name: "BasicThreadIdFlow",
+  step: [
+    {
+      m: {
+        board: "board01",
+        thread_id: "thread01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "thread_id_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicThreadIdFlow"
+}

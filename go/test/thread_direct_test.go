@@ -28,7 +28,7 @@ func TestThreadDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"board01", "thread01"} {
+			for _, _liveKey := range []string{"board01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
 					return
@@ -43,14 +43,9 @@ func TestThreadDirect(t *testing.T) {
 		} else {
 			params["board"] = "direct01"
 		}
-		if setup.live {
-			params["thread_id"] = setup.idmap["thread01"]
-		} else {
-			params["thread_id"] = "direct02"
-		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "{board}/thread/{thread_id}.json",
+			"path":   "{board}/threads.json",
 			"method": "GET",
 			"params": params,
 		})
@@ -102,9 +97,6 @@ func TestThreadDirect(t *testing.T) {
 			if url, ok := call["url"].(string); ok {
 				if !strings.Contains(url, "direct01") {
 					t.Fatalf("expected url to contain direct01, got %v", url)
-				}
-				if !strings.Contains(url, "direct02") {
-					t.Fatalf("expected url to contain direct02, got %v", url)
 				}
 			}
 		}

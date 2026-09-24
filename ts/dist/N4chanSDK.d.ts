@@ -3,6 +3,7 @@ import { BoardEntity } from './entity/BoardEntity';
 import { CatalogEntity } from './entity/CatalogEntity';
 import { IndexEntity } from './entity/IndexEntity';
 import { ThreadEntity } from './entity/ThreadEntity';
+import { ThreadIdEntity } from './entity/ThreadIdEntity';
 export type * from './N4chanTypes';
 import { inspect } from 'node:util';
 import type { Context, Feature } from './types';
@@ -53,6 +54,7 @@ declare class N4chanSDK {
     Catalog(entopts?: Record<string, any>): CatalogEntity;
     Index(entopts?: Record<string, any>): IndexEntity;
     Thread(entopts?: Record<string, any>): ThreadEntity;
+    ThreadId(entopts?: Record<string, any>): ThreadIdEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): N4chanSDK;
     tester(testopts?: any, sdkopts?: any): N4chanSDK;
     toJSON(): {

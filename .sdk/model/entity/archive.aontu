@@ -1,0 +1,68 @@
+# Entity: archive
+
+main: kit: entity: archive: {
+
+  alias: field: {}
+
+  name: "archive"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{board}/archive.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "if_modified_since"
+                or: "if_modified_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "board"
+                or: "board"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{board}/archive.json"
+          q: {
+            exist: [
+              "board"
+              "if_modified_since"
+            ]
+          }
+          s: [
+            {
+              var: "board"
+            }
+            {
+              lit: "archive.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

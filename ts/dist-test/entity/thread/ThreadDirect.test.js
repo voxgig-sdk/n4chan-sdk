@@ -8,10 +8,6 @@ const node_assert_1 = __importDefault(require("node:assert"));
 const live_runner_1 = require("../../live-runner");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('ThreadDirect', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -19,9 +15,6 @@ const utility_1 = require("../../utility");
     (0, node_test_1.afterEach)((0, utility_1.liveDelay)('N4CHAN_TEST_LIVE'));
     (0, node_test_1.test)('direct-exists', async () => {
         const sdk = new __1.N4chanSDK({
-            // Concrete base: a live construction must satisfy any server
-            // variables a templated base URL declares; overriding base with a
-            // literal (as the direct flow tests do) sidesteps the requirement.
             base: 'http://localhost:8080',
             system: { fetch: async () => ({}) }
         });
@@ -36,21 +29,19 @@ const utility_1 = require("../../utility");
         const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }]);
         if ((0, utility_1.maybeSkipControl)(t, 'direct', 'direct-list-thread', setup.live))
             return;
-        if ((0, utility_1.skipIfMissingIds)(t, setup, ["board01", "thread01"]))
+        if ((0, utility_1.skipIfMissingIds)(t, setup, ["board01"]))
             return;
         const { client, calls } = setup;
         const params = {};
         const query = {};
         if (setup.live) {
             params.board = setup.idmap['board01'];
-            params.thread_id = setup.idmap['thread01'];
         }
         else {
             params.board = 'direct01';
-            params.thread_id = 'direct02';
         }
         const result = await client.direct({
-            path: '{board}/thread/{thread_id}.json',
+            path: '{board}/threads.json',
             method: 'GET',
             params,
             query,
@@ -78,7 +69,6 @@ const utility_1 = require("../../utility");
             (0, node_assert_1.default)(calls.length === 1);
             (0, node_assert_1.default)(calls[0].init.method === 'GET');
             (0, node_assert_1.default)(calls[0].url.includes('direct01'));
-            (0, node_assert_1.default)(calls[0].url.includes('direct02'));
         }
     });
 });

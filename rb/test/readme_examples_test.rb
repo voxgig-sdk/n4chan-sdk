@@ -48,6 +48,7 @@ class ReadmeExamplesTest < Minitest::Test
     "Catalog" => "catalog",
     "Index" => "index",
     "Thread" => "thread",
+    "ThreadId" => "thread_id",
   }
 
   # Documented SDK method names — used only to recognise the NARROW

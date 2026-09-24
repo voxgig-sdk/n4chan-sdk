@@ -1,7 +1,7 @@
 // Typed models for the N4chan SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
@@ -77,11 +77,53 @@ export interface Thread {
 
 export interface ThreadListMatch {
   board: string
+}
 
-  // Selects a custom action instead of the plain list:
-  //   'thread_id'
-  // The remaining keys are that action's own payload.
-  $action?: string
-  [action: string]: any
+export interface ThreadId {
+  archived?: number
+  archived_on?: number
+  bumplimit?: number
+  capcode?: string
+  closed?: number
+  com?: string
+  country?: string
+  country_name?: string
+  custom_spoiler?: number
+  ext?: string
+  filedeleted?: number
+  filename?: string
+  fsize?: number
+  h?: number
+  id?: string
+  imagelimit?: number
+  images?: number
+  last_modified?: number
+  m_img?: number
+  md5?: string
+  name?: string
+  no: number
+  now: string
+  omitted_images?: number
+  omitted_posts?: number
+  replies?: number
+  resto?: number
+  semantic_url?: string
+  since4pass?: number
+  spoiler?: number
+  sticky?: number
+  sub?: string
+  tag?: string
+  tim?: number
+  time: number
+  tn_h?: number
+  tn_w?: number
+  trip?: string
+  unique_ips?: number
+  w?: number
+}
+
+export interface ThreadIdListMatch {
+  board: string
+  thread_id: number
 }
 

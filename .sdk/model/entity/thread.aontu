@@ -1,0 +1,81 @@
+# Entity: thread
+
+main: kit: entity: thread: {
+
+  alias: field: {}
+
+  fields: {
+    page: {
+      h: "Page"
+      n: "page"
+      r: false
+      sh: "Page number"
+      t: "`$INTEGER`"
+    }
+    threads: {
+      h: "Threads"
+      n: "threads"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "thread"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{board}/threads.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "if_modified_since"
+                or: "if_modified_since"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "board"
+                or: "board"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{board}/threads.json"
+          q: {
+            exist: [
+              "board"
+              "if_modified_since"
+            ]
+          }
+          s: [
+            {
+              var: "board"
+            }
+            {
+              lit: "threads.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   CatalogListMatch,
 } from '../N4chanTypes'
 
-// TODO: needs Entity superclass
 class CatalogEntity extends N4chanEntityBase<Catalog> {
 
   constructor(client: N4chanSDK, entopts: any) {

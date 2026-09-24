@@ -17,10 +17,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -32,9 +28,6 @@ describe('ThreadDirect', async () => {
 
   test('direct-exists', async () => {
     const sdk = new N4chanSDK({
-      // Concrete base: a live construction must satisfy any server
-      // variables a templated base URL declares; overriding base with a
-      // literal (as the direct flow tests do) sidesteps the requirement.
       base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
@@ -47,21 +40,19 @@ describe('ThreadDirect', async () => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
     if (maybeSkipControl(t, 'direct', 'direct-list-thread', setup.live)) return
-    if (skipIfMissingIds(t, setup, ["board01","thread01"])) return
+    if (skipIfMissingIds(t, setup, ["board01"])) return
     const { client, calls } = setup
 
     const params: any = {}
     const query: any = {}
     if (setup.live) {
       params.board = setup.idmap['board01']
-      params.thread_id = setup.idmap['thread01']
     } else {
       params.board = 'direct01'
-      params.thread_id = 'direct02'
     }
 
     const result: any = await client.direct({
-      path: '{board}/thread/{thread_id}.json',
+      path: '{board}/threads.json',
       method: 'GET',
       params,
       query,
@@ -90,7 +81,6 @@ describe('ThreadDirect', async () => {
       assert(calls.length === 1)
       assert(calls[0].init.method === 'GET')
       assert(calls[0].url.includes('direct01'))
-      assert(calls[0].url.includes('direct02'))
     }
   })
 

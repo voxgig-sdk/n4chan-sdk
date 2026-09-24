@@ -81,6 +81,7 @@ _ENTITIES = {
     "Catalog": "catalog",
     "Index": "index",
     "Thread": "thread",
+    "ThreadId": "thread_id",
 }
 
 # The three documents held to the gate, tagged by human label.

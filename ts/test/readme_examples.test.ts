@@ -37,7 +37,7 @@ const SDK_NAME = 'N4chanSDK'
 
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = {"entity":{"archive":{"test01":{"id":"test01"}},"board":{"test01":{"id":"test01"}},"catalog":{"test01":{"id":"test01"}},"index":{"test01":{"id":"test01"}},"thread":{"test01":{"id":"test01"}}}}
+const TEST_SEED = {"entity":{"archive":{"test01":{"id":"test01"}},"board":{"test01":{"id":"test01"}},"catalog":{"test01":{"id":"test01"}},"index":{"test01":{"id":"test01"}},"thread":{"test01":{"id":"test01"}},"thread_id":{"test01":{"id":"test01"}}}}
 const SEED_ARG = JSON.stringify(TEST_SEED)
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')'
 

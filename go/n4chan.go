@@ -56,6 +56,9 @@ func init() {
 	core.NewThreadEntityFunc = func(client *core.N4chanSDK, entopts map[string]any) core.N4chanEntity {
 		return entity.NewThreadEntity(client, entopts)
 	}
+	core.NewThreadIdEntityFunc = func(client *core.N4chanSDK, entopts map[string]any) core.N4chanEntity {
+		return entity.NewThreadIdEntity(client, entopts)
+	}
 }
 
 // Constructor re-exports.

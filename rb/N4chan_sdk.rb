@@ -324,6 +324,13 @@ class N4chanSDK
   end
 
 
+  # Canonical facade: client.ThreadId.list / client.ThreadId.load({ "id" => ... })
+  def ThreadId(data = nil)
+    require_relative 'entity/thread_id_entity'
+    ThreadIdEntity.new(self, data)
+  end
+
+
 
   def self.test(testopts = nil, sdkopts = nil)
     sdkopts = sdkopts || {}

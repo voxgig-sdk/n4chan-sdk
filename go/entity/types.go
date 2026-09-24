@@ -1,7 +1,7 @@
 // Typed models for the N4chan SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -23,23 +23,6 @@ type ArchiveListMatch struct {
 
 // Board is the typed data model for the board entity.
 type Board struct {
-	Board *string `json:"board,omitempty"`
-	BoardFlags *map[string]any `json:"board_flags,omitempty"`
-	BumpLimit *int `json:"bump_limit,omitempty"`
-	Cooldowns *map[string]any `json:"cooldowns,omitempty"`
-	CustomSpoilers *int `json:"custom_spoilers,omitempty"`
-	ImageLimit *int `json:"image_limit,omitempty"`
-	IsArchived *int `json:"is_archived,omitempty"`
-	MaxCommentChars *int `json:"max_comment_chars,omitempty"`
-	MaxFilesize *int `json:"max_filesize,omitempty"`
-	MaxWebmDuration *int `json:"max_webm_duration,omitempty"`
-	MaxWebmFilesize *int `json:"max_webm_filesize,omitempty"`
-	MetaDescription *string `json:"meta_description,omitempty"`
-	Pages *int `json:"pages,omitempty"`
-	PerPage *int `json:"per_page,omitempty"`
-	Spoilers *int `json:"spoilers,omitempty"`
-	Title *string `json:"title,omitempty"`
-	WsBoard *int `json:"ws_board,omitempty"`
 }
 
 // BoardListMatch is the typed request payload for Board.ListTyped.
@@ -65,8 +48,6 @@ type BoardListMatch struct {
 
 // Catalog is the typed data model for the catalog entity.
 type Catalog struct {
-	Page *int `json:"page,omitempty"`
-	Threads *[]any `json:"threads,omitempty"`
 }
 
 // CatalogListMatch is the typed request payload for Catalog.ListTyped.
@@ -76,7 +57,6 @@ type CatalogListMatch struct {
 
 // Index is the typed data model for the index entity.
 type Index struct {
-	Posts *[]any `json:"posts,omitempty"`
 }
 
 // IndexListMatch is the typed request payload for Index.ListTyped.
@@ -87,13 +67,21 @@ type IndexListMatch struct {
 
 // Thread is the typed data model for the thread entity.
 type Thread struct {
-	Page *int `json:"page,omitempty"`
-	Threads *[]any `json:"threads,omitempty"`
 }
 
 // ThreadListMatch is the typed request payload for Thread.ListTyped.
 type ThreadListMatch struct {
 	Board string `json:"board"`
+}
+
+// ThreadId is the typed data model for the thread_id entity.
+type ThreadId struct {
+}
+
+// ThreadIdListMatch is the typed request payload for ThreadId.ListTyped.
+type ThreadIdListMatch struct {
+	Board string `json:"board"`
+	ThreadId int `json:"thread_id"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

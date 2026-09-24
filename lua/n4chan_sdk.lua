@@ -419,6 +419,20 @@ function N4chanSDK:Thread(data)
 end
 
 
+-- Idiomatic facade: client:ThreadId():list() / client:ThreadId():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function N4chanSDK:ThreadId(data)
+  local EntityMod = require("entity.thread_id_entity")
+  if data == nil then
+    if self._thread_id == nil then
+      self._thread_id = EntityMod.new(self, nil)
+    end
+    return self._thread_id
+  end
+  return EntityMod.new(self, data)
+end
+
+
 
 
 function N4chanSDK.test(testopts, sdkopts)

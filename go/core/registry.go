@@ -22,3 +22,5 @@ var NewIndexEntityFunc func(client *N4chanSDK, entopts map[string]any) N4chanEnt
 
 var NewThreadEntityFunc func(client *N4chanSDK, entopts map[string]any) N4chanEntity
 
+var NewThreadIdEntityFunc func(client *N4chanSDK, entopts map[string]any) N4chanEntity
+

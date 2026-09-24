@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-threads, err := client.Thread(nil).List(nil, nil)
+catalogs, err := client.Catalog(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = threads
+_ = catalogs
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-thread, err := client.Thread(nil).List(
+catalog, err := client.Catalog(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(thread) // the returned mock data
+fmt.Println(catalog) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -225,6 +225,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Catalog` | `(data map[string]any) N4chanEntity` | Create a Catalog entity instance. |
 | `Index` | `(data map[string]any) N4chanEntity` | Create an Index entity instance. |
 | `Thread` | `(data map[string]any) N4chanEntity` | Create a Thread entity instance. |
+| `ThreadId` | `(data map[string]any) N4chanEntity` | Create a ThreadId entity instance. |
 
 ### Entity interface (N4chanEntity)
 
@@ -322,6 +323,55 @@ API path: `/{board}/{page}.json`
 | --- | --- |
 | `"page"` | Page number |
 | `"threads"` |  |
+
+Operations: List.
+
+API path: `/{board}/threads.json`
+
+#### ThreadId
+
+| Field | Description |
+| --- | --- |
+| `"archived"` | Archived flag |
+| `"archived_on"` | Unix timestamp when archived |
+| `"bumplimit"` | Bump limit reached flag |
+| `"capcode"` | Capcode (mod, admin, etc.) |
+| `"closed"` | Closed flag |
+| `"com"` | Comment (HTML escaped) |
+| `"country"` | Country code |
+| `"country_name"` | Country name |
+| `"custom_spoiler"` | Custom spoiler ID |
+| `"ext"` | File extension |
+| `"filedeleted"` | File deleted flag |
+| `"filename"` | Original filename |
+| `"fsize"` | File size in bytes |
+| `"h"` | Image height |
+| `"id"` | Poster ID |
+| `"imagelimit"` | Image limit reached flag |
+| `"images"` | Number of images |
+| `"last_modified"` | Unix timestamp of last modification |
+| `"m_img"` | Mobile optimized image flag |
+| `"md5"` | MD5 hash in base64 |
+| `"name"` | Poster name |
+| `"no"` | Post number |
+| `"now"` | Formatted date and time |
+| `"omitted_images"` | Number of omitted images |
+| `"omitted_posts"` | Number of omitted posts |
+| `"replies"` | Number of replies |
+| `"resto"` | Reply to thread ID (0 for OP) |
+| `"semantic_url"` | SEO-friendly URL slug |
+| `"since4pass"` | Year 4chan pass purchased |
+| `"spoiler"` | Spoiler flag |
+| `"sticky"` | Sticky flag |
+| `"sub"` | Subject |
+| `"tag"` | Tag |
+| `"tim"` | Unix timestamp for image |
+| `"time"` | Unix timestamp |
+| `"tn_h"` | Thumbnail height |
+| `"tn_w"` | Thumbnail width |
+| `"trip"` | Tripcode |
+| `"unique_ips"` | Number of unique poster IPs |
+| `"w"` | Image width |
 
 Operations: List.
 
@@ -476,6 +526,72 @@ if err != nil {
     panic(err)
 }
 fmt.Println(threads) // the array of records
+```
+
+
+### ThreadId
+
+Create an instance: `threadId := client.ThreadId(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `archived` | `int` | Archived flag |
+| `archived_on` | `int` | Unix timestamp when archived |
+| `bumplimit` | `int` | Bump limit reached flag |
+| `capcode` | `string` | Capcode (mod, admin, etc.) |
+| `closed` | `int` | Closed flag |
+| `com` | `string` | Comment (HTML escaped) |
+| `country` | `string` | Country code |
+| `country_name` | `string` | Country name |
+| `custom_spoiler` | `int` | Custom spoiler ID |
+| `ext` | `string` | File extension |
+| `filedeleted` | `int` | File deleted flag |
+| `filename` | `string` | Original filename |
+| `fsize` | `int` | File size in bytes |
+| `h` | `int` | Image height |
+| `id` | `string` | Poster ID |
+| `imagelimit` | `int` | Image limit reached flag |
+| `images` | `int` | Number of images |
+| `last_modified` | `int` | Unix timestamp of last modification |
+| `m_img` | `int` | Mobile optimized image flag |
+| `md5` | `string` | MD5 hash in base64 |
+| `name` | `string` | Poster name |
+| `no` | `int` | Post number |
+| `now` | `string` | Formatted date and time |
+| `omitted_images` | `int` | Number of omitted images |
+| `omitted_posts` | `int` | Number of omitted posts |
+| `replies` | `int` | Number of replies |
+| `resto` | `int` | Reply to thread ID (0 for OP) |
+| `semantic_url` | `string` | SEO-friendly URL slug |
+| `since4pass` | `int` | Year 4chan pass purchased |
+| `spoiler` | `int` | Spoiler flag |
+| `sticky` | `int` | Sticky flag |
+| `sub` | `string` | Subject |
+| `tag` | `string` | Tag |
+| `tim` | `int` | Unix timestamp for image |
+| `time` | `int` | Unix timestamp |
+| `tn_h` | `int` | Thumbnail height |
+| `tn_w` | `int` | Thumbnail width |
+| `trip` | `string` | Tripcode |
+| `unique_ips` | `int` | Number of unique poster IPs |
+| `w` | `int` | Image width |
+
+#### Example: List
+
+```go
+threadIds, err := client.ThreadId(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(threadIds) // the array of records
 ```
 
 ## Features
@@ -636,11 +752,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-thread := client.Thread(nil)
-thread.List(nil, nil)
+catalog := client.Catalog(nil)
+catalog.List(nil, nil)
 
-// thread.Data() now returns the thread data from the last list
-// thread.Match() returns the last match criteria
+// catalog.Data() now returns the catalog data from the last list
+// catalog.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

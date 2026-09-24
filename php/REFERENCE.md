@@ -61,6 +61,10 @@ Create a new `IndexEntity` instance. Pass `null` for no initial data.
 
 Create a new `ThreadEntity` instance. Pass `null` for no initial data.
 
+#### `ThreadId($data = null)`
+
+Create a new `ThreadIdEntity` instance. Pass `null` for no initial data.
+
 #### `options_map(): array`
 
 Return a deep copy of the current SDK options.
@@ -361,6 +365,97 @@ Set the entity match criteria.
 #### `make(): ThreadEntity`
 
 Create a new `ThreadEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## ThreadIdEntity
+
+```php
+$thread_id = $client->ThreadId();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `archived` | `int` | No | Archived flag |
+| `archived_on` | `int` | No | Unix timestamp when archived |
+| `bumplimit` | `int` | No | Bump limit reached flag |
+| `capcode` | `string` | No | Capcode (mod, admin, etc.) |
+| `closed` | `int` | No | Closed flag |
+| `com` | `string` | No | Comment (HTML escaped) |
+| `country` | `string` | No | Country code |
+| `country_name` | `string` | No | Country name |
+| `custom_spoiler` | `int` | No | Custom spoiler ID |
+| `ext` | `string` | No | File extension |
+| `filedeleted` | `int` | No | File deleted flag |
+| `filename` | `string` | No | Original filename |
+| `fsize` | `int` | No | File size in bytes |
+| `h` | `int` | No | Image height |
+| `id` | `string` | No | Poster ID |
+| `imagelimit` | `int` | No | Image limit reached flag |
+| `images` | `int` | No | Number of images |
+| `last_modified` | `int` | No | Unix timestamp of last modification |
+| `m_img` | `int` | No | Mobile optimized image flag |
+| `md5` | `string` | No | MD5 hash in base64 |
+| `name` | `string` | No | Poster name |
+| `no` | `int` | Yes | Post number |
+| `now` | `string` | Yes | Formatted date and time |
+| `omitted_images` | `int` | No | Number of omitted images |
+| `omitted_posts` | `int` | No | Number of omitted posts |
+| `replies` | `int` | No | Number of replies |
+| `resto` | `int` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `string` | No | SEO-friendly URL slug |
+| `since4pass` | `int` | No | Year 4chan pass purchased |
+| `spoiler` | `int` | No | Spoiler flag |
+| `sticky` | `int` | No | Sticky flag |
+| `sub` | `string` | No | Subject |
+| `tag` | `string` | No | Tag |
+| `tim` | `int` | No | Unix timestamp for image |
+| `time` | `int` | Yes | Unix timestamp |
+| `tn_h` | `int` | No | Thumbnail height |
+| `tn_w` | `int` | No | Thumbnail width |
+| `trip` | `string` | No | Tripcode |
+| `unique_ips` | `int` | No | Number of unique poster IPs |
+| `w` | `int` | No | Image width |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->ThreadId()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): ThreadIdEntity`
+
+Create a new `ThreadIdEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

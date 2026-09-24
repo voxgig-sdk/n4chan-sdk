@@ -24,13 +24,79 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "archive": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "archive",
           "op": {
             "list": {
@@ -38,39 +104,45 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{board}/archive.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ],
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "board",
+                        "or": "board",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{board}/archive.json",
-                    "json": "{\"operationId\":\"getBoardArchive\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"description\":\"Archived thread ID\",\"type\":\"integer\"},\"type\":\"array\"}}},\"description\":\"Successful response with archived thread IDs\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found or archive not available\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{board}/archive.json",
+                  "q": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{board}/archive.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "var": "board"
                     },
@@ -78,13 +150,7 @@
                       "lit": "archive.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -101,127 +167,144 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "board",
-              "req": false,
-              "short": "Board identifier",
-              "type": "`$STRING`"
+          "fields": {
+            "board": {
+              "a": true,
+              "h": "Board",
+              "n": "board",
+              "r": false,
+              "sh": "Board identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "board_flags",
-              "req": false,
-              "short": "Board flags configuration",
-              "type": "`$OBJECT`"
+            "board_flags": {
+              "a": true,
+              "h": "Board Flags",
+              "n": "board_flags",
+              "r": false,
+              "sh": "Board flags configuration",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "bump_limit",
-              "req": false,
-              "short": "Bump limit for threads",
-              "type": "`$INTEGER`"
+            "bump_limit": {
+              "a": true,
+              "h": "Bump Limit",
+              "n": "bump_limit",
+              "r": false,
+              "sh": "Bump limit for threads",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "cooldowns",
-              "req": false,
-              "short": "Cooldown periods for posting",
-              "type": "`$OBJECT`"
+            "cooldowns": {
+              "a": true,
+              "h": "Cooldowns",
+              "n": "cooldowns",
+              "r": false,
+              "sh": "Cooldown periods for posting",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "custom_spoilers",
-              "req": false,
-              "short": "Number of custom spoiler images",
-              "type": "`$INTEGER`"
+            "custom_spoilers": {
+              "a": true,
+              "h": "Custom Spoilers",
+              "n": "custom_spoilers",
+              "r": false,
+              "sh": "Number of custom spoiler images",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "image_limit",
-              "req": false,
-              "short": "Image limit for threads",
-              "type": "`$INTEGER`"
+            "image_limit": {
+              "a": true,
+              "h": "Image Limit",
+              "n": "image_limit",
+              "r": false,
+              "sh": "Image limit for threads",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "is_archived",
-              "req": false,
-              "short": "Archive enabled flag",
-              "type": "`$INTEGER`"
+            "is_archived": {
+              "a": true,
+              "h": "Is Archived",
+              "n": "is_archived",
+              "r": false,
+              "sh": "Archive enabled flag",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "max_comment_chars",
-              "req": false,
-              "short": "Maximum comment length",
-              "type": "`$INTEGER`"
+            "max_comment_chars": {
+              "a": true,
+              "h": "Max Comment Chars",
+              "n": "max_comment_chars",
+              "r": false,
+              "sh": "Maximum comment length",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "max_filesize",
-              "req": false,
-              "short": "Maximum filesize in bytes",
-              "type": "`$INTEGER`"
+            "max_filesize": {
+              "a": true,
+              "h": "Max Filesize",
+              "n": "max_filesize",
+              "r": false,
+              "sh": "Maximum filesize in bytes",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "max_webm_duration",
-              "req": false,
-              "short": "Maximum WebM duration in seconds",
-              "type": "`$INTEGER`"
+            "max_webm_duration": {
+              "a": true,
+              "h": "Max Webm Duration",
+              "n": "max_webm_duration",
+              "r": false,
+              "sh": "Maximum WebM duration in seconds",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "max_webm_filesize",
-              "req": false,
-              "short": "Maximum WebM filesize in bytes",
-              "type": "`$INTEGER`"
+            "max_webm_filesize": {
+              "a": true,
+              "h": "Max Webm Filesize",
+              "n": "max_webm_filesize",
+              "r": false,
+              "sh": "Maximum WebM filesize in bytes",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "meta_description",
-              "req": false,
-              "short": "Board meta description",
-              "type": "`$STRING`"
+            "meta_description": {
+              "a": true,
+              "h": "Meta Description",
+              "n": "meta_description",
+              "r": false,
+              "sh": "Board meta description",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "pages",
-              "req": false,
-              "short": "Number of pages",
-              "type": "`$INTEGER`"
+            "pages": {
+              "a": true,
+              "h": "Pages",
+              "n": "pages",
+              "r": false,
+              "sh": "Number of pages",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "per_page",
-              "req": false,
-              "short": "Threads per page",
-              "type": "`$INTEGER`"
+            "per_page": {
+              "a": true,
+              "h": "Per Page",
+              "n": "per_page",
+              "r": false,
+              "sh": "Threads per page",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "spoilers",
-              "req": false,
-              "short": "Custom spoilers enabled flag",
-              "type": "`$INTEGER`"
+            "spoilers": {
+              "a": true,
+              "h": "Spoilers",
+              "n": "spoilers",
+              "r": false,
+              "sh": "Custom spoilers enabled flag",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Board title",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Board title",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ws_board",
-              "req": false,
-              "short": "Worksafe board flag (1 for worksafe, 0 for NSFW)",
-              "type": "`$INTEGER`"
+            "ws_board": {
+              "a": true,
+              "h": "Ws Board",
+              "n": "ws_board",
+              "r": false,
+              "sh": "Worksafe board flag (1 for worksafe, 0 for NSFW)",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "board",
           "op": {
             "list": {
@@ -229,39 +312,39 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /boards.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /boards.json",
-                    "json": "{\"operationId\":\"getBoards\",\"parameters\":[{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"boards\":{\"items\":{\"properties\":{\"board\":{\"description\":\"Board identifier\",\"type\":\"string\"},\"board_flags\":{\"description\":\"Board flags configuration\",\"type\":\"object\"},\"bump_limit\":{\"description\":\"Bump limit for threads\",\"type\":\"integer\"},\"cooldowns\":{\"description\":\"Cooldown periods for posting\",\"type\":\"object\"},\"custom_spoilers\":{\"description\":\"Number of custom spoiler images\",\"type\":\"integer\"},\"image_limit\":{\"description\":\"Image limit for threads\",\"type\":\"integer\"},\"is_archived\":{\"description\":\"Archive enabled flag\",\"type\":\"integer\"},\"max_comment_chars\":{\"description\":\"Maximum comment length\",\"type\":\"integer\"},\"max_filesize\":{\"description\":\"Maximum filesize in bytes\",\"type\":\"integer\"},\"max_webm_duration\":{\"description\":\"Maximum WebM duration in seconds\",\"type\":\"integer\"},\"max_webm_filesize\":{\"description\":\"Maximum WebM filesize in bytes\",\"type\":\"integer\"},\"meta_description\":{\"description\":\"Board meta description\",\"type\":\"string\"},\"pages\":{\"description\":\"Number of pages\",\"type\":\"integer\"},\"per_page\":{\"description\":\"Threads per page\",\"type\":\"integer\"},\"spoilers\":{\"description\":\"Custom spoilers enabled flag\",\"type\":\"integer\"},\"title\":{\"description\":\"Board title\",\"type\":\"string\"},\"ws_board\":{\"description\":\"Worksafe board flag (1 for worksafe, 0 for NSFW)\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with board list\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/boards.json",
-                  "segments": [
-                    {
-                      "lit": "boards.json"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/boards.json",
+                  "q": {
                     "exist": [
                       "if_modified_since"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "boards.json"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.boards`"
                   }
@@ -278,21 +361,23 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "page",
-              "req": false,
-              "short": "Page number",
-              "type": "`$INTEGER`"
+          "fields": {
+            "page": {
+              "a": true,
+              "h": "Page",
+              "n": "page",
+              "r": false,
+              "sh": "Page number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "threads",
-              "req": false,
-              "type": "`$ARRAY`"
+            "threads": {
+              "a": true,
+              "h": "Threads",
+              "n": "threads",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "catalog",
           "op": {
             "list": {
@@ -300,39 +385,45 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{board}/catalog.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ],
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "board",
+                        "or": "board",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{board}/catalog.json",
-                    "json": "{\"operationId\":\"getBoardCatalog\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"page\":{\"description\":\"Page number\",\"type\":\"integer\"},\"threads\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with catalog data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{board}/catalog.json",
+                  "q": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{board}/catalog.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "var": "board"
                     },
@@ -340,13 +431,7 @@
                       "lit": "catalog.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -363,14 +448,15 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "posts",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "posts": {
+              "a": true,
+              "h": "Posts",
+              "n": "posts",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "index",
           "op": {
             "list": {
@@ -378,47 +464,54 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{board}/{page}.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ],
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "board",
+                        "or": "board",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "page",
+                        "or": "page",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{board}/{page}.json",
-                    "json": "{\"operationId\":\"getBoardIndex\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"Page number (typically 1-10)\",\"in\":\"path\",\"name\":\"page\",\"required\":true,\"schema\":{\"maximum\":10,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"threads\":{\"items\":{\"properties\":{\"posts\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with index page data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board or page not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{board}/{page}.json",
+                  "q": {
+                    "exist": [
+                      "board",
+                      "if_modified_since",
+                      "page"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{board}/{page}.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "var": "board"
                     },
@@ -426,14 +519,7 @@
                       "lit": "{page}.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since",
-                      "page"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.threads`"
                   }
@@ -450,21 +536,23 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "page",
-              "req": false,
-              "short": "Page number",
-              "type": "`$INTEGER`"
+          "fields": {
+            "page": {
+              "a": true,
+              "h": "Page",
+              "n": "page",
+              "r": false,
+              "sh": "Page number",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "threads",
-              "req": false,
-              "type": "`$ARRAY`"
+            "threads": {
+              "a": true,
+              "h": "Threads",
+              "n": "threads",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "thread",
           "op": {
             "list": {
@@ -472,47 +560,450 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{board}/threads.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "header": [
                       {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ],
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "thread_id",
-                        "orig": "thread_id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "board",
+                        "or": "board",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{board}/thread/{threadId}.json",
-                    "json": "{\"operationId\":\"getThread\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"Thread ID (post number of the opening post)\",\"in\":\"path\",\"name\":\"threadId\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"posts\":{\"items\":{\"properties\":{\"archived\":{\"description\":\"Archived flag\",\"type\":\"integer\"},\"archived_on\":{\"description\":\"Unix timestamp when archived\",\"type\":\"integer\"},\"bumplimit\":{\"description\":\"Bump limit reached flag\",\"type\":\"integer\"},\"capcode\":{\"description\":\"Capcode (mod, admin, etc.)\",\"type\":\"string\"},\"closed\":{\"description\":\"Closed flag\",\"type\":\"integer\"},\"com\":{\"description\":\"Comment (HTML escaped)\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"country_name\":{\"description\":\"Country name\",\"type\":\"string\"},\"custom_spoiler\":{\"description\":\"Custom spoiler ID\",\"type\":\"integer\"},\"ext\":{\"description\":\"File extension\",\"type\":\"string\"},\"filedeleted\":{\"description\":\"File deleted flag\",\"type\":\"integer\"},\"filename\":{\"description\":\"Original filename\",\"type\":\"string\"},\"fsize\":{\"description\":\"File size in bytes\",\"type\":\"integer\"},\"h\":{\"description\":\"Image height\",\"type\":\"integer\"},\"id\":{\"description\":\"Poster ID\",\"type\":\"string\"},\"imagelimit\":{\"description\":\"Image limit reached flag\",\"type\":\"integer\"},\"images\":{\"description\":\"Number of images\",\"type\":\"integer\"},\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"m_img\":{\"description\":\"Mobile optimized image flag\",\"type\":\"integer\"},\"md5\":{\"description\":\"MD5 hash in base64\",\"type\":\"string\"},\"name\":{\"description\":\"Poster name\",\"type\":\"string\"},\"no\":{\"description\":\"Post number\",\"type\":\"integer\"},\"now\":{\"description\":\"Formatted date and time\",\"type\":\"string\"},\"omitted_images\":{\"description\":\"Number of omitted images\",\"type\":\"integer\"},\"omitted_posts\":{\"description\":\"Number of omitted posts\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"},\"resto\":{\"description\":\"Reply to thread ID (0 for OP)\",\"type\":\"integer\"},\"semantic_url\":{\"description\":\"SEO-friendly URL slug\",\"type\":\"string\"},\"since4pass\":{\"description\":\"Year 4chan pass purchased\",\"type\":\"integer\"},\"spoiler\":{\"description\":\"Spoiler flag\",\"type\":\"integer\"},\"sticky\":{\"description\":\"Sticky flag\",\"type\":\"integer\"},\"sub\":{\"description\":\"Subject\",\"type\":\"string\"},\"tag\":{\"description\":\"Tag\",\"type\":\"string\"},\"tim\":{\"description\":\"Unix timestamp for image\",\"type\":\"integer\"},\"time\":{\"description\":\"Unix timestamp\",\"type\":\"integer\"},\"tn_h\":{\"description\":\"Thumbnail height\",\"type\":\"integer\"},\"tn_w\":{\"description\":\"Thumbnail width\",\"type\":\"integer\"},\"trip\":{\"description\":\"Tripcode\",\"type\":\"string\"},\"unique_ips\":{\"description\":\"Number of unique poster IPs\",\"type\":\"integer\"},\"w\":{\"description\":\"Image width\",\"type\":\"integer\"}},\"required\":[\"no\",\"time\",\"now\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with thread data\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Thread not found or has been deleted\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{board}/threads.json",
+                  "q": {
+                    "exist": [
+                      "board",
+                      "if_modified_since"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{board}/thread/{threadId}.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
+                    {
+                      "var": "board"
+                    },
+                    {
+                      "lit": "threads.json"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "thread_id": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "archived": {
+              "a": true,
+              "h": "Archived",
+              "n": "archived",
+              "r": false,
+              "sh": "Archived flag",
+              "t": "`$INTEGER`"
+            },
+            "archived_on": {
+              "a": true,
+              "h": "Archived On",
+              "n": "archived_on",
+              "r": false,
+              "sh": "Unix timestamp when archived",
+              "t": "`$INTEGER`"
+            },
+            "bumplimit": {
+              "a": true,
+              "h": "Bumplimit",
+              "n": "bumplimit",
+              "r": false,
+              "sh": "Bump limit reached flag",
+              "t": "`$INTEGER`"
+            },
+            "capcode": {
+              "a": true,
+              "h": "Capcode",
+              "n": "capcode",
+              "r": false,
+              "sh": "Capcode (mod, admin, etc.)",
+              "t": "`$STRING`"
+            },
+            "closed": {
+              "a": true,
+              "h": "Closed",
+              "n": "closed",
+              "r": false,
+              "sh": "Closed flag",
+              "t": "`$INTEGER`"
+            },
+            "com": {
+              "a": true,
+              "h": "Com",
+              "n": "com",
+              "r": false,
+              "sh": "Comment (HTML escaped)",
+              "t": "`$STRING`"
+            },
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country code",
+              "t": "`$STRING`"
+            },
+            "country_name": {
+              "a": true,
+              "h": "Country Name",
+              "n": "country_name",
+              "r": false,
+              "sh": "Country name",
+              "t": "`$STRING`"
+            },
+            "custom_spoiler": {
+              "a": true,
+              "h": "Custom Spoiler",
+              "n": "custom_spoiler",
+              "r": false,
+              "sh": "Custom spoiler ID",
+              "t": "`$INTEGER`"
+            },
+            "ext": {
+              "a": true,
+              "h": "Ext",
+              "n": "ext",
+              "r": false,
+              "sh": "File extension",
+              "t": "`$STRING`"
+            },
+            "filedeleted": {
+              "a": true,
+              "h": "Filedeleted",
+              "n": "filedeleted",
+              "r": false,
+              "sh": "File deleted flag",
+              "t": "`$INTEGER`"
+            },
+            "filename": {
+              "a": true,
+              "h": "Filename",
+              "n": "filename",
+              "r": false,
+              "sh": "Original filename",
+              "t": "`$STRING`"
+            },
+            "fsize": {
+              "a": true,
+              "h": "Fsize",
+              "n": "fsize",
+              "r": false,
+              "sh": "File size in bytes",
+              "t": "`$INTEGER`"
+            },
+            "h": {
+              "a": true,
+              "h": "H",
+              "n": "h",
+              "r": false,
+              "sh": "Image height",
+              "t": "`$INTEGER`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Poster ID",
+              "t": "`$STRING`"
+            },
+            "imagelimit": {
+              "a": true,
+              "h": "Imagelimit",
+              "n": "imagelimit",
+              "r": false,
+              "sh": "Image limit reached flag",
+              "t": "`$INTEGER`"
+            },
+            "images": {
+              "a": true,
+              "h": "Images",
+              "n": "images",
+              "r": false,
+              "sh": "Number of images",
+              "t": "`$INTEGER`"
+            },
+            "last_modified": {
+              "a": true,
+              "h": "Last Modified",
+              "n": "last_modified",
+              "r": false,
+              "sh": "Unix timestamp of last modification",
+              "t": "`$INTEGER`"
+            },
+            "m_img": {
+              "a": true,
+              "h": "M Img",
+              "n": "m_img",
+              "r": false,
+              "sh": "Mobile optimized image flag",
+              "t": "`$INTEGER`"
+            },
+            "md5": {
+              "a": true,
+              "h": "Md5",
+              "n": "md5",
+              "r": false,
+              "sh": "MD5 hash in base64",
+              "t": "`$STRING`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Poster name",
+              "t": "`$STRING`"
+            },
+            "no": {
+              "a": true,
+              "h": "No",
+              "n": "no",
+              "r": true,
+              "sh": "Post number",
+              "t": "`$INTEGER`"
+            },
+            "now": {
+              "a": true,
+              "h": "Now",
+              "n": "now",
+              "r": true,
+              "sh": "Formatted date and time",
+              "t": "`$STRING`"
+            },
+            "omitted_images": {
+              "a": true,
+              "h": "Omitted Images",
+              "n": "omitted_images",
+              "r": false,
+              "sh": "Number of omitted images",
+              "t": "`$INTEGER`"
+            },
+            "omitted_posts": {
+              "a": true,
+              "h": "Omitted Posts",
+              "n": "omitted_posts",
+              "r": false,
+              "sh": "Number of omitted posts",
+              "t": "`$INTEGER`"
+            },
+            "replies": {
+              "a": true,
+              "h": "Replies",
+              "n": "replies",
+              "r": false,
+              "sh": "Number of replies",
+              "t": "`$INTEGER`"
+            },
+            "resto": {
+              "a": true,
+              "h": "Resto",
+              "n": "resto",
+              "r": false,
+              "sh": "Reply to thread ID (0 for OP)",
+              "t": "`$INTEGER`"
+            },
+            "semantic_url": {
+              "a": true,
+              "h": "Semantic Url",
+              "n": "semantic_url",
+              "r": false,
+              "sh": "SEO-friendly URL slug",
+              "t": "`$STRING`"
+            },
+            "since4pass": {
+              "a": true,
+              "h": "Since4pass",
+              "n": "since4pass",
+              "r": false,
+              "sh": "Year 4chan pass purchased",
+              "t": "`$INTEGER`"
+            },
+            "spoiler": {
+              "a": true,
+              "h": "Spoiler",
+              "n": "spoiler",
+              "r": false,
+              "sh": "Spoiler flag",
+              "t": "`$INTEGER`"
+            },
+            "sticky": {
+              "a": true,
+              "h": "Sticky",
+              "n": "sticky",
+              "r": false,
+              "sh": "Sticky flag",
+              "t": "`$INTEGER`"
+            },
+            "sub": {
+              "a": true,
+              "h": "Sub",
+              "n": "sub",
+              "r": false,
+              "sh": "Subject",
+              "t": "`$STRING`"
+            },
+            "tag": {
+              "a": true,
+              "h": "Tag",
+              "n": "tag",
+              "r": false,
+              "sh": "Tag",
+              "t": "`$STRING`"
+            },
+            "tim": {
+              "a": true,
+              "h": "Tim",
+              "n": "tim",
+              "r": false,
+              "sh": "Unix timestamp for image",
+              "t": "`$INTEGER`"
+            },
+            "time": {
+              "a": true,
+              "h": "Time",
+              "n": "time",
+              "r": true,
+              "sh": "Unix timestamp",
+              "t": "`$INTEGER`"
+            },
+            "tn_h": {
+              "a": true,
+              "h": "Tn H",
+              "n": "tn_h",
+              "r": false,
+              "sh": "Thumbnail height",
+              "t": "`$INTEGER`"
+            },
+            "tn_w": {
+              "a": true,
+              "h": "Tn W",
+              "n": "tn_w",
+              "r": false,
+              "sh": "Thumbnail width",
+              "t": "`$INTEGER`"
+            },
+            "trip": {
+              "a": true,
+              "h": "Trip",
+              "n": "trip",
+              "r": false,
+              "sh": "Tripcode",
+              "t": "`$STRING`"
+            },
+            "unique_ips": {
+              "a": true,
+              "h": "Unique Ips",
+              "n": "unique_ips",
+              "r": false,
+              "sh": "Number of unique poster IPs",
+              "t": "`$INTEGER`"
+            },
+            "w": {
+              "a": true,
+              "h": "W",
+              "n": "w",
+              "r": false,
+              "sh": "Image width",
+              "t": "`$INTEGER`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "thread_id",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{board}/thread/{threadId}.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "header": [
+                      {
+                        "a": true,
+                        "k": "header",
+                        "n": "if_modified_since",
+                        "or": "if_modified_since",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "board",
+                        "or": "board",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "thread_id",
+                        "or": "thread_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{board}/thread/{threadId}.json",
+                  "q": {
+                    "exist": [
+                      "board",
+                      "if_modified_since",
+                      "thread_id"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
                     {
                       "var": "board"
                     },
@@ -523,69 +1014,9 @@
                       "lit": "{threadId}.json"
                     }
                   ],
-                  "select": {
-                    "$action": "thread_id",
-                    "exist": [
-                      "board",
-                      "if_modified_since",
-                      "thread_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.posts`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "header": [
-                      {
-                        "active": true,
-                        "kind": "header",
-                        "name": "if_modified_since",
-                        "orig": "if_modified_since",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ],
-                    "params": [
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "board",
-                        "orig": "board",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /{board}/threads.json",
-                    "json": "{\"operationId\":\"getThreadList\",\"parameters\":[{\"description\":\"Board identifier (e.g., 'g' for technology, 'a' for anime)\",\"in\":\"path\",\"name\":\"board\",\"required\":true,\"schema\":{\"pattern\":\"^[a-z0-9]+$\",\"type\":\"string\"}},{\"description\":\"HTTP date for conditional requests. Returns 304 if content hasn't been modified.\",\"in\":\"header\",\"name\":\"If-Modified-Since\",\"required\":false,\"schema\":{\"format\":\"date-time\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"page\":{\"description\":\"Page number\",\"type\":\"integer\"},\"threads\":{\"items\":{\"properties\":{\"last_modified\":{\"description\":\"Unix timestamp of last modification\",\"type\":\"integer\"},\"no\":{\"description\":\"Thread ID (OP post number)\",\"type\":\"integer\"},\"replies\":{\"description\":\"Number of replies\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with thread list\"},\"304\":{\"description\":\"Not Modified - Content has not changed since last request\"},\"404\":{\"description\":\"Board not found\"},\"429\":{\"description\":\"Too Many Requests - Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{board}/threads.json",
-                  "segments": [
-                    {
-                      "var": "board"
-                    },
-                    {
-                      "lit": "threads.json"
-                    }
-                  ],
-                  "select": {
-                    "exist": [
-                      "board",
-                      "if_modified_since"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
                   }
                 }
               ]
@@ -1012,15 +1443,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "board": "board01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1040,13 +1471,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1066,15 +1497,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "board": "board01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1094,16 +1525,16 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "board": "board01",
                 "page": "page01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1123,19 +1554,48 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "board": "board01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
                     "ref": "thread_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicThreadIdFlow": {
+          "active": true,
+          "entity": "thread_id",
+          "key$": "BasicThreadIdFlow",
+          "kind": "basic",
+          "name": "BasicThreadIdFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
+                "board": "board01",
+                "thread_id": "thread01"
+              },
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "thread_id_ref01"
                   }
                 }
               ]

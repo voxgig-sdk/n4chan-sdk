@@ -1,0 +1,8 @@
+# Flows
+
+@"./BasicArchiveFlow.aontu"
+@"./BasicBoardFlow.aontu"
+@"./BasicCatalogFlow.aontu"
+@"./BasicIndexFlow.aontu"
+@"./BasicThreadFlow.aontu"
+@"./BasicThreadIdFlow.aontu"

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArchiveEntity = void 0;
 const N4chanEntityBase_1 = require("../N4chanEntityBase");
-// TODO: needs Entity superclass
 class ArchiveEntity extends N4chanEntityBase_1.N4chanEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

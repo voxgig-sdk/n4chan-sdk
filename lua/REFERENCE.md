@@ -60,6 +60,10 @@ Create a new `Index` entity instance. Pass `nil` for no initial data.
 
 Create a new `Thread` entity instance. Pass `nil` for no initial data.
 
+#### `ThreadId(data)`
+
+Create a new `ThreadId` entity instance. Pass `nil` for no initial data.
+
 #### `options_map() -> table`
 
 Return a deep copy of the current SDK options.
@@ -359,6 +363,97 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ThreadEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## ThreadIdEntity
+
+```lua
+local thread_id = client:ThreadId(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `archived` | `number` | No | Archived flag |
+| `archived_on` | `number` | No | Unix timestamp when archived |
+| `bumplimit` | `number` | No | Bump limit reached flag |
+| `capcode` | `string` | No | Capcode (mod, admin, etc.) |
+| `closed` | `number` | No | Closed flag |
+| `com` | `string` | No | Comment (HTML escaped) |
+| `country` | `string` | No | Country code |
+| `country_name` | `string` | No | Country name |
+| `custom_spoiler` | `number` | No | Custom spoiler ID |
+| `ext` | `string` | No | File extension |
+| `filedeleted` | `number` | No | File deleted flag |
+| `filename` | `string` | No | Original filename |
+| `fsize` | `number` | No | File size in bytes |
+| `h` | `number` | No | Image height |
+| `id` | `string` | No | Poster ID |
+| `imagelimit` | `number` | No | Image limit reached flag |
+| `images` | `number` | No | Number of images |
+| `last_modified` | `number` | No | Unix timestamp of last modification |
+| `m_img` | `number` | No | Mobile optimized image flag |
+| `md5` | `string` | No | MD5 hash in base64 |
+| `name` | `string` | No | Poster name |
+| `no` | `number` | Yes | Post number |
+| `now` | `string` | Yes | Formatted date and time |
+| `omitted_images` | `number` | No | Number of omitted images |
+| `omitted_posts` | `number` | No | Number of omitted posts |
+| `replies` | `number` | No | Number of replies |
+| `resto` | `number` | No | Reply to thread ID (0 for OP) |
+| `semantic_url` | `string` | No | SEO-friendly URL slug |
+| `since4pass` | `number` | No | Year 4chan pass purchased |
+| `spoiler` | `number` | No | Spoiler flag |
+| `sticky` | `number` | No | Sticky flag |
+| `sub` | `string` | No | Subject |
+| `tag` | `string` | No | Tag |
+| `tim` | `number` | No | Unix timestamp for image |
+| `time` | `number` | Yes | Unix timestamp |
+| `tn_h` | `number` | No | Thumbnail height |
+| `tn_w` | `number` | No | Thumbnail width |
+| `trip` | `string` | No | Tripcode |
+| `unique_ips` | `number` | No | Number of unique poster IPs |
+| `w` | `number` | No | Image width |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:ThreadId():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `ThreadIdEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

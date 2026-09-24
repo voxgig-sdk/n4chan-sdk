@@ -1,0 +1,27 @@
+# BasicIndexFlow
+
+main: kit: flow: BasicIndexFlow:
+{
+  entity: "index",
+  kind: "basic",
+  name: "BasicIndexFlow",
+  step: [
+    {
+      m: {
+        board: "board01",
+        page: "page01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "index_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIndexFlow"
+}

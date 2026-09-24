@@ -14,13 +14,13 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — Archive, Board, Catalog, Index and Thread — that you
+This SDK exposes the API as a small set of **semantic entities** — Archive, Board, Catalog, Index, Thread and ThreadId — that you
 call directly, instead of assembling URL paths and query strings. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`):
@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = N4chanSDK.test({
   entity: {
-    thread: {
+    catalog: {
       test01: { id: 'test01' },
     },
   },
 })
-const threads = await client.Thread().list()
-// threads is an array of Thread entities, populated with mock data
-// — call threads[0].data() for the record itself
-console.log(threads)
+const catalogs = await client.Catalog().list()
+// catalogs is an array of Catalog entities, populated with mock data
+// — call catalogs[0].data() for the record itself
+console.log(catalogs)
 ```
 
 ### Python
 
 ```python
 client = N4chanSDK.test()
-threads = client.Thread().list()
-print(threads)
+catalogs = client.Catalog().list()
+print(catalogs)
 ```
 
 ### PHP
@@ -70,16 +70,16 @@ print(threads)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = N4chanSDK::test([
-    "entity" => ["thread" => ["test01" => []]],
+    "entity" => ["catalog" => ["test01" => []]],
 ]);
-$threads = $client->Thread()->list();
+$catalogs = $client->Catalog()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Thread(nil).List(
+result, err := client.Catalog(nil).List(
     nil, nil,
 )
 ```
@@ -89,16 +89,16 @@ result, err := client.Thread(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = N4chanSDK.test({
-  "entity" => { "thread" => { "test01" => {} } },
+  "entity" => { "catalog" => { "test01" => {} } },
 })
-threads = client.Thread.list()
+catalogs = client.Catalog.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Thread():list()
+local results, err = client:Catalog():list()
 ```
 
 ## Packages
@@ -164,7 +164,7 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 5 entities:
+The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
@@ -173,6 +173,7 @@ The API exposes 5 entities:
 | **Catalog** | The Catalog entity (list). | `/{board}/catalog.json` |
 | **Index** | The Index entity (list). | `/{board}/{page}.json` |
 | **Thread** | The Thread entity (list). | `/{board}/threads.json` |
+| **ThreadId** | The ThreadId entity (list). | `/{board}/thread/{threadId}.json` |
 
 The operations available across these entities are **list** — see each entity's
 own list above for exactly which it supports.

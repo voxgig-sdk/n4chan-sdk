@@ -19,7 +19,6 @@ import type {
   IndexListMatch,
 } from '../N4chanTypes'
 
-// TODO: needs Entity superclass
 class IndexEntity extends N4chanEntityBase<Index> {
 
   constructor(client: N4chanSDK, entopts: any) {

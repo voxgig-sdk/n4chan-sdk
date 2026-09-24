@@ -19,7 +19,6 @@ import type {
   ArchiveListMatch,
 } from '../N4chanTypes'
 
-// TODO: needs Entity superclass
 class ArchiveEntity extends N4chanEntityBase<Archive> {
 
   constructor(client: N4chanSDK, entopts: any) {

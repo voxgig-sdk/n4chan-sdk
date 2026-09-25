@@ -105,12 +105,12 @@ local results, err = client:Catalog():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
-| Python | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
-| PHP | `voxgig-sdk/n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| TypeScript | `@voxgig-sdk/n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| Python | `voxgig-sdk-n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| PHP | `voxgig-sdk/n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/n4chan-sdk/go` | `go get github.com/voxgig-sdk/n4chan-sdk/go@latest` |
-| Ruby | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
-| Lua | `voxgig-sdk-n4chan` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| Ruby | `voxgig-sdk-n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
+| Lua | `voxgig-sdk-n4chan-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n4chan-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/n4chan-sdk/go-cli` | `go install github.com/voxgig-sdk/n4chan-sdk/go-cli/cmd/n4chan@latest` |
 | Go MCP server | `github.com/voxgig-sdk/n4chan-sdk/go-mcp` | `go get github.com/voxgig-sdk/n4chan-sdk/go-mcp@latest` |
 
@@ -119,7 +119,7 @@ local results, err = client:Catalog():list()
 ### TypeScript
 
 ```ts
-import { N4chanSDK } from '@voxgig-sdk/n4chan'
+import { N4chanSDK } from '@voxgig-sdk/n4chan-sdk'
 
 const client = new N4chanSDK()
 
@@ -344,10 +344,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
